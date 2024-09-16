@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Zenject;
 
 namespace PlayerSystem
@@ -9,6 +10,8 @@ namespace PlayerSystem
 		[field: SerializeField] public Player MutatedPlayer { get; private set; }
 		
 		public Player CurrentPlayer { get; private set; }
+		
+		public event Action OnMutated;
 
 		[Inject]
 		private void Construct(Player startPlayer)
@@ -23,6 +26,7 @@ namespace PlayerSystem
 			CurrentPlayer = newPlayer;
 			CurrentPlayer.gameObject.SetActive(true);
 			CurrentPlayer.OnMutated();
+			OnMutated?.Invoke();
 		}
 		
 		public void SwitchMutate()

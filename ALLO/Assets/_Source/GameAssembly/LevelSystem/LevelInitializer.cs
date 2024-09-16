@@ -18,16 +18,14 @@ namespace LevelSystem
 		{
 			Initialize();
 		}
-		
+
 		/// <summary>
 		/// Initialize level
 		/// </summary>
 		private void Initialize()
 		{
 			foreach (var initializer in _initializers)
-			{
 				initializer.Initialize();
-			}
 		}
 	}
 }
