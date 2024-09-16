@@ -7,5 +7,6 @@ namespace PlayerSystem.Data
     {
         [field: SerializeField] public float PlayerWalkSpeed { get; private set; }
         [field: SerializeField] public float PlayerRunSpeed { get; private set; }
+        [field: SerializeField] public GameObject PlayerPrefab { get; private set; }
     }
 }
