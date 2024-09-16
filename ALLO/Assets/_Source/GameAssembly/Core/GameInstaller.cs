@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using LevelSystem;
 using PlayerSystem;
 using PlayerSystem.Data;
 using UnityEngine;
@@ -8,12 +10,22 @@ namespace Core
 	public class GameInstaller : MonoInstaller
 	{
 		[SerializeField] private Player player;
+		[SerializeField] private LevelInitializer levelInitializer;
 		
 		[SerializeField] private PlayerMovementConfig playerConfig;
 		
 		public override void InstallBindings()
 		{
+			BindLevelSystem();
 			BindPlayer();
+		}
+
+		private void BindLevelSystem()
+		{
+			Container.Bind<LevelInitializer>()
+				.FromInstance(levelInitializer)
+				.AsCached()
+				.NonLazy();
 		}
 		
 		private void BindPlayer()
