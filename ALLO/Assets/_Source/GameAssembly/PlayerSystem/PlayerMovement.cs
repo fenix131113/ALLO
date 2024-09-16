@@ -6,19 +6,19 @@ namespace PlayerSystem
 {
 	public class PlayerMovement
 	{
-		private PlayerMovementConfig _playerConfig;
-		private Player _player;
+		private readonly PlayerMovementConfig _playerConfig;
+		private readonly PlayerMutation _playerMutation;
 
 		[Inject]
-		public PlayerMovement(PlayerMovementConfig playerConfig, Player player)
+		public PlayerMovement(PlayerMovementConfig playerConfig, PlayerMutation playerMutation)
 		{
 			_playerConfig = playerConfig;
-			_player = player;
+			_playerMutation = playerMutation;
 		}
 
 		public void MovePlayer(Vector2 movementVector)
 		{
-			_player.Rb.velocity = movementVector * _playerConfig.PlayerWalkSpeed;
+			_playerMutation.CurrentPlayer.Rb.velocity = movementVector * _playerConfig.PlayerWalkSpeed;
 		}
 	}
 }

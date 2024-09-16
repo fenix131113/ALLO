@@ -11,6 +11,7 @@ namespace Core
 	{
 		[SerializeField] private Player player;
 		[SerializeField] private LevelInitializer levelInitializer;
+		[SerializeField] private PlayerMutation playerMutation;
 		
 		[SerializeField] private PlayerMovementConfig playerConfig;
 		
@@ -45,6 +46,11 @@ namespace Core
 
 			Container.Bind<Player>()
 				.FromInstance(player)
+				.AsSingle()
+				.NonLazy();
+
+			Container.Bind<PlayerMutation>()
+				.FromInstance(playerMutation)
 				.AsSingle()
 				.NonLazy();
 		}
