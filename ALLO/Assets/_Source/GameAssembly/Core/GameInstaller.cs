@@ -25,7 +25,7 @@ namespace Core
 		{
 			Container.Bind<LevelInitializer>()
 				.FromInstance(levelInitializer)
-				.AsCached()
+				.AsSingle()
 				.NonLazy();
 		}
 		
