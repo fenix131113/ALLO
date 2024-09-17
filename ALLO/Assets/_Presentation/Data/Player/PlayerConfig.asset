@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: PlayerConfig
   m_EditorClassIdentifier: 
   <PlayerWalkSpeed>k__BackingField: 3.5
-  <PlayerRunSpeed>k__BackingField: 7
+  <PlayerRunSpeed>k__BackingField: 5
   <PlayerPrefab>k__BackingField: {fileID: 5374662644270566943, guid: 55ce8aad138c49e449d989475b772d98, type: 3}

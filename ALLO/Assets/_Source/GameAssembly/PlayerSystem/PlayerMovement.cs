@@ -16,9 +16,9 @@ namespace PlayerSystem
 			_playerMutation = playerMutation;
 		}
 
-		public void MovePlayer(Vector2 movementVector)
+		public void MovePlayer(Vector2 movementVector, bool run)
 		{
-			_playerMutation.CurrentPlayer.Rb.velocity = movementVector * _playerConfig.PlayerWalkSpeed;
+			_playerMutation.CurrentPlayer.Rb.velocity = movementVector * (run ? _playerConfig.PlayerRunSpeed : _playerConfig.PlayerWalkSpeed);
 		}
 	}
 }

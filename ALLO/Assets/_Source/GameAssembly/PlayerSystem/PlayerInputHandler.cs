@@ -24,7 +24,9 @@ namespace PlayerSystem
 		private void ReadMovementInput()
 		{
 			Vector2 movementInput = new(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-			_playerMovement.MovePlayer(movementInput);
+			bool run = Input.GetKey(KeyCode.LeftShift);
+			
+			_playerMovement.MovePlayer(movementInput, run);
 		}
 
 		private void ReadMutationInput()
