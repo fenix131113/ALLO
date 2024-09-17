@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 438c6bad26e66604dbc866c212cf29eb, type: 3}
   m_Name: PlayerConfig
   m_EditorClassIdentifier: 
+  <PlayerPrefab>k__BackingField: {fileID: 5374662644270566943, guid: 55ce8aad138c49e449d989475b772d98, type: 3}
   <PlayerWalkSpeed>k__BackingField: 3.5
   <PlayerRunSpeed>k__BackingField: 5
-  <PlayerPrefab>k__BackingField: {fileID: 5374662644270566943, guid: 55ce8aad138c49e449d989475b772d98, type: 3}
+  <PlayerDashPower>k__BackingField: 700
+  <PlayerDashTime>k__BackingField: 0.15
+  <PlayerDashCooldown>k__BackingField: 3

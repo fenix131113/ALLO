@@ -31,7 +31,7 @@ namespace Core
 		
 		private void BindPlayer()
 		{
-			Container.Bind<PlayerMovement>()
+			Container.BindInterfacesAndSelfTo<PlayerMovement>()
 				.AsSingle()
 				.NonLazy();
 			

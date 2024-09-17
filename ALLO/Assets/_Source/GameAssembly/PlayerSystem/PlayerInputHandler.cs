@@ -19,8 +19,17 @@ namespace PlayerSystem
 		{
 			ReadMovementInput();
 			ReadMutationInput();
+			ReadDashMovementInput();
 		}
 
+		private void ReadDashMovementInput()
+		{
+			var dashVector = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+			
+			if (Input.GetKeyDown(KeyCode.E))
+				_playerMovement.Dash(dashVector);
+		}
+		
 		private void ReadMovementInput()
 		{
 			Vector2 movementInput = new(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
