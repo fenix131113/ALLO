@@ -6,8 +6,19 @@ namespace PlayerSystem
 	public class PlayerMouseTargeting : MonoBehaviour
 	{
 		[SerializeField] private Camera targetingCamera;
-		
+
 		private PlayerMutation _playerMutation;
+
+		public Vector2 LookDirection { get; private set; }
+
+		/// <summary>
+		/// 0 = Right<br/>
+		/// 90 = Up<br/>
+		/// 180 = Left<br/> 
+		/// -90 = Down<br/>
+		/// -180 - Left
+		/// </summary>
+		public float LookDegrees { get; private set; }
 
 		[Inject]
 		private void Construct(PlayerMutation playerMutation)
@@ -19,9 +30,11 @@ namespace PlayerSystem
 		{
 			var mousePosition = targetingCamera.ScreenToWorldPoint(Input.mousePosition);
 			
-			Vector2 lookDirection = mousePosition - _playerMutation.CurrentPlayer.transform.position;
-			
-			_playerMutation.CurrentPlayer.LookRotationPivot.rotation = Quaternion.Euler(0, 0, Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg - 90);
+			LookDirection = mousePosition - _playerMutation.CurrentPlayer.transform.position;
+
+			LookDegrees = Mathf.Atan2(LookDirection.y, LookDirection.x) * Mathf.Rad2Deg;
+
+			_playerMutation.CurrentPlayer.LookRotationPivot.rotation = Quaternion.Euler(0, 0, LookDegrees);
 		}
 	}
 }

@@ -14,6 +14,7 @@ namespace Core
 		[SerializeField] private PlayerMutation playerMutation;
 		
 		[SerializeField] private PlayerMovementConfig playerConfig;
+		[SerializeField] private PlayerMouseTargeting playerMouseTargeting;
 		
 		public override void InstallBindings()
 		{
@@ -41,18 +42,19 @@ namespace Core
 
 			Container.Bind<PlayerMovementConfig>()
 				.FromInstance(playerConfig)
-				.AsSingle()
-				.NonLazy();
+				.AsSingle();
 
 			Container.Bind<Player>()
 				.FromInstance(player)
-				.AsSingle()
-				.NonLazy();
+				.AsSingle();
 
 			Container.Bind<PlayerMutation>()
 				.FromInstance(playerMutation)
-				.AsSingle()
-				.NonLazy();
+				.AsSingle();
+
+			Container.Bind<PlayerMouseTargeting>()
+				.FromInstance(playerMouseTargeting)
+				.AsSingle();
 		}
 	}
 }
