@@ -55,6 +55,50 @@ namespace EntityDrawers.Humanoid
 			}
 		}
 
+		public void Rotate(float degrees)
+		{
+			// Drawer
+			HumanoidRotationsEnum newRotation = HumanoidRotationsEnum.DOWN;
+
+			switch (degrees)
+			{
+				//Down
+				case (> -112.5f and < -67.5f):
+					newRotation = HumanoidRotationsEnum.DOWN;
+					break;
+				//Down_Right
+				case (> -67.5f and < -22.5f):
+					newRotation = HumanoidRotationsEnum.DOWN_RIGHT;
+					break;
+				//Right
+				case (> -22.5f and < 22.5f):
+					newRotation = HumanoidRotationsEnum.RIGHT;
+					break;
+				//Right_Up
+				case (> 22.5f and < 67.5f):
+					newRotation = HumanoidRotationsEnum.RIGHT_UP;
+					break;
+				//Up
+				case (> 67.5f and < 112.5f):
+					newRotation = HumanoidRotationsEnum.UP;
+					break;
+				//Up_Left
+				case (> 112.5f and < 157.5f):
+					newRotation = HumanoidRotationsEnum.UP_LEFT;
+					break;
+				//Left
+				case (> 157.5f or < -157.5f):
+					newRotation = HumanoidRotationsEnum.LEFT;
+					break;
+				//Left_Down
+				case (> -157.5f and < -112.5f):
+					newRotation = HumanoidRotationsEnum.LEFT_DOWN;
+					break;
+			}
+			
+			Rotate(newRotation);
+		}
+
 		private void ChangeRenderers(HumanoidBodyRotationGroup rotationGroup)
 		{
 			headRenderer.sprite = rotationGroup.Head;

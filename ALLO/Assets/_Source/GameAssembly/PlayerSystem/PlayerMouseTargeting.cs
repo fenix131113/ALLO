@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using EntityDrawers.Humanoid.Data;
+using UnityEngine;
 using Zenject;
 
 namespace PlayerSystem
@@ -25,16 +26,20 @@ namespace PlayerSystem
 		{
 			_playerMutation = playerMutation;
 		}
-		
+
 		private void FixedUpdate()
 		{
 			var mousePosition = targetingCamera.ScreenToWorldPoint(Input.mousePosition);
-			
+
 			LookDirection = mousePosition - _playerMutation.CurrentPlayer.transform.position;
 
 			LookDegrees = Mathf.Atan2(LookDirection.y, LookDirection.x) * Mathf.Rad2Deg;
 
 			_playerMutation.CurrentPlayer.LookRotationPivot.rotation = Quaternion.Euler(0, 0, LookDegrees);
+
+			ChangeRotation();
 		}
+
+		private void ChangeRotation() => _playerMutation.CurrentPlayer.BodyDrawer.Rotate(LookDegrees);
 	}
 }
