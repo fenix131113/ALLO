@@ -3,10 +3,8 @@ using UnityEngine;
 
 namespace EntityDrawers.Humanoid
 {
-	public class HumanoidHandsDrawer : MonoBehaviour
+	public class HumanoidHandsDrawer : HumanoidDrawer
 	{
-		[SerializeField] private Transform lookTarget;
-		[SerializeField] private Transform centerPoint;
 		[SerializeField] private SpriteRenderer rightHand;
 		[SerializeField] private SpriteRenderer leftHand;
 
@@ -41,13 +39,6 @@ namespace EntityDrawers.Humanoid
 				SwapHandsBehind();
 			else
 				SwapHandsForward();
-		}
-
-		private float GetLookDegrees()
-		{
-			Vector2 lookDirection = lookTarget.position - centerPoint.position;
-			
-			return Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
 		}
 		
 		private void SwapHandsBehind()
