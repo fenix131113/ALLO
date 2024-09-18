@@ -17,8 +17,11 @@ namespace PlayerSystem
 		
 		//Dash Cooldown
 		private float _dashCooldownTimer;
-		
 		public bool IsDashCooldown { get; private set; }
+
+		//Public movement data
+		public Vector2 CurrentMovementVector { get; private set; }
+		public bool CurrentRunState { get; private set; }
 		public float DashCooldownProgress => (Time.time - _dashCooldownTimer) / _playerConfig.PlayerDashCooldown;
 
 		[Inject]
@@ -33,8 +36,13 @@ namespace PlayerSystem
 			if (!_canMove)
 				return;
 
-			_playerMutation.CurrentPlayer.Rb.velocity =
-				movementVector * (run ? _playerConfig.PlayerRunSpeed : _playerConfig.PlayerWalkSpeed);
+			CurrentRunState = run;
+			
+			_playerMutation.CurrentPlayer.BodyDrawer.SetCurrentMovement(movementVector, run);
+			
+			CurrentMovementVector = movementVector * (run ? _playerConfig.PlayerRunSpeed : _playerConfig.PlayerWalkSpeed);
+			_playerMutation.CurrentPlayer.Rb.velocity = CurrentMovementVector;
+
 		}
 
 		public void Dash(Vector2 dashDirection)

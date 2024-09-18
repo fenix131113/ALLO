@@ -448,6 +448,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Health>k__BackingField: 5
   <MaxHealth>k__BackingField: 5
+  <Owner>k__BackingField: 0
   <Rb>k__BackingField: {fileID: 5655168584764114801}
   <LookRotationPivot>k__BackingField: {fileID: 1791065880407555310}
   <BodyDrawer>k__BackingField: {fileID: 7466378792248432705}
@@ -465,6 +466,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lookTarget: {fileID: 0}
   centerPoint: {fileID: 1791065880407555310}
+  legsAnimator: {fileID: 0}
   rightHand: {fileID: 1447065156878871781}
   leftHand: {fileID: 38082663440119712}
   defaultItemOrder: 6
@@ -487,34 +489,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lookTarget: {fileID: 0}
   centerPoint: {fileID: 1791065880407555310}
+  legsAnimator: {fileID: 0}
   headRenderer: {fileID: 4955317928900011286}
   bodyRenderer: {fileID: 700028703833222525}
-  legsRenderer: {fileID: 2962641767996916727}
+  legsRenderer: {fileID: 0}
   rotations:
   - <Head>k__BackingField: {fileID: -948694882, guid: 2e74032203375ae4da145794277cfedb, type: 3}
     <Body>k__BackingField: {fileID: -2102654598, guid: 73ae3015e2c8ea8448ae6e8375305eb4, type: 3}
-    <Legs>k__BackingField: {fileID: 1776875272, guid: 1f03bf40c1c01a043847338f59bdedcf, type: 3}
   - <Head>k__BackingField: {fileID: 1259971453, guid: 2e74032203375ae4da145794277cfedb, type: 3}
     <Body>k__BackingField: {fileID: 493345885, guid: 73ae3015e2c8ea8448ae6e8375305eb4, type: 3}
-    <Legs>k__BackingField: {fileID: 855540411, guid: 1f03bf40c1c01a043847338f59bdedcf, type: 3}
   - <Head>k__BackingField: {fileID: -1672178027, guid: 2e74032203375ae4da145794277cfedb, type: 3}
     <Body>k__BackingField: {fileID: -2063617810, guid: 73ae3015e2c8ea8448ae6e8375305eb4, type: 3}
-    <Legs>k__BackingField: {fileID: 259414539, guid: 1f03bf40c1c01a043847338f59bdedcf, type: 3}
   - <Head>k__BackingField: {fileID: -82103419, guid: 2e74032203375ae4da145794277cfedb, type: 3}
     <Body>k__BackingField: {fileID: -67303473, guid: 73ae3015e2c8ea8448ae6e8375305eb4, type: 3}
-    <Legs>k__BackingField: {fileID: 2010353043, guid: 1f03bf40c1c01a043847338f59bdedcf, type: 3}
   - <Head>k__BackingField: {fileID: 142930679, guid: 2e74032203375ae4da145794277cfedb, type: 3}
     <Body>k__BackingField: {fileID: 250574202, guid: 73ae3015e2c8ea8448ae6e8375305eb4, type: 3}
-    <Legs>k__BackingField: {fileID: -549209379, guid: 1f03bf40c1c01a043847338f59bdedcf, type: 3}
   - <Head>k__BackingField: {fileID: -2084966421, guid: 2e74032203375ae4da145794277cfedb, type: 3}
     <Body>k__BackingField: {fileID: -1887169199, guid: 73ae3015e2c8ea8448ae6e8375305eb4, type: 3}
-    <Legs>k__BackingField: {fileID: -659337502, guid: 1f03bf40c1c01a043847338f59bdedcf, type: 3}
   - <Head>k__BackingField: {fileID: 1721484215, guid: 2e74032203375ae4da145794277cfedb, type: 3}
     <Body>k__BackingField: {fileID: -918195235, guid: 73ae3015e2c8ea8448ae6e8375305eb4, type: 3}
-    <Legs>k__BackingField: {fileID: -869484445, guid: 1f03bf40c1c01a043847338f59bdedcf, type: 3}
   - <Head>k__BackingField: {fileID: 1700409203, guid: 2e74032203375ae4da145794277cfedb, type: 3}
     <Body>k__BackingField: {fileID: 573144118, guid: 73ae3015e2c8ea8448ae6e8375305eb4, type: 3}
-    <Legs>k__BackingField: {fileID: 1755846966, guid: 1f03bf40c1c01a043847338f59bdedcf, type: 3}
 --- !u!70 &284580761645324416
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -582,7 +577,6 @@ Transform:
   - {fileID: 1791065880407555310}
   - {fileID: 3736579844198974373}
   - {fileID: 1669020782695072733}
-  - {fileID: 548912543309512967}
   - {fileID: 2733024275996684998}
   m_Father: {fileID: 6571776517087802854}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -692,90 +686,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!1 &7714889457943165826
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 548912543309512967}
-  - component: {fileID: 2962641767996916727}
-  m_Layer: 6
-  m_Name: Pants
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &548912543309512967
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7714889457943165826}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.15, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 902600672877576454}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &2962641767996916727
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7714889457943165826}
-  m_Enabled: 0
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1664077999
-  m_SortingLayer: -1
-  m_SortingOrder: 4
-  m_Sprite: {fileID: 2054522896, guid: 6b365dee9a8eeaa4db42963639166256, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 0.31, y: 0.28}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
 --- !u!1 &8354427669154504390
 GameObject:
   m_ObjectHideFlags: 0

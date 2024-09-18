@@ -21,6 +21,7 @@ namespace GameMenuSystem
 
 		private void ActivateMenu()
 		{
+			Cursor.visible = true;
 			gameMenuBlocker.SetActive(true);
 			Time.timeScale = 0;
 			continueGameButton.onClick.AddListener(DeactivateMenu);
@@ -28,6 +29,7 @@ namespace GameMenuSystem
 
 		private void DeactivateMenu()
 		{
+			Cursor.visible = false;
 			gameMenuBlocker.SetActive(false);
 			Time.timeScale = 1;
 			continueGameButton.onClick.RemoveAllListeners();
