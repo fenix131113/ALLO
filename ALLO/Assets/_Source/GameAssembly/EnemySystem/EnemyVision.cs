@@ -7,15 +7,17 @@ namespace EnemySystem
 	public class EnemyVision : MonoBehaviour
 	{
 		[SerializeField] private LayerMask targetingLayer;
+		
+		public Transform CurrentTarget { get; private set; }
 
 		public event Action<Transform> OnTargetSpotted; 
 
 		private void OnTriggerEnter2D(Collider2D other)
 		{
-			if (LayerService.CheckLayersEquality(other.gameObject.layer, targetingLayer))
+			if (LayerService.CheckLayersEquality(other.gameObject.layer, targetingLayer) && !CurrentTarget)
 			{
 				OnTargetSpotted?.Invoke(other.transform);
-				Debug.Log("Enemy Spotted");
+				CurrentTarget = other.transform;
 			}
 		}
 	}

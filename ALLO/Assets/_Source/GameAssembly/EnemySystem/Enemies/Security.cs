@@ -1,19 +1,25 @@
-﻿using UnityEngine;
+﻿using DamageSystem;
+using DamageSystem.Data;
+using UnityEngine;
 
 namespace EnemySystem.Enemies
 {
 	public class Security : AEnemy
 	{
-		private Transform _target;
+		[SerializeField] private DamageZone damageZone;
+		[SerializeField] private DamageOwner currentOwner;
+		[SerializeField] private int hitDamage;
+
+		private void Start() => damageZone.SetDamage(currentOwner, hitDamage);
+
 		protected override void OnTargetSpotted(Transform target)
 		{
-			_target = target;
 		}
 
 		private void Update()
 		{
-			if(_target)
-				SetDestination(_target.position);
+			if (Vision.CurrentTarget)
+				SetDestination(Vision.CurrentTarget.position);
 		}
 	}
 }
