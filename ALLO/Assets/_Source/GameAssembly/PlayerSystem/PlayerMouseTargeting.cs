@@ -31,7 +31,7 @@ namespace PlayerSystem
 		{
 			var mousePosition = targetingCamera.ScreenToWorldPoint(Input.mousePosition);
 
-			LookDirection = mousePosition - _playerMutation.CurrentPlayer.transform.position;
+			LookDirection = mousePosition - _playerMutation.CurrentPlayer.LookRotationPivot.position;
 
 			LookDegrees = Mathf.Atan2(LookDirection.y, LookDirection.x) * Mathf.Rad2Deg;
 

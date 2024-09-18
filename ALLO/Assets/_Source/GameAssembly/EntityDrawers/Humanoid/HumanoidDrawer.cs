@@ -8,7 +8,6 @@ namespace EntityDrawers.Humanoid
 		[SerializeField] protected Transform centerPoint;
 		
 		protected float GetLookDegrees()
-		
 		{
 			Vector2 lookDirection = lookTarget.position - centerPoint.position;
 			

@@ -7,7 +7,7 @@ namespace EntityDrawers.Humanoid
 	{
 		[SerializeField] private SpriteRenderer rightHand;
 		[SerializeField] private SpriteRenderer leftHand;
-
+		
 		[Header("Orders")] [SerializeField] private int defaultItemOrder;
 		[SerializeField] private int defaultRightHandOrder;
 		[SerializeField] private int defaultLeftHandOrder;
@@ -16,6 +16,8 @@ namespace EntityDrawers.Humanoid
 		[SerializeField] private int behindLeftHandOrder;
 
 		private readonly List<SpriteRenderer> _handsItems = new();
+
+		private bool _isHandsRight = true;
 
 		private void Awake()
 		{
@@ -40,7 +42,7 @@ namespace EntityDrawers.Humanoid
 			else
 				SwapHandsForward();
 		}
-		
+
 		private void SwapHandsBehind()
 		{
 			rightHand.sortingOrder = behindRightHandOrder;
@@ -57,18 +59,38 @@ namespace EntityDrawers.Humanoid
 
 		private void SwapHandsRight()
 		{
+			if (_isHandsRight)
+				return;
+
+			_isHandsRight = true;
 			rightHand.transform.localScale =
 				new Vector3(rightHand.transform.localScale.x, 1, rightHand.transform.localScale.z);
 			leftHand.transform.localScale =
 				new Vector3(leftHand.transform.localScale.x, 1, leftHand.transform.localScale.z);
+			
+			Vector3 tempPosRight = rightHand.transform.localPosition;
+			rightHand.transform.localPosition = new Vector3(tempPosRight.x, tempPosRight.y / -1, tempPosRight.z);
+			
+			Vector3 tempPosLeft = leftHand.transform.localPosition;
+			leftHand.transform.localPosition = new Vector3(tempPosLeft.x, tempPosLeft.y / -1, tempPosLeft.z);
 		}
 
 		private void SwapHandsLeft()
 		{
+			if (!_isHandsRight)
+				return;
+
+			_isHandsRight = false;
 			rightHand.transform.localScale =
 				new Vector3(rightHand.transform.localScale.x, -1, rightHand.transform.localScale.z);
 			leftHand.transform.localScale =
 				new Vector3(leftHand.transform.localScale.x, -1, leftHand.transform.localScale.z);
+
+			Vector3 tempPosRight = rightHand.transform.localPosition;
+			rightHand.transform.localPosition = new Vector3(tempPosRight.x, tempPosRight.y * -1, tempPosRight.z);
+			
+			Vector3 tempPosLeft = leftHand.transform.localPosition;
+			leftHand.transform.localPosition = new Vector3(tempPosLeft.x, tempPosLeft.y * -1, tempPosLeft.z);
 		}
 
 		private void SetItemsOrder(int order)
