@@ -14,11 +14,10 @@ namespace EnemySystem
 
 		private void OnTriggerEnter2D(Collider2D other)
 		{
-			if (LayerService.CheckLayersEquality(other.gameObject.layer, targetingLayer) && !CurrentTarget)
-			{
-				OnTargetSpotted?.Invoke(other.transform);
-				CurrentTarget = other.transform;
-			}
+			if (!LayerService.CheckLayersEquality(other.gameObject.layer, targetingLayer) || CurrentTarget) return;
+			
+			OnTargetSpotted?.Invoke(other.transform);
+			CurrentTarget = other.transform;
 		}
 	}
 }

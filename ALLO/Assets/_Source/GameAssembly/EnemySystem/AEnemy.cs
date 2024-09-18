@@ -13,7 +13,7 @@ namespace EnemySystem
 		[field: SerializeField] public AIPath AiPath { get; protected set; }
 		[field: SerializeField] public DamageOwner Owner { get; protected set; }
 
-		private void Start()
+		private void Awake()
 		{
 			Bind();
 		}

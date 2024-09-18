@@ -32,6 +32,9 @@ namespace EntityDrawers.Humanoid
 
 		private void CheckHandsDraw()
 		{
+			if(!LookTarget)
+				return;
+			
 			if (GetLookDegrees() is < 90 and > -90)
 				SwapHandsRight();
 			else
