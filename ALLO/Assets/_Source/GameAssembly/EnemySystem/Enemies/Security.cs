@@ -19,6 +19,12 @@ namespace EnemySystem.Enemies
 		{
 		}
 
+		public override void TakeDamage(int damage)
+		{
+			Health -= damage;
+			Health = Mathf.Clamp(Health, 0, MaxHealth);
+		}
+
 		private void Update()
 		{
 			if (!Vision.CurrentTarget)

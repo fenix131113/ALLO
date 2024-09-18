@@ -19,16 +19,11 @@ namespace EnemySystem
 		}
 
 		protected abstract void OnTargetSpotted(Transform target);
+		public abstract void TakeDamage(int damage);
 		
 		public int GetHealth() => Health;
 		public int GetMaxHealth() => Health;
 		public DamageOwner GetOwner() => Owner;
-
-		public void TakeDamage(int damage)
-		{
-			Health -= damage;
-			Health = Mathf.Clamp(Health, 0, MaxHealth);
-		}
 
 		public void SetDestination(Vector3 targetPosition)
 		{

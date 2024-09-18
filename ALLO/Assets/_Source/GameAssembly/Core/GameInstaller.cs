@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+using GameMenuSystem;
 using LevelSystem;
 using PlayerSystem;
 using PlayerSystem.Data;
@@ -12,6 +12,7 @@ namespace Core
 		[SerializeField] private Player player;
 		[SerializeField] private LevelInitializer levelInitializer;
 		[SerializeField] private PlayerMutation playerMutation;
+		[SerializeField] private GameMenu gameMenu;
 		
 		[SerializeField] private PlayerMovementConfig playerConfig;
 		[SerializeField] private PlayerMouseTargeting playerMouseTargeting;
@@ -20,8 +21,17 @@ namespace Core
 		{
 			BindLevelSystem();
 			BindPlayer();
+			BindMenuSystem();
 		}
 
+		private void BindMenuSystem()
+		{
+			Container.Bind<GameMenu>()
+				.FromInstance(gameMenu)
+				.AsSingle()
+				.NonLazy();
+		}
+		
 		private void BindLevelSystem()
 		{
 			Container.Bind<LevelInitializer>()
@@ -36,7 +46,7 @@ namespace Core
 				.AsSingle()
 				.NonLazy();
 			
-			Container.BindInterfacesTo<PlayerInputHandler>()
+			Container.BindInterfacesAndSelfTo<PlayerInputHandler>()
 				.AsSingle()
 				.NonLazy();
 
