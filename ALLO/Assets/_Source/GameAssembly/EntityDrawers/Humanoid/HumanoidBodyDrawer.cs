@@ -115,8 +115,8 @@ namespace EntityDrawers.Humanoid
 		{
 			headRenderer.sprite = rotationGroup.Head;
 			bodyRenderer.sprite = rotationGroup.Body;
-			legsAnimator.SetFloat(LegsBlendTreeX, rotationGroup.LegsBlendTreeX);
-			legsAnimator.SetFloat(LegsBlendTreeY, rotationGroup.LegsBlendTreeY);
+			legsAnimator.SetFloat(LegsBlendTreeX, _moveDirection.x);
+			legsAnimator.SetFloat(LegsBlendTreeY, _moveDirection.y);
 
 			if (_moveDirection.magnitude == 0)
 			{
