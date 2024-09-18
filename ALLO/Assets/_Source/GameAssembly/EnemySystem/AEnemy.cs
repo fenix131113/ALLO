@@ -19,6 +19,7 @@ namespace EnemySystem
 		}
 
 		protected abstract void OnTargetSpotted(Transform target);
+		protected abstract void Die();
 		public abstract void TakeDamage(int damage);
 		
 		public int GetHealth() => Health;
