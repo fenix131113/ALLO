@@ -1,3 +1,4 @@
+using System;
 using DamageSystem;
 using DamageSystem.Data;
 using EntityDrawers.Humanoid;
@@ -15,6 +16,9 @@ namespace PlayerSystem
 		[field: SerializeField] public Transform LookRotationPivot { get; private set; }
 		[field: SerializeField] public HumanoidBodyDrawer BodyDrawer { get; private set; }
 
+		//TODO: Change this
+		public event Action OnHealthChanged;
+
 		public void OnMutated()
 		{
 		}
@@ -27,6 +31,7 @@ namespace PlayerSystem
 		{
 			Health -= damage;
 			Health = Mathf.Clamp(Health, 0, MaxHealth);
+			OnHealthChanged?.Invoke();
 		}
 
 	}

@@ -42,8 +42,8 @@ namespace DamageSystem
 			if (instantDamage)
 			{
 				if (!other.gameObject.TryGetComponent(out IDamageable instantDamageable)) return;
-				if(instantDamageable.GetOwner() != damageOwner) return;
-				
+				if (instantDamageable.GetOwner() == damageOwner) return;
+
 				instantDamageable.TakeDamage(damage);
 				DisableZone();
 			}
@@ -52,7 +52,7 @@ namespace DamageSystem
 				if (_damageableInside.ContainsKey(other.gameObject) ||
 				    !other.TryGetComponent(out IDamageable damageable)) return;
 
-				if (damageable.GetOwner() == damageOwner)
+				if (damageable.GetOwner() != damageOwner)
 					damageable.TakeDamage(damage);
 				_damageableInside.Add(other.gameObject, damageable);
 			}

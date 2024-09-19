@@ -123,13 +123,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PlayerLegs_0
+      name: DarkLegs_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 24
-        height: 25
+        width: 32
+        height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,20 +137,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3d58d6bb3ae7f1b4ea78027a92f80b42
-      internalID: 259414539
+      spriteID: 2619b5dae2bb7db498f9d096eb06c141
+      internalID: -1535812649
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerLegs_1
+      name: DarkLegs_1
       rect:
         serializedVersion: 2
-        x: 24
+        x: 32
         y: 0
-        width: 24
-        height: 25
+        width: 32
+        height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -158,20 +158,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 023c5fdecbb2b1a478b67d3f76675efa
-      internalID: 1776875272
+      spriteID: 1b1f32c5697eb9641993d730664724ca
+      internalID: 600475264
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerLegs_2
+      name: DarkLegs_2
       rect:
         serializedVersion: 2
-        x: 48
+        x: 64
         y: 0
-        width: 24
-        height: 25
+        width: 32
+        height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -179,41 +179,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e02d51dbff87f3a4691bc99b4ada8662
-      internalID: -869484445
+      spriteID: 1f58f9c5182c21f4cbb41d2da2037621
+      internalID: 581346010
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerLegs_3
-      rect:
-        serializedVersion: 2
-        x: 72
-        y: 0
-        width: 24
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 690b7523deb7096499c0f1e5baa07a85
-      internalID: -549209379
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlayerLegs_4
+      name: DarkLegs_3
       rect:
         serializedVersion: 2
         x: 96
         y: 0
-        width: 24
-        height: 25
+        width: 32
+        height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -221,20 +200,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9db2b4255d89af14d9e1fa3ea32e88ee
-      internalID: 2010353043
+      spriteID: 80f5e52e9cc624c4bbb47940a41c1a82
+      internalID: -1690009516
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerLegs_5
+      name: DarkLegs_4
       rect:
         serializedVersion: 2
-        x: 120
+        x: 128
         y: 0
-        width: 24
-        height: 25
+        width: 32
+        height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -242,20 +221,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: be8aa7ad13bd9d4428ac82fc69141037
-      internalID: -659337502
+      spriteID: 9808fa23b5d56fa4ca0d57d98bb4448f
+      internalID: 1807102986
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerLegs_6
+      name: DarkLegs_5
       rect:
         serializedVersion: 2
-        x: 144
+        x: 160
         y: 0
-        width: 24
-        height: 25
+        width: 32
+        height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -263,20 +242,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a1291d3d58456d748b2ca2abc8e0b0ce
-      internalID: 855540411
+      spriteID: b33b11fbb9018dd4faa33a41638b84e3
+      internalID: 1860169801
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerLegs_7
+      name: DarkLegs_6
       rect:
         serializedVersion: 2
-        x: 168
+        x: 192
         y: 0
-        width: 24
-        height: 25
+        width: 32
+        height: 29
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -284,8 +263,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: af963ad318c7e1d45802c10fc509e140
-      internalID: 1755846966
+      spriteID: 2f8f436a272787448b592ce144afb0f4
+      internalID: -1528234844
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DarkLegs_7
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 0
+        width: 32
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f971c01d3db6e264f8314085a78876f9
+      internalID: 386791289
       vertices: []
       indices: 
       edges: []
@@ -301,14 +301,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      PlayerLegs_0: 259414539
-      PlayerLegs_1: 1776875272
-      PlayerLegs_2: -869484445
-      PlayerLegs_3: -549209379
-      PlayerLegs_4: 2010353043
-      PlayerLegs_5: -659337502
-      PlayerLegs_6: 855540411
-      PlayerLegs_7: 1755846966
+      DarkLegs_0: -1535812649
+      DarkLegs_1: 600475264
+      DarkLegs_2: 581346010
+      DarkLegs_3: -1690009516
+      DarkLegs_4: 1807102986
+      DarkLegs_5: 1860169801
+      DarkLegs_6: -1528234844
+      DarkLegs_7: 386791289
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

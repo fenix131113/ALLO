@@ -28,7 +28,7 @@ namespace PlayerSystem
 				return;
 			
 			ReadMovementInput();
-			ReadMutationInput();
+			//ReadMutationInput();
 			ReadDashMovementInput();
 		}
 		
