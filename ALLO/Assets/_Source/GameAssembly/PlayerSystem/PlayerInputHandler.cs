@@ -34,6 +34,7 @@ namespace PlayerSystem
 			//ReadMutationInput();
 			ReadDashMovementInput();
 			ReadShootInput();
+			ReadReloadInput();
 		}
 		
 		public void Initialize()
@@ -42,13 +43,21 @@ namespace PlayerSystem
 		}
 		
 		private void Unpause() => _isReadPaused = false;
-
+		
 		private void ReadGameMenuInput()
 		{
 			if (!Input.GetKeyDown(KeyCode.Escape)) return;
 			
 			_isReadPaused = !_isReadPaused;
 			_gameMenu.SwitchMenu(_isReadPaused);
+		}
+
+		public void ReadReloadInput()
+		{
+			if (!Input.GetKeyDown(KeyCode.R))
+				return;
+			
+			_playerShoot.Reload();
 		}
 
 		private void ReadShootInput()
@@ -76,7 +85,7 @@ namespace PlayerSystem
 		private void ReadMutationInput()
 		{
 			if (Input.GetKeyDown(KeyCode.F))
-				_playerMutation.SwitchMutate();
+				_playerMutation.SwitchMutation();
 		}
 	}
 }

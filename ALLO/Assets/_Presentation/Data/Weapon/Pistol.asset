@@ -13,3 +13,6 @@ MonoBehaviour:
   m_Name: Pistol
   m_EditorClassIdentifier: 
   <BulletPrefab>k__BackingField: {fileID: 5354967298822761039, guid: 8f444db585226b847a191a8b0b465a1f, type: 3}
+  <ShootCooldown>k__BackingField: 0.15
+  <ReloadTime>k__BackingField: 3
+  <MaxAmmoInClip>k__BackingField: 15

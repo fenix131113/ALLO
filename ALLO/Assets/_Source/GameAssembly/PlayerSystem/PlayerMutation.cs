@@ -29,7 +29,7 @@ namespace PlayerSystem
 			OnMutated?.Invoke();
 		}
 		
-		public void SwitchMutate()
+		public void SwitchMutation()
 		{
 			SetPlayer(CurrentPlayer == DefaultPlayer ? MutatedPlayer : DefaultPlayer);
 		}
