@@ -1,4 +1,5 @@
 using GameMenuSystem;
+using PlayerSystem.Shooting;
 using UnityEngine;
 using Zenject;
 
@@ -9,15 +10,17 @@ namespace PlayerSystem
 		private readonly PlayerMovement _playerMovement;
 		private readonly PlayerMutation _playerMutation;
 		private readonly GameMenu _gameMenu;
+		private readonly PlayerShoot _playerShoot;
 
 		private bool _isReadPaused;
 
 		[Inject]
-		public PlayerInputHandler(PlayerMovement playerMovement, PlayerMutation playerMutation, GameMenu gameMenu)
+		public PlayerInputHandler(PlayerMovement playerMovement, PlayerMutation playerMutation, GameMenu gameMenu, PlayerShoot playerShoot)
 		{
 			_playerMovement = playerMovement;
 			_playerMutation = playerMutation;
 			_gameMenu = gameMenu;
+			_playerShoot = playerShoot;
 		}
 		
 		public void Tick()
@@ -30,6 +33,7 @@ namespace PlayerSystem
 			ReadMovementInput();
 			//ReadMutationInput();
 			ReadDashMovementInput();
+			ReadShootInput();
 		}
 		
 		public void Initialize()
@@ -45,6 +49,12 @@ namespace PlayerSystem
 			
 			_isReadPaused = !_isReadPaused;
 			_gameMenu.SwitchMenu(_isReadPaused);
+		}
+
+		private void ReadShootInput()
+		{
+			if(Input.GetMouseButtonDown(0))
+				_playerShoot.Shoot(_playerMutation.CurrentPlayer.ShootPoint);
 		}
 
 		private void ReadDashMovementInput()

@@ -15,6 +15,7 @@ namespace PlayerSystem
 		[field: SerializeField] public Rigidbody2D Rb { get; private set; }
 		[field: SerializeField] public Transform LookRotationPivot { get; private set; }
 		[field: SerializeField] public HumanoidBodyDrawer BodyDrawer { get; private set; }
+		[field: SerializeField] public Transform ShootPoint { get; private set; }
 
 		//TODO: Change this
 		public event Action OnHealthChanged;

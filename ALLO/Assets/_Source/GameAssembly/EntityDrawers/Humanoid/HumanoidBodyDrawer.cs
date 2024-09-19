@@ -134,10 +134,20 @@ namespace EntityDrawers.Humanoid
 
 		public void SetCurrentMovement(Vector2 movementVector, bool run)
 		{
-			_runState = run;
-			_moveDirection = movementVector;
+			SetMovementDirection(movementVector);
 			Rotate(_currentRotateDegrees);
+			SetRunState(run);
+		}
+
+		public void SetRunState(bool state)
+		{
+			_runState = state;
 			CheckAnimatorSpeed();
+		}
+
+		public void SetMovementDirection(Vector2 movementVector)
+		{
+			_moveDirection = movementVector;
 		}
 	}
 }

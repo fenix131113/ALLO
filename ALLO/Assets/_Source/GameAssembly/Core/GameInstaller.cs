@@ -2,6 +2,7 @@ using GameMenuSystem;
 using LevelSystem;
 using PlayerSystem;
 using PlayerSystem.Data;
+using PlayerSystem.Shooting;
 using UnityEngine;
 using Zenject;
 
@@ -13,6 +14,7 @@ namespace Core
 		[SerializeField] private LevelInitializer levelInitializer;
 		[SerializeField] private PlayerMutation playerMutation;
 		[SerializeField] private GameMenu gameMenu;
+		[SerializeField] private PlayerShoot playerShoot;
 		
 		[SerializeField] private PlayerMovementConfig playerConfig;
 		[SerializeField] private PlayerMouseTargeting playerMouseTargeting;
@@ -65,6 +67,11 @@ namespace Core
 			Container.Bind<PlayerMouseTargeting>()
 				.FromInstance(playerMouseTargeting)
 				.AsSingle();
+
+			Container.Bind<PlayerShoot>()
+				.FromInstance(playerShoot)
+				.AsSingle()
+				.NonLazy();
 		}
 	}
 }

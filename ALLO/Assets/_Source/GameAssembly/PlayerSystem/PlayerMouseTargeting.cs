@@ -8,6 +8,7 @@ namespace PlayerSystem
 		[SerializeField] private Camera targetingCamera;
 
 		private PlayerMutation _playerMutation;
+		private PlayerMovement _playerMovement;
 
 		public Vector2 LookDirection { get; private set; }
 
@@ -21,7 +22,11 @@ namespace PlayerSystem
 		public float LookDegrees { get; private set; }
 
 		[Inject]
-		private void Construct(PlayerMutation playerMutation) => _playerMutation = playerMutation;
+		private void Construct(PlayerMutation playerMutation, PlayerMovement playerMovement)
+		{
+			_playerMutation = playerMutation;
+			_playerMovement = playerMovement;
+		}
 
 
 		private void FixedUpdate()
@@ -38,6 +43,11 @@ namespace PlayerSystem
 		}
 
 		private void Start() => Cursor.visible = false;
-		private void ChangeRotation() => _playerMutation.CurrentPlayer.BodyDrawer.Rotate(LookDegrees);
+
+		private void ChangeRotation()
+		{
+			_playerMutation.CurrentPlayer.BodyDrawer.Rotate(LookDegrees);
+			_playerMutation.CurrentPlayer.BodyDrawer.SetMovementDirection(_playerMovement.CurrentMovementVector.magnitude != 0 ? LookDirection : Vector2.zero);
+		}
 	}
 }
