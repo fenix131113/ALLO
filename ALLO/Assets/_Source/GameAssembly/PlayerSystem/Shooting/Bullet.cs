@@ -24,7 +24,7 @@ namespace PlayerSystem.Shooting
 			if (other.TryGetComponent(out IDamageable damageable))
 				damageable.TakeDamage(damage);
 
-			Destroy(gameObject); //TODO: Deactivate instead destroying
+			Destroy(gameObject); //TODO: Deactivate instead destroying, use dynamic object pool
 		}
 	}
 }
