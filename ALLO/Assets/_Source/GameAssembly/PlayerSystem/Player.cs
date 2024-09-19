@@ -16,6 +16,8 @@ namespace PlayerSystem
 		[field: SerializeField] public Transform LookRotationPivot { get; private set; }
 		[field: SerializeField] public HumanoidBodyDrawer BodyDrawer { get; private set; }
 		[field: SerializeField] public Transform ShootPoint { get; private set; }
+		
+		[SerializeField] private float hitGlowTime;
 
 		//TODO: Change this
 		public event Action OnHealthChanged;
@@ -32,6 +34,7 @@ namespace PlayerSystem
 		{
 			Health -= damage;
 			Health = Mathf.Clamp(Health, 0, MaxHealth);
+			BodyDrawer.GlowEffect(hitGlowTime);
 			OnHealthChanged?.Invoke();
 		}
 

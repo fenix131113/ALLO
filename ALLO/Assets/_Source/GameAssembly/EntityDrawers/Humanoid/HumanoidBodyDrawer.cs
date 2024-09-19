@@ -1,4 +1,5 @@
 ﻿using System;
+using DG.Tweening;
 using EntityDrawers.Humanoid.Data;
 using UnityEngine;
 
@@ -13,6 +14,7 @@ namespace EntityDrawers.Humanoid
 		[SerializeField] private SpriteRenderer bodyRenderer;
 		[SerializeField] private SpriteRenderer legsRenderer;
 		[SerializeField] private Animator legsAnimator;
+		[SerializeField] private Color glowColor;
 
 		/// <summary>
 		/// 1 - Down<br/>
@@ -36,7 +38,7 @@ namespace EntityDrawers.Humanoid
 		{
 			// Drawer
 			HumanoidRotationsEnum newRotation = HumanoidRotationsEnum.DOWN;
-			
+
 			_currentRotateDegrees = degrees;
 
 			switch (degrees)
@@ -143,6 +145,22 @@ namespace EntityDrawers.Humanoid
 		{
 			_runState = state;
 			CheckAnimatorSpeed();
+		}
+
+		public void GlowEffect(float time)
+		{
+			var glowSeq = DOTween.Sequence();
+			glowSeq.Append(headRenderer.DOColor(glowColor, time));
+			glowSeq.Insert(0, bodyRenderer.DOColor(glowColor, time));
+			glowSeq.Insert(0, legsRenderer.DOColor(glowColor, time));
+
+			glowSeq.onComplete += () =>
+			{
+				var unGlowSeq = DOTween.Sequence();
+				unGlowSeq.Append(headRenderer.DOColor(Color.white, time));
+				unGlowSeq.Insert(0, bodyRenderer.DOColor(Color.white, time));
+				unGlowSeq.Insert(0, legsRenderer.DOColor(Color.white, time));
+			};
 		}
 
 		public void SetMovementDirection(Vector2 movementVector)

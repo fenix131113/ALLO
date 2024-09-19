@@ -18,7 +18,7 @@ namespace PlayerSystem.View.BulletHUD
 		[SerializeField] private Transform bulletsParent;
 		[SerializeField] private TMP_Text ammoLabel;
 
-		private List<BulletUiItem> _currentBullets = new();
+		private readonly List<BulletUiItem> _currentBullets = new();
 		private PlayerShoot _playerShoot;
 
 		[Inject]
@@ -64,7 +64,7 @@ namespace PlayerSystem.View.BulletHUD
 			current.StartRotate();
 
 			current.Rect.DOJump(new Vector2(Screen.width + 25f, Random.Range(0, Screen.height / 3 + 1)), 0.2f, 1,
-				0.5f);
+				0.5f).onComplete += () => Destroy(current.gameObject);
 
 			_currentBullets.RemoveAt(0);
 

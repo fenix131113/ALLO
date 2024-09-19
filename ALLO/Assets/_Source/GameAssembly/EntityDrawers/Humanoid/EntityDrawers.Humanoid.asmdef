@@ -1,7 +1,9 @@
 {
     "name": "EntityDrawers.Humanoid",
     "rootNamespace": "",
-    "references": [],
+    "references": [
+        "GUID:8df396ab1248c844289c5acd1cb394b2"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

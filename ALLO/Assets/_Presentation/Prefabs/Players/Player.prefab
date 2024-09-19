@@ -599,6 +599,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentWeapon: {fileID: 11400000, guid: 15f2c675f55d8e84da00294993a8a380, type: 2}
+  <Ammo>k__BackingField: 0
+  <AmmoInClip>k__BackingField: 0
 --- !u!1 &5654783203531151217
 GameObject:
   m_ObjectHideFlags: 0

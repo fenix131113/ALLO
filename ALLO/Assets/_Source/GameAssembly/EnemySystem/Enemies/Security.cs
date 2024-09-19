@@ -3,24 +3,31 @@ using DamageSystem;
 using DamageSystem.Data;
 using EntityDrawers.Humanoid;
 using UnityEngine;
+using Utils;
 
 namespace EnemySystem.Enemies
 {
 	public class Security : AEnemy
 	{
+		private static readonly int Hit = Animator.StringToHash("Hit");
+
 		[SerializeField] private HumanoidBodyDrawer bodyDrawer;
 		[SerializeField] private HumanoidHandsDrawer handsDrawer;
 		[SerializeField] private ExtraLifeModule extraLifeModule;
 		[SerializeField] private DamageZone damageZone;
+		[SerializeField] private ParticleSystem fleshParticles;
+		[SerializeField] private Animator hitEffectAnimator;
+		[SerializeField] private Animator hitAnimator;
 		[SerializeField] private int hitDamage;
 		[SerializeField] private float attackCooldown;
-		
+		[SerializeField] private float hitGlowTime;
+
 		private int _damageCounter;
 		private float _attackCooldownTimer;
 		private bool _canAttack = true;
 
 		private void Start() => damageZone.SetDamage(Owner, hitDamage);
-		
+
 		protected override void OnTargetSpotted(Transform target)
 		{
 			handsDrawer.SetLookTarget(target);
@@ -28,6 +35,10 @@ namespace EnemySystem.Enemies
 
 		protected override void Die()
 		{
+			fleshParticles.DestroyByTime(fleshParticles.main.duration);
+			fleshParticles.Play();
+			fleshParticles.transform.parent = null;
+			fleshParticles.gameObject.transform.localScale = Vector3.one;
 			Destroy(gameObject);
 		}
 
@@ -42,33 +53,34 @@ namespace EnemySystem.Enemies
 			Vector2 lookDirection = handsDrawer.LookTarget.position - handsDrawer.CenterPoint.position;
 
 			var lookDegrees = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
-			
+
 			handsDrawer.CenterPoint.rotation = Quaternion.Euler(0, 0, lookDegrees);
-			
+
 			bodyDrawer.SetCurrentMovement(AiPath.velocity, true);
 			bodyDrawer.Rotate(lookDegrees);
 		}
-		
+
 		public override void TakeDamage(int damage)
 		{
 			damage = Mathf.Clamp(damage, 0, Health);
 			Health -= damage;
 			_damageCounter += damage;
-			
-			if(!extraLifeModule.CanGetExtraLife(_damageCounter))
+			bodyDrawer.GlowEffect(hitGlowTime);
+
+			if (!extraLifeModule.CanGetExtraLife(_damageCounter))
 				Die();
 		}
 
 		private void FixedUpdate()
 		{
 			LookAtTarget();
-			
+
 			if (!Vision.CurrentTarget)
 				return;
 
 			SetDestination(Vision.CurrentTarget.position);
 		}
-		
+
 		private void Update()
 		{
 			if (AiPath.reachedEndOfPath)
@@ -80,9 +92,16 @@ namespace EnemySystem.Enemies
 			if (!_canAttack)
 				return;
 
+			AttackEffect();
 			damageZone.ActivateZone();
 
 			StartCoroutine(AttackCooldown());
+		}
+
+		private void AttackEffect()
+		{
+			hitEffectAnimator.SetTrigger(Hit);
+			hitAnimator.SetTrigger(Hit);
 		}
 
 		private IEnumerator AttackCooldown()
