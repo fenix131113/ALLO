@@ -252,7 +252,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   data:
-    dataString: UEsDBBQAAAgIAAAYIezAoKbrWQIAABIFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQF1VE1z2jAQ/SuMziUDBCbQWwuE9EDChHZy8UWW1liDLHn0Eb6G/16tbGOHTk+W33u7+3a19oUIZUtgTpuVEXytOZDvPYJn8q3Xki9wpDuttuIMjeZDcJejiEbNO3VCB3yIYVYX4IxgP9ROongQQK9Epk2x5DuYa+tsgDMqLQTKaIfRKkCXHjmGR3+GIadwGj3h6RxOs0HvGo4MlAPTShthI6tUXjFJixI4Wm7Fk0Y9qWQqNFMr0DjTUgpbOyHuVMZOt2UOBrBVLmhoLFZHeQ5ilzt8eRg/dcPfssyCq00ZeloIE0ZU5SU/dTW3gtp95eyTSo+VptFTlXX9D9sfRjozuni5FR5gBZcLtn+nJ0at64y1Cy++OvfqQOWephI+clCvemW0VzyQzngM9RZGi/b11tg8B7Zv8crqHejL/18O9nCNvR/nUhQpUg/jCthKHecdrx5MuJlfwXBcDFunCCi6+GPhN911N6gmnoWxLlB1lwrtpdoblJJlnBl2491cGwURrk2XoKh0p01I4+4v8I7rlL1jnil+K3Xxmms+gbuQCLf6weCO2ujD7bJsrg9rsPmbd1IoaE0j8RrmNNdKVfvVnUkTtvUmo6wTtvOCf10tkk05nfL0cTiaTsd8NuynbJAOZylLs8lwNn4EEndPqNAnlZvKaD2ecGuqTa7CnjW/kN7K0DLuOjf0sBLnQndGLlSmt8wAqLcqw804mFAkfJV8yUUY0BacEyreN7kkRGq2B57cEiWx0+XRGZq0WRJSik/tEEnIPP4zEoLwbZc3Bj4FHLB4k+xKrn8BUEsDBBQAAAgIAAAYIew60xSgbQAAAHgAAAAJACQAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0Bq1YqSy0qzszPU7JSMNEz0jM011FQSi9KLMgoBooYgjilmSkgdrRSmkVKokVKkrGhkYWFSYqloW5SskGSoWVSclKaqaGliXGqUixQfUllQapfYm4qRE9AYklGWmZeSmZeup57UWaKO8hopdhaAFBLAQItABQAAAgIAAAYIezAoKbrWQIAABIFAAALACQAAAAAAAAAAAAAAAAAAABncmFwaDAuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLAQItABQAAAgIAAAYIew60xSgbQAAAHgAAAAJACQAAAAAAAAAAAAAAKYCAABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwUGAAAAAAIAAgC4AAAAXgMAAAAA
+    dataString: UEsDBBQAAAgIAAAYIew70tVsWAIAABAFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQF1VE1T2zAQ/SsZnUvHCVBwb60JoQcgQ9rh4otirWNNZMmjD5LA5L93V7Zjk05PUd57u/t2tfIHk9o1UHhjF1aKRyOAfZ8wOrMvk4F8gD3fGL2S79BrXqXwFYl41LxwLw3iUwpzpgZvZfFDbxSJEwSDlqWx9VxsIDPOO4RLrhwgZY2naI3Qx4Tt8ecipZADnmY3dHrHU5pMjngsQHuwg7QX9rJWFXSheN2AIMuDeHZK28o0NtMpyHhhlJKuc8L8oYmdZrxxAftAgZAcO4vlSV+B3FSe0o2Dn8vSge8sWX64kxYH1GZlP007tZq7bevrjatAdW6jozbl4z/sxTTSpTX1Q191mlAFX8li+8IPBXd+NNQxfPfZdtA7rrZ8reC1Av1kFtYELZD0NlBocDC7G/6eGssqKLYD3lo9A0Pz/6uhHo6x932mZL0m6utVC6yUidOOFw8W7+UXGo5r4boUiJKLPw5+8814fzriXlrnkeq61GRvbYIlKZvHmVE3wWfGaohwZ7oBzZU/LDGNP7/AM25U9oy55/RSuuId1z+As5AID/okOaOWZne6LFeZ3SO46jl4JTUMpol4wjllRut2v8Yz6cNWwZa8GIVtghSfV4uV4jotvl1Ob9fT5Dq9TS9mcFmKqzS5uk5vBL8RLO6e1NgnV8vWaDcevDU9JNe4Z/0HZLKwvIm7LizfLeR7bUYjl7o0q8IC6Oc2w8k4WCyCb1LMhcQBrcB7qeN9s4+cKVNsQeSnRHnsdL73ludDlpw18s14QnKWxS9Gzgg+7fLSwpuEHRXvkx3Z8S9QSwMEFAAACAgAABgh7L1QTe1tAAAAeAAAAAkAJABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGrVipLLSrOzM9TslIw0TPSMzTXUVBKL0osyCgGihiCOKWZKSB2tFJaiqllspmxoUWSoYGppYWlrlGqcVqKiaWBiamleUqieYpSLFB9SWVBql9ibipET0BiSUZaZl5KZl66nntRZoo7yGil2FoAUEsBAi0AFAAACAgAABgh7DvS1WxYAgAAEAUAAAsAJAAAAAAAAAAAAAAAAAAAAGdyYXBoMC5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsBAi0AFAAACAgAABgh7L1QTe1tAAAAeAAAAAkAJAAAAAAAAAAAAAAApQIAAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLBQYAAAAAAgACALgAAABdAwAAAAA=
     upgradeData: 
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
@@ -1955,8 +1955,8 @@ MonoBehaviour:
   m_ShowCameraFrustum: 1
   m_IgnoreTimeScale: 0
   m_WorldUpOverride: {fileID: 0}
-  m_UpdateMethod: 0
-  m_BlendUpdateMethod: 1
+  m_UpdateMethod: 2
+  m_BlendUpdateMethod: 0
   m_DefaultBlend:
     m_Style: 1
     m_Time: 2
@@ -1966,7 +1966,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  m_CustomBlends: {fileID: 0}
+  m_CustomBlends: {fileID: 11400000, guid: cf2d8704f8e8c034c94132cd9d2382e0, type: 2}
   m_CameraCutEvent:
     m_PersistentCalls:
       m_Calls: []
@@ -3982,7 +3982,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbd2538dc5b80a941a48042b78d3f60d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
 --- !u!1 &1501724150
 GameObject:
   m_ObjectHideFlags: 0
@@ -5399,6 +5398,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 1776875272, guid: 1f03bf40c1c01a043847338f59bdedcf, type: 3}
+    - target: {fileID: 5655168584764114801, guid: 55ce8aad138c49e449d989475b772d98, type: 3}
+      propertyPath: m_Interpolate
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5912287925661908912, guid: 55ce8aad138c49e449d989475b772d98, type: 3}
       propertyPath: m_LocalPosition.y
       value: -0.0774
