@@ -7,7 +7,7 @@ namespace PlayerSystem.Shooting
 {
 	public class PlayerShoot : MonoBehaviour //TODO: Replace single weapon logic to multi-system
 	{
-		[SerializeField] private WeaponDataSo currentWeapon;
+		[field: SerializeField] public WeaponDataSo CurrentWeapon { get; private set; }
 		[field: SerializeField] public int Ammo { get; private set; }
 		[field: SerializeField] public int AmmoInClip { get; private set; }
 
@@ -16,13 +16,14 @@ namespace PlayerSystem.Shooting
 		
 		public event Action OnShoot;
 		public event Action OnReloaded;
+		public event Action OnStartReloading;
 
 		public void Shoot(Transform shootPoint)
 		{
 			if (!_canShoot || _isReloading || AmmoInClip == 0)
 				return;
 
-			Instantiate(currentWeapon.BulletPrefab, shootPoint.position,
+			Instantiate(CurrentWeapon.BulletPrefab, shootPoint.position,
 				shootPoint.rotation); //TODO: Change to dynamic object pool
 
 			ChangeAmmoInClip(-1);
@@ -34,7 +35,7 @@ namespace PlayerSystem.Shooting
 
 		public void Reload()
 		{
-			if (Ammo > 0 && AmmoInClip < currentWeapon.MaxAmmoInClip)
+			if (Ammo > 0 && AmmoInClip < CurrentWeapon.MaxAmmoInClip)
 				StartCoroutine(ReloadCooldown());
 		}
 
@@ -55,7 +56,7 @@ namespace PlayerSystem.Shooting
 		{
 			_canShoot = false;
 
-			yield return new WaitForSeconds(currentWeapon.ShootCooldown);
+			yield return new WaitForSeconds(CurrentWeapon.ShootCooldown);
 
 			_canShoot = true;
 		}
@@ -64,13 +65,14 @@ namespace PlayerSystem.Shooting
 		{
 			_canShoot = false;
 			_isReloading = true;
+			OnStartReloading?.Invoke();
 
-			yield return new WaitForSeconds(currentWeapon.ReloadTime);
+			yield return new WaitForSeconds(CurrentWeapon.ReloadTime);
 
-			if (Ammo > currentWeapon.MaxAmmoInClip)
+			if (Ammo > CurrentWeapon.MaxAmmoInClip)
 			{
-				AmmoInClip = currentWeapon.MaxAmmoInClip;
-				ChangeAmmo(-currentWeapon.MaxAmmoInClip);
+				AmmoInClip = CurrentWeapon.MaxAmmoInClip;
+				ChangeAmmo(-CurrentWeapon.MaxAmmoInClip);
 			}
 			else
 			{

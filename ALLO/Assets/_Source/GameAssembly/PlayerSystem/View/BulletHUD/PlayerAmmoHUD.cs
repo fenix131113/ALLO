@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using DG.Tweening;
 using PlayerSystem.Shooting;
 using TMPro;
@@ -17,9 +18,12 @@ namespace PlayerSystem.View.BulletHUD
 		[SerializeField] private RectTransform startBulletRect;
 		[SerializeField] private Transform bulletsParent;
 		[SerializeField] private TMP_Text ammoLabel;
+		[SerializeField] private Image ammoReloadFiller;
 
 		private readonly List<BulletUiItem> _currentBullets = new();
 		private PlayerShoot _playerShoot;
+		private bool _isReloadTimer;
+		private float _reloadTimer;
 
 		[Inject]
 		private void Construct(PlayerShoot playerShoot)
@@ -89,6 +93,7 @@ namespace PlayerSystem.View.BulletHUD
 			_playerShoot.OnShoot += ThrowFirstBullet;
 			_playerShoot.OnReloaded += FillFullClip;
 			_playerShoot.OnReloaded += DrawAmmoLabel;
+			_playerShoot.OnStartReloading += StartReloadTimer;
 		}
 
 		private void Expose()
@@ -96,6 +101,31 @@ namespace PlayerSystem.View.BulletHUD
 			_playerShoot.OnShoot -= ThrowFirstBullet;
 			_playerShoot.OnReloaded -= FillFullClip;
 			_playerShoot.OnReloaded -= DrawAmmoLabel;
+			_playerShoot.OnStartReloading -= StartReloadTimer;
+		}
+
+		private void CheckReloadTimer()
+		{
+			if (!_isReloadTimer)
+				return;
+			
+			ammoReloadFiller.fillAmount = (Time.time - _reloadTimer) / _playerShoot.CurrentWeapon.ReloadTime;
+
+			if (!(Time.time - _reloadTimer >= _playerShoot.CurrentWeapon.ReloadTime)) return;
+			
+			ammoReloadFiller.fillAmount = 0;
+			_isReloadTimer = false;
+		}
+
+		private void StartReloadTimer()
+		{
+			_reloadTimer = Time.time;
+			_isReloadTimer = true;
+		}
+
+		private void Update()
+		{
+			CheckReloadTimer();
 		}
 
 		private void Start()
