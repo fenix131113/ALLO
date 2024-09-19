@@ -8,17 +8,18 @@ namespace PlayerSystem.Shooting
 	public class PlayerShoot : MonoBehaviour //TODO: Replace single weapon logic to multi-system
 	{
 		[SerializeField] private WeaponDataSo currentWeapon;
-		[SerializeField] private int ammo;
-		[SerializeField] private int ammoInClip;
+		[field: SerializeField] public int Ammo { get; private set; }
+		[field: SerializeField] public int AmmoInClip { get; private set; }
 
 		private bool _canShoot = true;
 		private bool _isReloading;
 		
-		public event Action OnAmmoChanged;
+		public event Action OnShoot;
+		public event Action OnReloaded;
 
 		public void Shoot(Transform shootPoint)
 		{
-			if (!_canShoot || _isReloading || ammoInClip == 0)
+			if (!_canShoot || _isReloading || AmmoInClip == 0)
 				return;
 
 			Instantiate(currentWeapon.BulletPrefab, shootPoint.position,
@@ -27,27 +28,27 @@ namespace PlayerSystem.Shooting
 			ChangeAmmoInClip(-1);
 
 			StartCoroutine(ShootCooldown());
+			
+			OnShoot?.Invoke();
 		}
 
 		public void Reload()
 		{
-			if (ammo > 0 && ammoInClip < currentWeapon.MaxAmmoInClip)
+			if (Ammo > 0 && AmmoInClip < currentWeapon.MaxAmmoInClip)
 				StartCoroutine(ReloadCooldown());
 		}
 
 		private void ChangeAmmo(int ammoValue)
 		{
-			ammo += ammoValue;
-			OnAmmoChanged?.Invoke();
+			Ammo += ammoValue;
 		}
 
 		private void ChangeAmmoInClip(int ammoInClipValue)
 		{
-			if(ammoInClip == 0)
+			if(AmmoInClip == 0)
 				return;
 			
-			ammoInClip += ammoInClipValue;
-			OnAmmoChanged?.Invoke();
+			AmmoInClip += ammoInClipValue;
 		}
 
 		private IEnumerator ShootCooldown()
@@ -66,19 +67,21 @@ namespace PlayerSystem.Shooting
 
 			yield return new WaitForSeconds(currentWeapon.ReloadTime);
 
-			if (ammo > currentWeapon.MaxAmmoInClip)
+			if (Ammo > currentWeapon.MaxAmmoInClip)
 			{
-				ammoInClip = currentWeapon.MaxAmmoInClip;
+				AmmoInClip = currentWeapon.MaxAmmoInClip;
 				ChangeAmmo(-currentWeapon.MaxAmmoInClip);
 			}
 			else
 			{
-				ammoInClip = ammo;
-				ChangeAmmo(-ammo);
+				AmmoInClip = Ammo;
+				ChangeAmmo(-Ammo);
 			}
 
 			_canShoot = true;
 			_isReloading = false;
+
+			OnReloaded?.Invoke();
 		}
 	}
 }

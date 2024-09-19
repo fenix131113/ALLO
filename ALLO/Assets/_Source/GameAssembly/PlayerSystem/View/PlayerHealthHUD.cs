@@ -6,7 +6,7 @@ using DG.Tweening;
 
 namespace PlayerSystem.View
 {
-    public class PlayerHUD : MonoBehaviour
+    public class PlayerHealthHUD : MonoBehaviour
     {
         [SerializeField] private float redHealthAnimTime;
         [SerializeField] private float downProgressInterval;

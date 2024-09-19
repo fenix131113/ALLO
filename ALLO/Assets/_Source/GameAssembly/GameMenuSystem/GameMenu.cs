@@ -65,6 +65,7 @@ namespace GameMenuSystem
 		private void GoToMenu()
 		{
 			SceneManager.LoadScene(0);
+			Time.timeScale = 1;
 			Expose();
 		}
 
