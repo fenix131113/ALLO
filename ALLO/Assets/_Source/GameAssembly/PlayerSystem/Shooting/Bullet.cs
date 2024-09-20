@@ -9,6 +9,8 @@ namespace PlayerSystem.Shooting
 		[SerializeField] private float lifetime;
 		[SerializeField] private int damage;
 
+		private bool _isKill;
+
 		private void Start()
 		{
 			Destroy(gameObject, lifetime);
@@ -21,8 +23,11 @@ namespace PlayerSystem.Shooting
 
 		private void OnTriggerEnter2D(Collider2D other)
 		{
-			if (other.TryGetComponent(out IDamageable damageable))
+			if (other.TryGetComponent(out IDamageable damageable) && !_isKill)
+			{
 				damageable.TakeDamage(damage);
+				_isKill = true;
+			}
 
 			Destroy(gameObject); //TODO: Deactivate instead destroying, use dynamic object pool
 		}

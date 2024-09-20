@@ -35,7 +35,7 @@ namespace PlayerSystem.Shooting
 
 		public void Reload()
 		{
-			if (Ammo > 0 && AmmoInClip < CurrentWeapon.MaxAmmoInClip)
+			if (!_isReloading && Ammo > 0 && AmmoInClip < CurrentWeapon.MaxAmmoInClip)
 				StartCoroutine(ReloadCooldown());
 		}
 

@@ -43,12 +43,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 125
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -121,7 +121,385 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: OfficePack_01_1
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 551
+        width: 68
+        height: 160
+      alignment: 9
+      pivot: {x: 0.5, y: 0.51}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 642f3a82f3442fd4da6f71339d242988
+      internalID: -352475575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OfficePack_01_2
+      rect:
+        serializedVersion: 2
+        x: 293
+        y: 293
+        width: 148
+        height: 409
+      alignment: 9
+      pivot: {x: 0.5, y: 0.16}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15efd457783ff1f40801a573714cf061
+      internalID: 564152765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OfficePack_01_3
+      rect:
+        serializedVersion: 2
+        x: 471
+        y: 548
+        width: 68
+        height: 160
+      alignment: 9
+      pivot: {x: 0.5, y: 0.51}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06850cc51b50d0b47bc636bc62632402
+      internalID: -765857532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OfficePack_01_4
+      rect:
+        serializedVersion: 2
+        x: 669
+        y: 639
+        width: 53
+        height: 96
+      alignment: 9
+      pivot: {x: 0.5, y: 0.7}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af1a1cafaaf9d8c48b54bdb261348557
+      internalID: 903212182
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OfficePack_01_5
+      rect:
+        serializedVersion: 2
+        x: 774
+        y: 630
+        width: 86
+        height: 87
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 40ebd1d552359ea4d9e58d033fdc9a3c
+      internalID: -1630753485
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OfficePack_01_8
+      rect:
+        serializedVersion: 2
+        x: 587
+        y: 551
+        width: 56
+        height: 86
+      alignment: 9
+      pivot: {x: 0.5, y: 0.78}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0b509426ebd940f4a94a2ddbe3315db6
+      internalID: -2017672126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OfficePack_01_9
+      rect:
+        serializedVersion: 2
+        x: 703
+        y: 532
+        width: 87
+        height: 87
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 823eafc38b9a5ae46b604f7985775575
+      internalID: -1378838058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OfficePack_01_10
+      rect:
+        serializedVersion: 2
+        x: 814
+        y: 526
+        width: 86
+        height: 87
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f386ee3d36b0204d8b8fc79a5c7400d
+      internalID: 1427942221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OfficePack_01_11
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 260
+        width: 163
+        height: 246
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eab173a65df881a40a93bb1a8899d519
+      internalID: 2139393363
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OfficePack_01_12
+      rect:
+        serializedVersion: 2
+        x: 471
+        y: 358
+        width: 68
+        height: 123
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b4b810d1304c1b14b86b32b946d7cf4e
+      internalID: 401574287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OfficePack_01_13
+      rect:
+        serializedVersion: 2
+        x: 575
+        y: 358
+        width: 68
+        height: 123
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 91830a067c994844d97b2d4ef6180474
+      internalID: -238205132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OfficePack_01_14
+      rect:
+        serializedVersion: 2
+        x: 685
+        y: 309
+        width: 74
+        height: 169
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e06c468894e04a4b87bf58c4412d892
+      internalID: -1704695947
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OfficePack_01_15
+      rect:
+        serializedVersion: 2
+        x: 783
+        y: 309
+        width: 74
+        height: 169
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4aefe0c803a19d2488ec34ececc7ed1d
+      internalID: 726206498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OfficePack_01_16
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 0
+        width: 105
+        height: 245
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 92707010751a9ab4dbf10ba24b0a1e3e
+      internalID: 680452879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OfficePack_01_17
+      rect:
+        serializedVersion: 2
+        x: 143
+        y: 27
+        width: 356
+        height: 151
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bec67bd48626f984ab4e0af7af488e65
+      internalID: -321201513
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OfficePack_01_18
+      rect:
+        serializedVersion: 2
+        x: 513
+        y: 6
+        width: 60
+        height: 325
+      alignment: 9
+      pivot: {x: 0.5, y: 0.26}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d77f9529b72ec24e862ee8c6f89d0da
+      internalID: 276274217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OfficePack_01_19
+      rect:
+        serializedVersion: 2
+        x: 590
+        y: 6
+        width: 59
+        height: 325
+      alignment: 9
+      pivot: {x: 0.5, y: 0.26}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7fef3f1f7925a39468526fb1204ea3fc
+      internalID: -2000319136
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OfficePack_01_20
+      rect:
+        serializedVersion: 2
+        x: 667
+        y: 42
+        width: 269
+        height: 246
+      alignment: 9
+      pivot: {x: 0.5, y: 0.29}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eac2a582ee7134749aad6c813c82bf6d
+      internalID: -1690790402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -132,7 +510,28 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      OfficePack_01_0: 1003188940
+      OfficePack_01_1: -352475575
+      OfficePack_01_10: 1427942221
+      OfficePack_01_11: 2139393363
+      OfficePack_01_12: 401574287
+      OfficePack_01_13: -238205132
+      OfficePack_01_14: -1704695947
+      OfficePack_01_15: 726206498
+      OfficePack_01_16: 680452879
+      OfficePack_01_17: -321201513
+      OfficePack_01_18: 276274217
+      OfficePack_01_19: -2000319136
+      OfficePack_01_2: 564152765
+      OfficePack_01_20: -1690790402
+      OfficePack_01_3: -765857532
+      OfficePack_01_4: 903212182
+      OfficePack_01_5: -1630753485
+      OfficePack_01_6: -1182001205
+      OfficePack_01_7: 1110175400
+      OfficePack_01_8: -2017672126
+      OfficePack_01_9: -1378838058
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
