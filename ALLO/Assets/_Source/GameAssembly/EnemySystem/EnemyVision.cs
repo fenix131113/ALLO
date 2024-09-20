@@ -1,6 +1,6 @@
 ﻿using System;
-using Core.Services;
 using UnityEngine;
+using Utils;
 
 namespace EnemySystem
 {
@@ -18,6 +18,12 @@ namespace EnemySystem
 			
 			OnTargetSpotted?.Invoke(other.transform);
 			CurrentTarget = other.transform;
+		}
+
+		public void NativeSetTarget(Transform target)
+		{
+			CurrentTarget = target;
+			OnTargetSpotted?.Invoke(target);
 		}
 	}
 }

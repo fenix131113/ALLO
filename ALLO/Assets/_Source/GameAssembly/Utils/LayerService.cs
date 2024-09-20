@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Core.Services
+namespace Utils
 {
 	public static class LayerService
 	{

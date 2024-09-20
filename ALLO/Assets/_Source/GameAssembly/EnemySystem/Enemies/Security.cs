@@ -2,6 +2,7 @@
 using DamageSystem;
 using DamageSystem.Data;
 using EntityDrawers.Humanoid;
+using PlayerSystem.Items;
 using UnityEngine;
 using Utils;
 
@@ -11,6 +12,8 @@ namespace EnemySystem.Enemies
 	{
 		private static readonly int Hit = Animator.StringToHash("Hit");
 
+		[SerializeField] private CollectableAmmoBox ammoBoxPrefab;
+		[SerializeField] private CollectableFirstAid firstAidPrefab;
 		[SerializeField] private HumanoidBodyDrawer bodyDrawer;
 		[SerializeField] private HumanoidHandsDrawer handsDrawer;
 		[SerializeField] private ExtraLifeModule extraLifeModule;
@@ -26,7 +29,11 @@ namespace EnemySystem.Enemies
 		private float _attackCooldownTimer;
 		private bool _canAttack = true;
 
-		private void Start() => damageZone.SetDamage(Owner, hitDamage);
+		private void Start()
+		{
+			damageZone.SetDamage(Owner, hitDamage);
+			AiPath.maxSpeed = Random.Range(AiPath.maxSpeed - 0.5f, AiPath.maxSpeed + 0.5f);
+		}
 
 		protected override void OnTargetSpotted(Transform target)
 		{
@@ -35,6 +42,11 @@ namespace EnemySystem.Enemies
 
 		protected override void Die()
 		{
+			if(Random.Range(0f, 1f) <= 0.05f)
+				Instantiate(firstAidPrefab, transform.position, Quaternion.identity);
+			else if(Random.Range(0f, 1f) <= 0.15f)
+				Instantiate(ammoBoxPrefab, transform.position, Quaternion.identity);
+			
 			fleshParticles.DestroyByTime(fleshParticles.main.duration);
 			fleshParticles.Play();
 			fleshParticles.transform.parent = null;
@@ -44,13 +56,13 @@ namespace EnemySystem.Enemies
 
 		private void LookAtTarget()
 		{
-			if (!handsDrawer.LookTarget)
+			if (!Vision.CurrentTarget)
 			{
 				bodyDrawer.SetCurrentMovement(Vector2.zero, true);
 				return;
 			}
 
-			Vector2 lookDirection = handsDrawer.LookTarget.position - handsDrawer.CenterPoint.position;
+			Vector2 lookDirection = Vision.CurrentTarget.position - handsDrawer.CenterPoint.position;
 
 			var lookDegrees = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
 

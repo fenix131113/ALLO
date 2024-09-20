@@ -29,6 +29,12 @@ namespace PlayerSystem
 		public int GetHealth() => Health;
 		public int GetMaxHealth() => MaxHealth;
 		public DamageOwner GetOwner() => Owner;
+
+		public void AddHealth(int amount)
+		{
+			Health += amount;
+			OnHealthChanged?.Invoke();
+		}
 		
 		public void TakeDamage(int damage)
 		{

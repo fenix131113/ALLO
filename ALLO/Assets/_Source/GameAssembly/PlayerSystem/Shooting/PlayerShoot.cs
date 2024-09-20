@@ -17,6 +17,7 @@ namespace PlayerSystem.Shooting
 		public event Action OnShoot;
 		public event Action OnReloaded;
 		public event Action OnStartReloading;
+		public event Action OnAmmoChanged;
 
 		public void Shoot(Transform shootPoint)
 		{
@@ -39,9 +40,10 @@ namespace PlayerSystem.Shooting
 				StartCoroutine(ReloadCooldown());
 		}
 
-		private void ChangeAmmo(int ammoValue)
+		public void ChangeAmmo(int ammoValue)
 		{
 			Ammo += ammoValue;
+			OnAmmoChanged?.Invoke();
 		}
 
 		private void ChangeAmmoInClip(int ammoInClipValue)

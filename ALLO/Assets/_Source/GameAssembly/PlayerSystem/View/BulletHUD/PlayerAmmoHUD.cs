@@ -93,6 +93,7 @@ namespace PlayerSystem.View.BulletHUD
 			_playerShoot.OnShoot += ThrowFirstBullet;
 			_playerShoot.OnReloaded += FillFullClip;
 			_playerShoot.OnReloaded += DrawAmmoLabel;
+			_playerShoot.OnAmmoChanged += DrawAmmoLabel;
 			_playerShoot.OnStartReloading += StartReloadTimer;
 		}
 
@@ -101,6 +102,7 @@ namespace PlayerSystem.View.BulletHUD
 			_playerShoot.OnShoot -= ThrowFirstBullet;
 			_playerShoot.OnReloaded -= FillFullClip;
 			_playerShoot.OnReloaded -= DrawAmmoLabel;
+			_playerShoot.OnAmmoChanged -= DrawAmmoLabel;
 			_playerShoot.OnStartReloading -= StartReloadTimer;
 		}
 

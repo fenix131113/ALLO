@@ -1,11 +1,10 @@
 {
-    "name": "PlayerSystem",
+    "name": "WavesSystem",
     "rootNamespace": "",
     "references": [
-        "GUID:500ac3ccabef410482d9b61df7496ad3",
-        "GUID:8ff9f3a7eafe4bc4d82b39c9a51682eb",
-        "GUID:1a0618e1de94fe9408b3736f6801ea97",
-        "GUID:629af0b9f88f4182beb11eeb96b58bad"
+        "GUID:67c1123230b047a58dd68938624d129a",
+        "GUID:e8abd0b3fe0328b47869f6ea34a0a980",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
