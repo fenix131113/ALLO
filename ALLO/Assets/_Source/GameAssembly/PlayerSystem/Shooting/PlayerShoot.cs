@@ -43,6 +43,7 @@ namespace PlayerSystem.Shooting
 		public void ChangeAmmo(int ammoValue)
 		{
 			Ammo += ammoValue;
+			Ammo = Mathf.Clamp(Ammo, 0, 999);
 			OnAmmoChanged?.Invoke();
 		}
 

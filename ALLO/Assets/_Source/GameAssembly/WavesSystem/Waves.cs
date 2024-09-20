@@ -36,18 +36,26 @@ namespace WavesSystem
 		{
 			Wave++;
 			if (Wave % 2 == 0)
+			{
 				_enemyWaveCount = (int)(_enemyWaveCount * 1.5f);
+				SpawnAmmoBox();
+			}
 			else
 				_enemyWaveCount++;
 			
+			
+
+			SpawnEnemies();
+		}
+
+		private void SpawnAmmoBox()
+		{
 			var availableSpawnPoint = spawnPoints.Where(point =>
 				Vector3.Distance(point.position, _playerMutation.CurrentPlayer.transform.position) >
 				safeSpawnDistance).ToList();
 				
 			var spawned = Instantiate(ammoBoxPrefab, availableSpawnPoint.ElementAt(Random.Range(0, availableSpawnPoint.Count())).position,
 				Quaternion.identity);
-
-			SpawnEnemies();
 		}
 
 		private void SpawnEnemies()

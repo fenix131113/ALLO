@@ -46,7 +46,7 @@ namespace PlayerSystem
 		
 		private void ReadGameMenuInput()
 		{
-			if (!Input.GetKeyDown(KeyCode.Escape)) return;
+			if (!Input.GetKeyDown(KeyCode.Escape) || _playerMutation.CurrentPlayer.Health == 0) return;
 			
 			_isReadPaused = !_isReadPaused;
 			_gameMenu.SwitchMenu(_isReadPaused);
@@ -77,7 +77,7 @@ namespace PlayerSystem
 		private void ReadMovementInput()
 		{
 			Vector2 movementInput = new(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-			bool run = Input.GetKey(KeyCode.LeftShift);
+			var run = Input.GetKey(KeyCode.LeftShift);
 
 			_playerMovement.MovePlayer(movementInput, run);
 		}

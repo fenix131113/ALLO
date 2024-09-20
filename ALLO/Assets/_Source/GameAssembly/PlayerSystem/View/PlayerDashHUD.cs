@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 using Zenject;
 
-namespace PlayerSystem.View.BulletHUD
+namespace PlayerSystem.View
 {
 	public class PlayerDashHUD : MonoBehaviour
 	{

@@ -134,6 +134,8 @@ namespace PlayerSystem.View.BulletHUD
 		{
 			FillClipWithAmmo(_playerShoot.AmmoInClip);
 
+			DrawAmmoLabel();
+			
 			Bind();
 		}
 

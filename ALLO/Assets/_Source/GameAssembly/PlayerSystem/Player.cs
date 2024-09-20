@@ -21,6 +21,7 @@ namespace PlayerSystem
 
 		//TODO: Change this
 		public event Action OnHealthChanged;
+		public event Action OnDead;
 
 		public void OnMutated()
 		{
@@ -42,7 +43,12 @@ namespace PlayerSystem
 			Health = Mathf.Clamp(Health, 0, MaxHealth);
 			BodyDrawer.GlowEffect(hitGlowTime);
 			OnHealthChanged?.Invoke();
+			
+			
+			if(Health == 0)
+				Die();
 		}
 
+		private void Die() => OnDead?.Invoke();
 	}
 }

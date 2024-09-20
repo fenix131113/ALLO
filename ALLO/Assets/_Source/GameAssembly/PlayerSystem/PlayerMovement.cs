@@ -40,7 +40,7 @@ namespace PlayerSystem
 			
 			_playerMutation.CurrentPlayer.BodyDrawer.SetRunState(run);
 			
-			CurrentMovementVector = movementVector * (run ? _playerConfig.PlayerRunSpeed : _playerConfig.PlayerWalkSpeed);
+			CurrentMovementVector = movementVector.normalized * (run ? _playerConfig.PlayerRunSpeed : _playerConfig.PlayerWalkSpeed);
 			_playerMutation.CurrentPlayer.Rb.velocity = CurrentMovementVector;
 
 		}
