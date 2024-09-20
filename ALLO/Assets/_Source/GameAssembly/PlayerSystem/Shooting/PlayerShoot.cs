@@ -72,14 +72,15 @@ namespace PlayerSystem.Shooting
 
 			yield return new WaitForSeconds(CurrentWeapon.ReloadTime);
 
-			if (Ammo > CurrentWeapon.MaxAmmoInClip)
+			if(Ammo >= CurrentWeapon.MaxAmmoInClip - AmmoInClip)
 			{
-				AmmoInClip = CurrentWeapon.MaxAmmoInClip;
-				ChangeAmmo(-CurrentWeapon.MaxAmmoInClip);
+				var temp = CurrentWeapon.MaxAmmoInClip - AmmoInClip;
+				AmmoInClip += temp;
+				ChangeAmmo(-temp);
 			}
 			else
 			{
-				AmmoInClip = Ammo;
+				AmmoInClip += Ammo;
 				ChangeAmmo(-Ammo);
 			}
 
