@@ -70,7 +70,7 @@ namespace PlayerSystem
 		{
 			var dashVector = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
 
-			if (Input.GetKeyDown(KeyCode.E))
+			if (Input.GetKeyDown(KeyCode.Space))
 				_playerMovement.Dash(dashVector);
 		}
 

@@ -15,5 +15,3 @@ MonoBehaviour:
   extraLifeGroups:
   - <HitNumber>k__BackingField: 1
     <ExtraLifeChance>k__BackingField: 0.25
-  - <HitNumber>k__BackingField: 2
-    <ExtraLifeChance>k__BackingField: 0.05

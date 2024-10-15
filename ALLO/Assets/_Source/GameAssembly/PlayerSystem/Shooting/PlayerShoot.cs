@@ -21,6 +21,8 @@ namespace PlayerSystem.Shooting
 
 		public void Shoot(Transform shootPoint)
 		{
+			if (AmmoInClip == 0 && !_isReloading && Ammo > 0)
+				Reload();
 			if (!_canShoot || _isReloading || AmmoInClip == 0)
 				return;
 

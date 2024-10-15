@@ -13,7 +13,7 @@ namespace DamageSystem.Data
 		{
 			var findGroup = extraLifeGroups.Find(group => group.HitNumber == hitCount);
 			
-			if (findGroup != null) return Random.Range(0, 1f) < findGroup.ExtraLifeChance;
+			if (findGroup != null) return Random.Range(0, 1f) <= findGroup.ExtraLifeChance;
 			
 			return false;
 		}

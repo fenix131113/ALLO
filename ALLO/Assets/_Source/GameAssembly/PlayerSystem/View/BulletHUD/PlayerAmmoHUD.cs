@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using DG.Tweening;
 using PlayerSystem.Shooting;
 using TMPro;
@@ -17,6 +16,7 @@ namespace PlayerSystem.View.BulletHUD
 		[SerializeField] private BulletUiItem uiBulletPrefab;
 		[SerializeField] private RectTransform startBulletRect;
 		[SerializeField] private Transform bulletsParent;
+		[SerializeField] private Transform sightPivot;
 		[SerializeField] private TMP_Text ammoLabel;
 		[SerializeField] private Image ammoReloadFiller;
 
@@ -110,11 +110,11 @@ namespace PlayerSystem.View.BulletHUD
 		{
 			if (!_isReloadTimer)
 				return;
-			
+
 			ammoReloadFiller.fillAmount = (Time.time - _reloadTimer) / _playerShoot.CurrentWeapon.ReloadTime;
 
 			if (!(Time.time - _reloadTimer >= _playerShoot.CurrentWeapon.ReloadTime)) return;
-			
+
 			ammoReloadFiller.fillAmount = 0;
 			_isReloadTimer = false;
 		}
@@ -125,9 +125,20 @@ namespace PlayerSystem.View.BulletHUD
 			_isReloadTimer = true;
 		}
 
+		private void CheckReloadIndicatorMovement()
+		{
+			if (_isReloadTimer)
+				ammoReloadFiller.rectTransform.position = Camera.main!.WorldToScreenPoint(sightPivot.position);
+		}
+
 		private void Update()
 		{
 			CheckReloadTimer();
+		}
+		
+		private void FixedUpdate()
+		{
+			CheckReloadIndicatorMovement();
 		}
 
 		private void Start()
@@ -135,7 +146,7 @@ namespace PlayerSystem.View.BulletHUD
 			FillClipWithAmmo(_playerShoot.AmmoInClip);
 
 			DrawAmmoLabel();
-			
+
 			Bind();
 		}
 

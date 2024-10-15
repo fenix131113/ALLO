@@ -33,7 +33,7 @@ namespace PlayerSystem
 
 		public void AddHealth(int amount)
 		{
-			Health += amount;
+			Health = Mathf.Clamp(Health + amount, 0, MaxHealth);
 			OnHealthChanged?.Invoke();
 		}
 		
