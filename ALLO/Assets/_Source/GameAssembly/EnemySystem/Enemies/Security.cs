@@ -42,7 +42,7 @@ namespace EnemySystem.Enemies
 
 		protected override void Die()
 		{
-			if(Random.Range(0f, 1f) <= 0.1f)
+			if(Random.Range(0f, 1f) <= 0.07f)
 				Instantiate(firstAidPrefab, transform.position, Quaternion.identity);
 			else if(Random.Range(0f, 1f) <= 0.15f)
 				Instantiate(ammoBoxPrefab, transform.position, Quaternion.identity);
