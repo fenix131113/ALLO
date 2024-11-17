@@ -2,6 +2,7 @@
 using DamageSystem;
 using DamageSystem.Data;
 using EntityDrawers.Humanoid;
+using PlayerSystem.Attack.Shooting;
 using PlayerSystem.Items;
 using UnityEngine;
 using Utils;
@@ -25,6 +26,7 @@ namespace EnemySystem.Enemies
 		[SerializeField] private float attackCooldown;
 		[SerializeField] private float hitGlowTime;
 
+		private PlayerAmmoContainer _playerAmmoContainer;
 		private int _damageCounter;
 		private float _attackCooldownTimer;
 		private bool _canAttack = true;
@@ -35,6 +37,11 @@ namespace EnemySystem.Enemies
 			AiPath.maxSpeed = Random.Range(AiPath.maxSpeed - 0.5f, AiPath.maxSpeed + 0.5f);
 		}
 
+		public void Init(PlayerAmmoContainer playerAmmoContainer)
+		{
+			_playerAmmoContainer = playerAmmoContainer;
+		}
+
 		protected override void OnTargetSpotted(Transform target)
 		{
 			handsDrawer.SetLookTarget(target);
@@ -42,10 +49,11 @@ namespace EnemySystem.Enemies
 
 		protected override void Die()
 		{
+			//TODO: Delete hardcode
 			if(Random.Range(0f, 1f) <= 0.07f)
 				Instantiate(firstAidPrefab, transform.position, Quaternion.identity);
 			else if(Random.Range(0f, 1f) <= 0.15f)
-				Instantiate(ammoBoxPrefab, transform.position, Quaternion.identity);
+				Instantiate(ammoBoxPrefab, transform.position, Quaternion.identity).Init(_playerAmmoContainer);
 			
 			fleshParticles.DestroyByTime(fleshParticles.main.duration);
 			fleshParticles.Play();

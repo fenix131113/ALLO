@@ -37,7 +37,7 @@ namespace EntityDrawers.Humanoid
 		public void Rotate(float degrees)
 		{
 			// Drawer
-			HumanoidRotationsEnum newRotation = HumanoidRotationsEnum.DOWN;
+			var newRotation = HumanoidRotationsEnum.DOWN;
 
 			_currentRotateDegrees = degrees;
 

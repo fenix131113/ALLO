@@ -136,3 +136,5 @@ MonoBehaviour:
   playerLayerMask:
     serializedVersion: 2
     m_Bits: 64
+  ammoAmount: 15
+  ammoType: 0

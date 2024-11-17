@@ -7,6 +7,7 @@ namespace MainMenuSystem
 	public class MainMenu : MonoBehaviour
 	{
 		[SerializeField] private Button startGameButton;
+		[SerializeField] private Button generationButton;
 		[SerializeField] private Button settingsButton;
 		[SerializeField] private Button exitButton;
 		[SerializeField] private GameObject settingsPanel;
@@ -20,6 +21,7 @@ namespace MainMenuSystem
 		{
 			startGameButton.onClick.AddListener(LoadGameScene);
 			settingsButton.onClick.AddListener(SwitchSettingsPanel);
+			generationButton.onClick.AddListener(LoadGenerationScene);
 			exitButton.onClick.AddListener(Application.Quit);
 		}
 
@@ -27,13 +29,20 @@ namespace MainMenuSystem
 		{
 			startGameButton.onClick.RemoveAllListeners();
 			settingsButton.onClick.RemoveAllListeners();
+			generationButton.onClick.RemoveAllListeners();
 			exitButton.onClick.RemoveAllListeners();
 		}
 
 		private void LoadGameScene()
 		{
-			SceneManager.LoadScene(1);
 			Expose();
+			SceneManager.LoadScene(1);
+		}
+		
+		private void LoadGenerationScene()
+		{
+			Expose();
+			SceneManager.LoadScene(2);
 		}
 
 		private void SwitchSettingsPanel()

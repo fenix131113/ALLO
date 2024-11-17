@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using PlayerSystem;
+using PlayerSystem.Attack.Shooting;
 using PlayerSystem.Items;
 using UnityEngine;
 using Zenject;
@@ -20,16 +21,18 @@ namespace WavesSystem
 		public int Wave { get; private set; }
 		public int EnemyLeft => _spawnedEnemies.Count;
 
-		private int _enemyWaveCount = 0;
-		private List<Security> _spawnedEnemies = new();
+		private int _enemyWaveCount;
+		private readonly List<Security> _spawnedEnemies = new();
 		private PlayerMutation _playerMutation;
+		private PlayerAmmoContainer _playerAmmoContainer;
 
 		public event Action OnEnemyCountChanged;
 
 		[Inject]
-		private void Construct(PlayerMutation playerMutation)
+		private void Construct(PlayerMutation playerMutation, PlayerAmmoContainer playerAmmoContainer)
 		{
 			_playerMutation = playerMutation;
+			_playerAmmoContainer = playerAmmoContainer;
 		}
 
 		private void NextWave()
@@ -56,6 +59,7 @@ namespace WavesSystem
 				
 			var spawned = Instantiate(ammoBoxPrefab, availableSpawnPoint.ElementAt(Random.Range(0, availableSpawnPoint.Count())).position,
 				Quaternion.identity);
+			spawned.Init(_playerAmmoContainer);
 		}
 
 		private void SpawnEnemies()
@@ -69,6 +73,7 @@ namespace WavesSystem
 				var spawned = Instantiate(enemyPrefab, availableSpawnPoint.ElementAt(Random.Range(0, availableSpawnPoint.Count())).position,
 					Quaternion.identity);
 				spawned.Vision.NativeSetTarget(_playerMutation.CurrentPlayer.transform);
+				spawned.Init(_playerAmmoContainer);
 				_spawnedEnemies.Add(spawned);
 			}
 			

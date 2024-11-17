@@ -1,77 +1,108 @@
 using GameMenuSystem;
-using LevelSystem;
+using LevelGenerationSystem;
+using LevelGenerationSystem.Data;
 using PlayerSystem;
+using PlayerSystem.Attack;
+using PlayerSystem.Attack.Melee;
+using PlayerSystem.Attack.Shooting;
 using PlayerSystem.Data;
-using PlayerSystem.Shooting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Zenject;
 
 namespace Core
 {
-	public class GameInstaller : MonoInstaller
-	{
-		[SerializeField] private Player player;
-		[SerializeField] private LevelInitializer levelInitializer;
-		[SerializeField] private PlayerMutation playerMutation;
-		[SerializeField] private GameMenu gameMenu;
-		[SerializeField] private PlayerShoot playerShoot;
-		
-		[SerializeField] private PlayerMovementConfig playerConfig;
-		[SerializeField] private PlayerMouseTargeting playerMouseTargeting;
-		
-		public override void InstallBindings()
-		{
-			BindLevelSystem();
-			BindPlayer();
-			BindMenuSystem();
-		}
+    public class GameInstaller : MonoInstaller
+    {
+        [SerializeField] private Player player;
+        [SerializeField] private GameMenu gameMenu;
 
-		private void BindMenuSystem()
-		{
-			Container.Bind<GameMenu>()
-				.FromInstance(gameMenu)
-				.AsSingle()
-				.NonLazy();
-		}
-		
-		private void BindLevelSystem()
-		{
-			Container.Bind<LevelInitializer>()
-				.FromInstance(levelInitializer)
-				.AsSingle()
-				.NonLazy();
-		}
-		
-		private void BindPlayer()
-		{
-			Container.BindInterfacesAndSelfTo<PlayerMovement>()
-				.AsSingle()
-				.NonLazy();
-			
-			Container.BindInterfacesAndSelfTo<PlayerInputHandler>()
-				.AsSingle()
-				.NonLazy();
+        [SerializeField] private PlayerMovementConfig playerConfig;
+        [SerializeField] private PlayerMouseTargeting playerMouseTargeting;
+        [SerializeField] private StartEquipmentProfile startEquipmentProfile;
+        [SerializeField] private GenerationSettingsSO generationSettingsSO;
 
-			Container.Bind<PlayerMovementConfig>()
-				.FromInstance(playerConfig)
-				.AsSingle();
+        public override void InstallBindings()
+        {
+            //TODO: Delete this name checking
+            if (SceneManager.GetActiveScene().name != "Game")
+                BindLevelGeneration();
+            BindPlayer();
+            BindMenuSystem();
+        }
 
-			Container.Bind<Player>()
-				.FromInstance(player)
-				.AsSingle();
+        private void BindMenuSystem()
+        {
+            Container.Bind<GameMenu>()
+                .FromInstance(gameMenu)
+                .AsSingle()
+                .NonLazy();
+        }
 
-			Container.Bind<PlayerMutation>()
-				.FromInstance(playerMutation)
-				.AsSingle();
+        private void BindLevelGeneration()
+        {
+            Container.BindInterfacesTo<LevelGeneration>()
+                .AsSingle()
+                .NonLazy();
 
-			Container.Bind<PlayerMouseTargeting>()
-				.FromInstance(playerMouseTargeting)
-				.AsSingle();
+            Container.Bind<GenerationSettingsSO>()
+                .FromInstance(generationSettingsSO)
+                .AsSingle()
+                .NonLazy();
+        }
 
-			Container.Bind<PlayerShoot>()
-				.FromInstance(playerShoot)
-				.AsSingle()
-				.NonLazy();
-		}
-	}
+        private void BindPlayer()
+        {
+            Container.BindInterfacesAndSelfTo<PlayerMovement>()
+                .AsSingle()
+                .NonLazy();
+
+            Container.BindInterfacesAndSelfTo<PlayerInputHandler>()
+                .AsSingle()
+                .NonLazy();
+
+            Container.Bind<PlayerMovementConfig>()
+                .FromInstance(playerConfig)
+                .AsSingle();
+
+            Container.Bind<Player>()
+                .FromInstance(player)
+                .AsSingle();
+
+            Container.Bind<PlayerMutation>()
+                .FromComponentInHierarchy()
+                .AsSingle();
+
+            Container.Bind<PlayerMouseTargeting>()
+                .FromInstance(playerMouseTargeting)
+                .AsSingle();
+
+            Container.Bind<PlayerShoot>()
+                .FromComponentInHierarchy()
+                .AsSingle()
+                .NonLazy();
+
+            Container.Bind<PlayerAttack>()
+                .AsSingle()
+                .NonLazy();
+
+            Container.BindInterfacesAndSelfTo<PlayerWeaponsData>()
+                .AsSingle()
+                .NonLazy();
+
+            Container.Bind<PlayerAmmoContainer>()
+                .AsSingle()
+                .NonLazy();
+
+            Container.Bind<StartEquipmentProfile>()
+                .FromInstance(startEquipmentProfile)
+                .AsSingle()
+                .NonLazy();
+
+            Container.Bind<PlayerMelee>()
+                .FromComponentInHierarchy()
+                .AsSingle()
+                .NonLazy();
+        }
+    }
 }

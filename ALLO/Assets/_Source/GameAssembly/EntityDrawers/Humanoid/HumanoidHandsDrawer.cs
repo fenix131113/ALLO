@@ -34,13 +34,15 @@ namespace EntityDrawers.Humanoid
 		{
 			if(!LookTarget)
 				return;
+
+			var lookDegrees = GetLookDegrees();
 			
-			if (GetLookDegrees() is < 90 and > -90)
+			if (lookDegrees is < 90 and > -90)
 				SwapHandsRight();
 			else
 				SwapHandsLeft();
 
-			if (GetLookDegrees() is > 15 and < 180)
+			if (lookDegrees is > 15 and < 180)
 				SwapHandsBehind();
 			else
 				SwapHandsForward();
@@ -66,16 +68,19 @@ namespace EntityDrawers.Humanoid
 				return;
 
 			_isHandsRight = true;
-			rightHand.transform.localScale =
-				new Vector3(rightHand.transform.localScale.x, 1, rightHand.transform.localScale.z);
-			leftHand.transform.localScale =
-				new Vector3(leftHand.transform.localScale.x, 1, leftHand.transform.localScale.z);
 			
-			Vector3 tempPosRight = rightHand.transform.localPosition;
-			rightHand.transform.localPosition = new Vector3(tempPosRight.x, tempPosRight.y / -1, tempPosRight.z);
+			var newScaleVector = new Vector3(rightHand.transform.localScale.x, 1, rightHand.transform.localScale.z);
+
+			CenterPoint.localScale = newScaleVector;
 			
-			Vector3 tempPosLeft = leftHand.transform.localPosition;
-			leftHand.transform.localPosition = new Vector3(tempPosLeft.x, tempPosLeft.y / -1, tempPosLeft.z);
+			// rightHand.transform.localScale = newScaleVector;
+			// leftHand.transform.localScale = newScaleVector;
+			//
+			// var tempPosRight = rightHand.transform.localPosition;
+			// rightHand.transform.localPosition = new Vector3(tempPosRight.x, tempPosRight.y / -1, tempPosRight.z);
+			//
+			// var tempPosLeft = leftHand.transform.localPosition;
+			// leftHand.transform.localPosition = new Vector3(tempPosLeft.x, tempPosLeft.y / -1, tempPosLeft.z);
 		}
 
 		private void SwapHandsLeft()
@@ -84,16 +89,19 @@ namespace EntityDrawers.Humanoid
 				return;
 
 			_isHandsRight = false;
-			rightHand.transform.localScale =
-				new Vector3(rightHand.transform.localScale.x, -1, rightHand.transform.localScale.z);
-			leftHand.transform.localScale =
-				new Vector3(leftHand.transform.localScale.x, -1, leftHand.transform.localScale.z);
-
-			Vector3 tempPosRight = rightHand.transform.localPosition;
-			rightHand.transform.localPosition = new Vector3(tempPosRight.x, tempPosRight.y * -1, tempPosRight.z);
 			
-			Vector3 tempPosLeft = leftHand.transform.localPosition;
-			leftHand.transform.localPosition = new Vector3(tempPosLeft.x, tempPosLeft.y * -1, tempPosLeft.z);
+			var newScaleVector = new Vector3(rightHand.transform.localScale.x, -1, rightHand.transform.localScale.z);
+			
+			CenterPoint.localScale = newScaleVector;
+
+			// rightHand.transform.localScale = newScaleVector;
+			// leftHand.transform.localScale = newScaleVector;
+			//
+			// var tempPosRight = rightHand.transform.localPosition;
+			// rightHand.transform.localPosition = new Vector3(tempPosRight.x, tempPosRight.y * -1, tempPosRight.z);
+			//
+			// var tempPosLeft = leftHand.transform.localPosition;
+			// leftHand.transform.localPosition = new Vector3(tempPosLeft.x, tempPosLeft.y * -1, tempPosLeft.z);
 		}
 
 		private void SetItemsOrder(int order)

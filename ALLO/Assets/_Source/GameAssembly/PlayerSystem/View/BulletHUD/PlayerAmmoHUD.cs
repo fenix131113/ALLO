@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using DG.Tweening;
-using PlayerSystem.Shooting;
+using PlayerSystem.Attack;
+using PlayerSystem.Attack.Data;
+using PlayerSystem.Attack.Shooting;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,149 +11,190 @@ using Random = UnityEngine.Random;
 
 namespace PlayerSystem.View.BulletHUD
 {
-	public class PlayerAmmoHUD : MonoBehaviour
-	{
-		[SerializeField] private float bulletsXOffset = 10f;
-		[SerializeField] private float moveBulletUpTime = 0.1f;
-		[SerializeField] private BulletUiItem uiBulletPrefab;
-		[SerializeField] private RectTransform startBulletRect;
-		[SerializeField] private Transform bulletsParent;
-		[SerializeField] private Transform sightPivot;
-		[SerializeField] private TMP_Text ammoLabel;
-		[SerializeField] private Image ammoReloadFiller;
+    public class PlayerAmmoHUD : MonoBehaviour
+    {
+        [SerializeField] private float bulletsXOffset = 10f;
+        [SerializeField] private float moveBulletUpTime = 0.1f;
+        [SerializeField] private BulletUiItem uiBulletPrefab;
+        [SerializeField] private RectTransform startBulletRect;
+        [SerializeField] private GameObject bulletsHUD;
+        [SerializeField] private Transform bulletsParent;
+        [SerializeField] private Transform sightPivot;
+        [SerializeField] private TMP_Text ammoLabel;
+        [SerializeField] private Image ammoReloadFiller;
 
-		private readonly List<BulletUiItem> _currentBullets = new();
-		private PlayerShoot _playerShoot;
-		private bool _isReloadTimer;
-		private float _reloadTimer;
+        private readonly List<BulletUiItem> _currentBullets = new();
+        private PlayerShoot _playerShoot;
+        private PlayerAmmoContainer _playerAmmoContainer;
+        private PlayerWeaponsData _playerWeaponsData;
+        private bool _isReloadTimer;
+        private float _reloadTimer;
 
-		[Inject]
-		private void Construct(PlayerShoot playerShoot)
-		{
-			_playerShoot = playerShoot;
-		}
+        [Inject]
+        private void Construct(PlayerShoot playerShoot, PlayerAmmoContainer playerAmmoContainer,
+            PlayerWeaponsData playerWeaponData)
+        {
+            _playerShoot = playerShoot;
+            _playerAmmoContainer = playerAmmoContainer;
+            _playerWeaponsData = playerWeaponData;
+        }
 
-		private void DrawAmmoLabel() => ammoLabel.text = $"x{_playerShoot.Ammo}";
+        private void DrawAmmoLabel()
+        {
+            if (_playerWeaponsData.CurrentWeapon.WeaponType != WeaponType.FIREARMS)
+                return;
+            
+            ammoLabel.text =
+                $"x{_playerAmmoContainer.GetAmmoFromStorage(_playerShoot.CurrentFirearm.AmmoType)}";
+        }
 
-		private void FillClipWithAmmo(int count)
-		{
-			if (_currentBullets.Count >= count)
-				return;
+        private void OnWeaponChanged()
+        {
+            if (_playerWeaponsData.CurrentWeapon.WeaponType == WeaponType.FIREARMS)
+            {
+                bulletsHUD.SetActive(true);
+                
+                FillFullClip();
+                
+                DrawAmmoLabel();
+            }
+            else
+            {
+                bulletsHUD.SetActive(false);
+                ClearBullets();
+            }
+        }
 
-			for (var i = _currentBullets.Count; i < count; i++)
-				SpawnNewBullet();
-		}
+        private void ClearBullets()
+        {
+            if (_currentBullets.Count > 0)
+                foreach (var bullet in _currentBullets)
+                    Destroy(bullet.gameObject);
 
-		private void FillFullClip()
-		{
-			FillClipWithAmmo(_playerShoot.AmmoInClip);
-		}
+            _currentBullets.Clear();
+            _isReloadTimer = false;
+        }
 
-		private void SpawnNewBullet()
-		{
-			var nextPosition = GetNextBulletPosition();
-			var spawnedBullet =
-				Instantiate(uiBulletPrefab, bulletsParent); //TODO: Replace logic with dynamic object pool
+        private void FillClipWithAmmo(int count)
+        {
+            if (_currentBullets.Count >= count)
+                return;
 
-			spawnedBullet.Rect.rotation = startBulletRect.rotation;
-			spawnedBullet.Rect.anchoredPosition = nextPosition;
-			spawnedBullet.Rect.anchoredPosition -= new Vector2(0, spawnedBullet.Rect.sizeDelta.y);
-			spawnedBullet.Rect.DOAnchorPosY(startBulletRect.anchoredPosition.y, moveBulletUpTime);
-			spawnedBullet.GetComponent<Image>().DOFade(1, moveBulletUpTime);
+            for (var i = _currentBullets.Count; i < count; i++)
+                SpawnNewBullet();
+        }
 
-			_currentBullets.Add(spawnedBullet);
-		}
+        private void FillFullClip()
+        {
+            FillClipWithAmmo(_playerAmmoContainer.GetWeaponAmmo(_playerShoot.CurrentFirearm));
+        }
 
-		private void ThrowFirstBullet()
-		{
-			var current = _currentBullets[0];
-			current.StartRotate();
+        private void SpawnNewBullet()
+        {
+            var nextPosition = GetNextBulletPosition();
+            var spawnedBullet =
+                Instantiate(uiBulletPrefab, bulletsParent); //TODO: Replace logic with dynamic object pool
 
-			current.Rect.DOJump(new Vector2(Screen.width + 25f, Random.Range(0, Screen.height / 3 + 1)), 0.2f, 1,
-				0.5f).onComplete += () => Destroy(current.gameObject);
+            spawnedBullet.Rect.rotation = startBulletRect.rotation;
+            spawnedBullet.Rect.anchoredPosition = nextPosition;
+            spawnedBullet.Rect.anchoredPosition -= new Vector2(0, spawnedBullet.Rect.sizeDelta.y);
+            spawnedBullet.Rect.DOAnchorPosY(startBulletRect.anchoredPosition.y, moveBulletUpTime);
+            spawnedBullet.GetComponent<Image>().DOFade(1, moveBulletUpTime);
 
-			_currentBullets.RemoveAt(0);
+            _currentBullets.Add(spawnedBullet);
+        }
 
-			MoveBulletsRight();
-		}
+        private void ThrowFirstBullet()
+        {
+            var current = _currentBullets[0];
+            current.StartRotate();
 
-		private Vector3 GetNextBulletPosition() =>
-			startBulletRect.anchoredPosition - new Vector2(startBulletRect.sizeDelta.y + bulletsXOffset, 0) *
-			_currentBullets.Count;
+            current.Rect.DOJump(new Vector2(Screen.width + 25f, Random.Range(0, Screen.height / 3 + 1)), 0.2f, 1,
+                0.5f).onComplete += () => Destroy(current.gameObject);
 
-		private void MoveBulletsRight()
-		{
-			if (_currentBullets.Count == 0)
-				return;
+            _currentBullets.RemoveAt(0);
 
-			foreach (var item in _currentBullets)
-				item.Rect.DOAnchorPosX(item.Rect.anchoredPosition.x + item.Rect.sizeDelta.y + bulletsXOffset, 0.05f);
-		}
+            MoveBulletsRight();
+        }
 
-		private void Bind()
-		{
-			_playerShoot.OnShoot += ThrowFirstBullet;
-			_playerShoot.OnReloaded += FillFullClip;
-			_playerShoot.OnReloaded += DrawAmmoLabel;
-			_playerShoot.OnAmmoChanged += DrawAmmoLabel;
-			_playerShoot.OnStartReloading += StartReloadTimer;
-		}
+        private Vector3 GetNextBulletPosition() =>
+            startBulletRect.anchoredPosition - new Vector2(startBulletRect.sizeDelta.y + bulletsXOffset, 0) *
+            _currentBullets.Count;
 
-		private void Expose()
-		{
-			_playerShoot.OnShoot -= ThrowFirstBullet;
-			_playerShoot.OnReloaded -= FillFullClip;
-			_playerShoot.OnReloaded -= DrawAmmoLabel;
-			_playerShoot.OnAmmoChanged -= DrawAmmoLabel;
-			_playerShoot.OnStartReloading -= StartReloadTimer;
-		}
+        private void MoveBulletsRight()
+        {
+            if (_currentBullets.Count == 0)
+                return;
 
-		private void CheckReloadTimer()
-		{
-			if (!_isReloadTimer)
-				return;
+            foreach (var item in _currentBullets)
+                item.Rect.DOAnchorPosX(item.Rect.anchoredPosition.x + item.Rect.sizeDelta.y + bulletsXOffset, 0.05f);
+        }
 
-			ammoReloadFiller.fillAmount = (Time.time - _reloadTimer) / _playerShoot.CurrentWeapon.ReloadTime;
+        private void Bind()
+        {
+            _playerShoot.OnShoot += ThrowFirstBullet;
+            _playerShoot.OnReloaded += FillFullClip;
+            _playerShoot.OnReloaded += DrawAmmoLabel;
+            _playerShoot.OnStartReloading += StartReloadTimer;
+            _playerAmmoContainer.OnWeaponAmmoChanged += DrawAmmoLabel;
+            _playerWeaponsData.OnWeaponChanged += OnWeaponChanged;
+        }
 
-			if (!(Time.time - _reloadTimer >= _playerShoot.CurrentWeapon.ReloadTime)) return;
+        private void Expose()
+        {
+            _playerShoot.OnShoot -= ThrowFirstBullet;
+            _playerShoot.OnReloaded -= FillFullClip;
+            _playerShoot.OnReloaded -= DrawAmmoLabel;
+            _playerShoot.OnStartReloading -= StartReloadTimer;
+            _playerAmmoContainer.OnWeaponAmmoChanged -= DrawAmmoLabel;
+            _playerWeaponsData.OnWeaponChanged += OnWeaponChanged;
+        }
 
-			ammoReloadFiller.fillAmount = 0;
-			_isReloadTimer = false;
-		}
+        private void CheckReloadTimer()
+        {
+            if (!_isReloadTimer)
+            {
+                ammoReloadFiller.fillAmount = 0;
+                return;
+            }
 
-		private void StartReloadTimer()
-		{
-			_reloadTimer = Time.time;
-			_isReloadTimer = true;
-		}
+            ammoReloadFiller.fillAmount = (Time.time - _reloadTimer) / _playerShoot.CurrentFirearm.ReloadTime;
 
-		private void CheckReloadIndicatorMovement()
-		{
-			if (_isReloadTimer)
-				ammoReloadFiller.rectTransform.position = Camera.main!.WorldToScreenPoint(sightPivot.position);
-		}
+            if (!(Time.time - _reloadTimer >= _playerShoot.CurrentFirearm.ReloadTime)) return;
 
-		private void Update()
-		{
-			CheckReloadTimer();
-		}
-		
-		private void FixedUpdate()
-		{
-			CheckReloadIndicatorMovement();
-		}
+            ammoReloadFiller.fillAmount = 0;
+            _isReloadTimer = false;
+        }
 
-		private void Start()
-		{
-			FillClipWithAmmo(_playerShoot.AmmoInClip);
+        private void StartReloadTimer()
+        {
+            _reloadTimer = Time.time;
+            _isReloadTimer = true;
+        }
 
-			DrawAmmoLabel();
+        private void CheckReloadIndicatorMovement()
+        {
+            if (_isReloadTimer)
+                ammoReloadFiller.rectTransform.position = Camera.main!.WorldToScreenPoint(sightPivot.position);
+        }
 
-			Bind();
-		}
+        private void Update()
+        {
+            CheckReloadTimer();
+        }
 
-		private void OnDestroy() => Expose();
+        private void FixedUpdate()
+        {
+            CheckReloadIndicatorMovement();
+        }
 
-		private void OnApplicationQuit() => Expose();
-	}
+        private void Awake()
+        {
+            Bind();
+        }
+
+        private void OnDestroy() => Expose();
+
+        private void OnApplicationQuit() => Expose();
+    }
 }
