@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Text;
 using LevelGenerationSystem.Data;
-using UnityEditor;
 using UnityEngine;
 using Zenject;
 using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
+
+// ReSharper disable PossibleLossOfFraction
 
 namespace LevelGenerationSystem
 {
@@ -18,7 +17,6 @@ namespace LevelGenerationSystem
 
         private readonly Dictionary<Vector2, LevelSegment> _grid = new();
         private float _nextSpawnXPosition;
-        private LevelSegmentSO _lastSpawnedSegment;
 
         [Inject]
         private void Construct(GenerationSettingsSO generationSettings)
@@ -28,111 +26,82 @@ namespace LevelGenerationSystem
 
         public void Initialize()
         {
+            GenerateLevel();
+        }
+
+        private void GenerateLevel()
+        {
+            CreateLevelSegment(_generationSettings.StartSegment, Vector3.zero, Vector2.zero);
+
             GenerateLevelSegments();
+            GenerateExit();
+            GenerateCorridors();
+            RandomizeSegments();
         }
 
         private void GenerateLevelSegments()
         {
-            CreateLevelSegment(_generationSettings.StartSegment, Vector3.zero, Vector2.zero);
+            var spawnedCount = 0;
+            var spawnedPath = new List<Vector2>();
+            var currentPosition = Vector2.right;
+            var previousSegment = _generationSettings.StartSegment.GetRandomNextLevelSegment();
+            var excludeCoords = new List<Vector2>();
 
-            //TODO: Fix randomize
-            for (var x = 1; x < _generationSettings.StartSegmentsXCount + 1; x++)
+            // Create first room
+            var spawned = CreateLevelSegment(previousSegment,
+                currentPosition * previousSegment.SegmentPrefab.GetWidth(), currentPosition);
+            excludeCoords.Add(Vector2.zero);
+            spawned.SetDoorState(DoorDirection.LEFT, false);
+            _grid[Vector2.zero].SetDoorState(DoorDirection.RIGHT, false);
+            OnSegmentSpawned();
+
+
+            // Generate other rooms
+            while (spawnedCount < _generationSettings.StartSegmentsXCount * _generationSettings.StartSegmentsYCount)
             {
-                for (var y = -(_generationSettings.StartSegmentsYCount - 1) / 2;
-                     y < (_generationSettings.StartSegmentsYCount - 1) / 2 + 1;
-                     y++)
+                // Exclude already checked way
+                var unconnected =
+                    spawned.GetUnconnectedLocalSegments(_generationSettings).Except(excludeCoords).Except(_grid.Keys)
+                        .ToList();
+
+                if (unconnected.Any())
                 {
-                    CreateLevelSegment(_lastSpawnedSegment.GetRandomNextLevelSegment(),
-                        new Vector3(_lastSpawnedSegment.SegmentPrefab.GetWidth() * x,
-                            _lastSpawnedSegment.SegmentPrefab.GetHeight() * y, 0),
-                        new Vector2(x, y));
+                    var connectIndex = Random.Range(0, unconnected.Count);
+                    currentPosition = unconnected[connectIndex];
+
+                    var directionToSpawned = GetDirectionBySecondRoom(spawned.Coordinates, currentPosition);
+
+                    // Open door in last segment
+                    spawned.SetDoorState(directionToSpawned, false);
+
+                    spawned = CreateLevelSegment(previousSegment.GetRandomNextLevelSegment(),
+                        currentPosition * previousSegment.SegmentPrefab.GetWidth(),
+                        currentPosition);
+
+                    OnSegmentSpawned();
+
+                    // Open door in new segment
+                    spawned.SetDoorState(InvertDirection(directionToSpawned), false);
+
+                    excludeCoords.Clear();
+                }
+                else
+                {
+                    // Return back if unconnected directions is empty
+                    excludeCoords.Add(spawned.Coordinates);
+                    spawnedPath.RemoveAt(spawnedPath.Count - 1);
+                    currentPosition = spawnedPath[^1];
+                    spawned = _grid[currentPosition];
                 }
             }
 
-            GenerateSegmentsDoors();
-            GenerateExit();
-        }
+            return;
 
-        private void GenerateSegmentsDoors()
-        {
-            foreach (var segment in _grid)
+            void OnSegmentSpawned()
             {
-                var connected = GetConnectedSegments(segment.Key);
-
-                switch (connected.Count)
-                {
-                    case 1:
-                    {
-                        var element = connected.ElementAt(0);
-                        element.Value.SetDoorState(element.Key, false);
-                        segment.Value.SetDoorState(InvertDirection(element.Key), false);
-                        break;
-                    }
-
-                    case > 0:
-                    {
-                        var usedConnections = new Dictionary<DoorDirection, LevelSegment>();
-
-                        for (var i = 0; i < Random.Range(1, connected.Count); i++)
-                        {
-                            var unusedConnections = connected.Except(usedConnections);
-                            var selected = unusedConnections.ElementAt(Random.Range(0, unusedConnections.Count()));
-
-                            selected.Value.SetDoorState(selected.Key, false);
-                            segment.Value.SetDoorState(InvertDirection(selected.Key), false);
-                            usedConnections.Add(selected.Key, selected.Value);
-                        }
-
-                        break;
-                    }
-                }
-            }
-
-            CheckUnavailableRooms();
-        }
-
-        private void CheckUnavailableRooms()
-        {
-            var availableRooms = _grid[Vector2.zero].GetAllConnectedSegments(_grid);
-
-            var unavailableRooms = _grid.Except(availableRooms);
-
-            var unavailableRoomsLines = new List<Dictionary<Vector2, LevelSegment>>();
-
-            //Connect unavailable rooms
-            while (unavailableRooms.Any())
-            {
-                unavailableRoomsLines.Add(unavailableRooms.ElementAt(0).Value.GetAllConnectedSegments(_grid));
-
-                unavailableRooms = unavailableRooms.Except(unavailableRoomsLines[^1]);
-
-
-                var roomCountToOpen = Random.Range(0, unavailableRoomsLines[^1].Count / 2);
-                var tempUnavailableRooms = new Dictionary<Vector2, LevelSegment>();
-                for (var i = 0; i < roomCountToOpen; i++)
-                {
-                    var excepted = unavailableRoomsLines[^1].Except(tempUnavailableRooms)
-                        .Where(pair => !pair.Value.IsAllSidesBusy(_grid))
-                        .ToDictionary(e => e.Key, e => e.Value);
-
-                    if (excepted.Count == 0)
-                        continue;
-
-                    var selected = excepted.ElementAt(Random.Range(0, excepted.Count));
-                    tempUnavailableRooms.Add(selected.Key, selected.Value);
-
-                    var unconnected = selected.Value.GetUnconnectedLocalSegments(_grid);
-
-                    if (unconnected.Count == 0)
-                        continue;
-
-                    var neighbour = unconnected[Random.Range(0, unconnected.Count)];
-
-                    var directionToNeighbour = GetDirectionBySecondRoom(selected.Key, neighbour);
-
-                    selected.Value.SetDoorState(directionToNeighbour, false);
-                    _grid[neighbour].SetDoorState(InvertDirection(directionToNeighbour), false);
-                }
+                previousSegment = spawned.SO;
+                spawnedCount++;
+                spawnedPath.Add(currentPosition);
             }
         }
 
@@ -140,8 +109,8 @@ namespace LevelGenerationSystem
         {
             var exitData = (Vector3.zero, Vector2.zero);
 
-            var gridPos = Vector2.zero;
-            var spawnPos = Vector3.zero;
+            Vector2 gridPos;
+            Vector3 spawnPos;
 
             var exitDoorDirection = DoorDirection.UP;
 
@@ -188,8 +157,114 @@ namespace LevelGenerationSystem
                 .SetDoorState(InvertDirection(exitDoorDirection), false);
         }
 
+        private void GenerateCorridors()
+        {
+            var tempGrid = _grid.ToDictionary(x => x.Key, x => x.Value);
+
+            var corridorsCount = (int)(_generationSettings.StartSegmentsYCount *
+                                       _generationSettings.StartSegmentsXCount *
+                                       (_generationSettings.CorridorPercent / 100f));
+
+            while (corridorsCount > 0)
+            {
+                var selected = tempGrid.ElementAt(Random.Range(0, tempGrid.Count));
+
+                var connected = selected.Value.GetLocalConnectedSegments();
+
+                tempGrid.Remove(selected.Key);
+
+                if (connected.Count is 0 or 1) continue;
+
+                _grid.Remove(selected.Key);
+
+                var doorsList = connected
+                    .Select(door => GetDoorDirectionByGridVectorDirection(door - selected.Value.Coordinates)).ToList();
+
+                var corridor = GetCorridorDataByConnected(doorsList);
+
+                CreateLevelSegment(corridor.Item1,
+                    new Vector3(selected.Key.x * selected.Value.GetWidth(),
+                        selected.Key.y * selected.Value.GetHeight(), 0), selected.Key, corridor.Item2);
+
+                Object.Destroy(selected.Value.gameObject);
+
+                corridorsCount--;
+            }
+        }
+
+        private void RandomizeSegments()
+        {
+            foreach (var segmentPair in _grid)
+            {
+                segmentPair.Value.RandomSegment?.Generate(segmentPair.Value.RandomSegment.NonDoorsGorup);
+
+                var unconnected = segmentPair.Value.GetUnconnectedLocalSegmentsWithNonExist(_generationSettings);
+                segmentPair.Value.RandomSegment?.Generate(segmentPair.Value.RandomSegment.NonDoorsGorup);
+
+                foreach (var cell in unconnected)
+                    switch (GetDirectionBySecondRoom(segmentPair.Key, cell))
+                    {
+                        case DoorDirection.UP:
+                            segmentPair.Value.RandomSegment?.Generate(segmentPair.Value.RandomSegment.UpRandomGroup);
+                            break;
+                        case DoorDirection.RIGHT:
+                            segmentPair.Value.RandomSegment?.Generate(segmentPair.Value.RandomSegment.RightRandomGroup);
+                            break;
+                        case DoorDirection.DOWN:
+                            segmentPair.Value.RandomSegment?.Generate(segmentPair.Value.RandomSegment.DownRandomGroup);
+                            break;
+                        case DoorDirection.LEFT:
+                            segmentPair.Value.RandomSegment?.Generate(segmentPair.Value.RandomSegment.LeftRandomGroup);
+                            break;
+                        default:
+                            throw new ArgumentOutOfRangeException();
+                    }
+            }
+        }
+
+        private (LevelSegmentSO, int) GetCorridorDataByConnected(List<DoorDirection> connected)
+        {
+            switch (connected.Count)
+            {
+                case 2:
+                    if (connected.Contains(DoorDirection.RIGHT) && connected.Contains(DoorDirection.DOWN))
+                        return (_generationSettings.CornerCorridorSegment, 0);
+                    if (connected.Contains(DoorDirection.DOWN) && connected.Contains(DoorDirection.LEFT))
+                        return (_generationSettings.CornerCorridorSegment, -90);
+                    if (connected.Contains(DoorDirection.LEFT) && connected.Contains(DoorDirection.UP))
+                        return (_generationSettings.CornerCorridorSegment, -180);
+                    if (connected.Contains(DoorDirection.UP) && connected.Contains(DoorDirection.RIGHT))
+                        return (_generationSettings.CornerCorridorSegment, -270);
+                    if (connected.Contains(DoorDirection.RIGHT) && connected.Contains(DoorDirection.LEFT))
+                        return (_generationSettings.LineCorridorSegment, 0);
+                    if (connected.Contains(DoorDirection.UP) && connected.Contains(DoorDirection.DOWN))
+                        return (_generationSettings.LineCorridorSegment, -90);
+                    break;
+
+                case 3:
+                    if (connected.Contains(DoorDirection.UP) && connected.Contains(DoorDirection.RIGHT) &&
+                        connected.Contains(DoorDirection.DOWN))
+                        return (_generationSettings.TCorridorSegment, 0);
+                    if (connected.Contains(DoorDirection.RIGHT) && connected.Contains(DoorDirection.DOWN) &&
+                        connected.Contains(DoorDirection.LEFT))
+                        return (_generationSettings.TCorridorSegment, -90);
+                    if (connected.Contains(DoorDirection.DOWN) && connected.Contains(DoorDirection.LEFT) &&
+                        connected.Contains(DoorDirection.UP))
+                        return (_generationSettings.TCorridorSegment, -180);
+                    if (connected.Contains(DoorDirection.LEFT) && connected.Contains(DoorDirection.UP) &&
+                        connected.Contains(DoorDirection.RIGHT))
+                        return (_generationSettings.TCorridorSegment, -270);
+                    break;
+                case 4:
+                    return (_generationSettings.XCorridorSegment, 0);
+            }
+
+            throw new ArgumentException(
+                $"Invalid corridor connections, connections count: {connected.Count}, need 2 - 4!");
+        }
+
         /// <returns> Door direction from first room to second</returns>
-        private DoorDirection GetDirectionBySecondRoom(Vector2 firstCoords, Vector2 secondCoords)
+        private static DoorDirection GetDirectionBySecondRoom(Vector2 firstCoords, Vector2 secondCoords)
         {
             if (secondCoords - firstCoords == Vector2.up)
                 return DoorDirection.UP;
@@ -204,7 +279,7 @@ namespace LevelGenerationSystem
                 $"Invalid second or first room coordinates! First: {firstCoords} | Second {secondCoords}");
         }
 
-        private Vector2 GetGridVectorDirectionByDoorDirection(DoorDirection doorDirection)
+        private static Vector2 GetGridVectorDirectionByDoorDirection(DoorDirection doorDirection)
         {
             return doorDirection switch
             {
@@ -216,30 +291,16 @@ namespace LevelGenerationSystem
             };
         }
 
-        private Dictionary<DoorDirection, LevelSegment> GetConnectedSegments(Vector2 coordinates)
+        private static DoorDirection GetDoorDirectionByGridVectorDirection(Vector2 gridDirection)
         {
-            if (!_grid.ContainsKey(coordinates))
-                throw new ArgumentException($"Invalid coordinates: ({coordinates.x}, {coordinates.y})!");
-
-            var segments = new Dictionary<DoorDirection, LevelSegment>();
-
-            if (_grid.ContainsKey(coordinates + Vector2.up) &&
-                _grid[coordinates + Vector2.up].IsDoorActive(DoorDirection.UP))
-                segments.Add(DoorDirection.DOWN, _grid[coordinates + Vector2.up]);
-
-            if (_grid.ContainsKey(coordinates + Vector2.right) &&
-                _grid[coordinates + Vector2.right].IsDoorActive(DoorDirection.RIGHT))
-                segments.Add(DoorDirection.LEFT, _grid[coordinates + Vector2.right]);
-
-            if (_grid.ContainsKey(coordinates + Vector2.down) &&
-                _grid[coordinates + Vector2.down].IsDoorActive(DoorDirection.DOWN))
-                segments.Add(DoorDirection.UP, _grid[coordinates + Vector2.down]);
-
-            if (_grid.ContainsKey(coordinates + Vector2.left) &&
-                _grid[coordinates + Vector2.left].IsDoorActive(DoorDirection.LEFT))
-                segments.Add(DoorDirection.RIGHT, _grid[coordinates + Vector2.left]);
-
-            return segments;
+            return gridDirection switch
+            {
+                var v when v.Equals(Vector2.up) => DoorDirection.UP,
+                var v when v.Equals(Vector2.right) => DoorDirection.RIGHT,
+                var v when v.Equals(Vector2.down) => DoorDirection.DOWN,
+                var v when v.Equals(Vector2.left) => DoorDirection.LEFT,
+                _ => throw new ArgumentOutOfRangeException(nameof(gridDirection), gridDirection, null)
+            };
         }
 
         private static DoorDirection InvertDirection(DoorDirection direction)
@@ -254,18 +315,19 @@ namespace LevelGenerationSystem
             };
         }
 
-        private void CreateLevelSegment(LevelSegmentSO so, Vector3 position, Vector2 gridPosition)
+        private LevelSegment CreateLevelSegment(LevelSegmentSO so, Vector3 position, Vector2 gridPosition,
+            int rotation = 0)
         {
-            var spawned = Object.Instantiate(so.SegmentPrefab, position, Quaternion.identity).Init(so, gridPosition);
-
-            _lastSpawnedSegment = so;
-
+            var spawned = Object.Instantiate(so.SegmentPrefab, position, Quaternion.Euler(0, 0, rotation))
+                .Init(so, gridPosition);
+            
             spawned.name = spawned.name.Split(' ')[0].Replace("(Clone)", "") + $" ({gridPosition.x}, {gridPosition.y})";
-            ;
 
             if (!_grid.TryAdd(gridPosition, spawned))
                 throw new ArgumentException(
                     $"Segment on this grid's coordinates is already exists! ({gridPosition.x}, {gridPosition.y}) ");
+
+            return spawned;
         }
     }
 }

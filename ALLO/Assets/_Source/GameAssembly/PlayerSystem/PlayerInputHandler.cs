@@ -87,7 +87,7 @@ namespace PlayerSystem
 
         private void ReadMovementInput()
         {
-            Vector2 movementInput = new(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+            Vector2 movementInput = new(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
             var run = Input.GetKey(KeyCode.LeftShift);
 
             _playerMovement.MovePlayer(movementInput, run);

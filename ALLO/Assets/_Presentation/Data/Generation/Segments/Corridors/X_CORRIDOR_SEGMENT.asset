@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc5d85c084c349f5b977426f08bc4444, type: 3}
+  m_Name: X_CORRIDOR_SEGMENT
+  m_EditorClassIdentifier: 
+  <SegmentPrefab>k__BackingField: {fileID: 8292053873570295359, guid: 7372f8fa246d58c48a36dfe2212b3698, type: 3}
+  <ConnectableTo>k__BackingField:
+  - <Segment>k__BackingField: {fileID: 11400000, guid: 3090b0cc7418e794ca595c84f1db975b, type: 2}
+    <Weight>k__BackingField: 1
+  - <Segment>k__BackingField: {fileID: 11400000, guid: a881c96507c23e840929ff305cd16880, type: 2}
+    <Weight>k__BackingField: 1

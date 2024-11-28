@@ -29,15 +29,11 @@ namespace PlayerSystem.Attack
             var weaponGFX = GetWeaponGFX(_playerWeaponData.CurrentWeapon);
 
             if (!weaponGFX)
-#if UNITY_EDITOR
-                Debug.LogWarning("This weapon GFX doesn't assigned!");
-#endif
-            else
-            {
-                _activatedWeapon?.SetActive(false);
-                _activatedWeapon = weaponGFX;
-                _activatedWeapon.SetActive(true);
-            }
+                throw new ArgumentException("This weapon GFX doesn't assigned!");
+            
+            _activatedWeapon?.SetActive(false);
+            _activatedWeapon = weaponGFX;
+            _activatedWeapon.SetActive(true);
         }
 
         private void Bind() => _playerWeaponData.OnWeaponChanged += ActivateWeapon;

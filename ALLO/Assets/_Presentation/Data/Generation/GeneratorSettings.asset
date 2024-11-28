@@ -12,7 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 936aaf8d06264939b614a49512efb549, type: 3}
   m_Name: GeneratorSettings
   m_EditorClassIdentifier: 
-  <StartSegmentsXCount>k__BackingField: 3
-  <StartSegmentsYCount>k__BackingField: 3
+  <StartSegmentsXCount>k__BackingField: 15
+  <StartSegmentsYCount>k__BackingField: 15
+  <CorridorPercent>k__BackingField: 30
+  <RandomDoorsPercent>k__BackingField: 0
   <StartSegment>k__BackingField: {fileID: 11400000, guid: 3090b0cc7418e794ca595c84f1db975b, type: 2}
   <EndSegment>k__BackingField: {fileID: 11400000, guid: 462c0ae1771307548837928edef11b8f, type: 2}
+  <XCorridorSegment>k__BackingField: {fileID: 11400000, guid: 8d23c4d9254d29a468c5c8b88cac55df, type: 2}
+  <TCorridorSegment>k__BackingField: {fileID: 11400000, guid: cc87289139b1b9d47861361a3515d872, type: 2}
+  <LineCorridorSegment>k__BackingField: {fileID: 11400000, guid: f63d8bfa63e80e044b4f8874dd251746, type: 2}
+  <CornerCorridorSegment>k__BackingField: {fileID: 11400000, guid: c05dac9a71fcc7449b541d1ff0a0e5cc, type: 2}

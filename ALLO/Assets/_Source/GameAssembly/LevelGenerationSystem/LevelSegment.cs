@@ -4,6 +4,8 @@ using System.Linq;
 using LevelGenerationSystem.Data;
 using UnityEngine;
 
+// ReSharper disable PossibleLossOfFraction
+
 namespace LevelGenerationSystem
 {
     public class LevelSegment : MonoBehaviour
@@ -11,6 +13,7 @@ namespace LevelGenerationSystem
         [Tooltip("Generator will use this object to calculate next room position by it's size")] [SerializeField]
         private Transform backGround;
 
+        [field: SerializeField] public RandomSegment RandomSegment { get; set; } 
         [SerializeField] private GameObject upDoor;
         [SerializeField] private GameObject rightDoor;
         [SerializeField] private GameObject downDoor;
@@ -47,6 +50,9 @@ namespace LevelGenerationSystem
 
         public bool IsDoorActive(DoorDirection direction)
         {
+            if (!upDoor || !rightDoor || !downDoor || !leftDoor)
+                return true;
+
             return direction switch
             {
                 DoorDirection.UP => upDoor.activeSelf,
@@ -84,7 +90,7 @@ namespace LevelGenerationSystem
                 grid[segmentCoordinate].GetAllConnectedSegments(grid, connected);
         }
 
-        public List<Vector2> GetUnconnectedLocalSegments(Dictionary<Vector2, LevelSegment> grid)
+        public List<Vector2> GetUnconnectedLocalSegments(GenerationSettingsSO settings)
         {
             var connected = GetLocalConnectedSegments();
 
@@ -101,9 +107,34 @@ namespace LevelGenerationSystem
 
             emptySides = emptySides.Except(connected).ToList();
 
-            var result = emptySides.Where(grid.ContainsKey).ToList();
-
+            var result = emptySides.Where(coords =>
+                    coords.x <= settings.StartSegmentsXCount
+                    && coords.x >= 1
+                    && coords.y >= (settings.StartSegmentsYCount - 1) / -2
+                    && coords.y <= (settings.StartSegmentsYCount - 1) / 2)
+                .ToList();
+            
             return result;
+        }
+        
+        public List<Vector2> GetUnconnectedLocalSegmentsWithNonExist(GenerationSettingsSO settings)
+        {
+            var connected = GetLocalConnectedSegments();
+
+            if (connected.Count == 0)
+                return new List<Vector2>();
+
+            var emptySides = new List<Vector2>
+            {
+                Coordinates + Vector2.up,
+                Coordinates + Vector2.right,
+                Coordinates + Vector2.down,
+                Coordinates + Vector2.left
+            };
+
+            emptySides = emptySides.Except(connected).ToList();
+            
+            return emptySides;
         }
 
         public bool IsAllSidesBusy(Dictionary<Vector2, LevelSegment> grid)
@@ -126,7 +157,7 @@ namespace LevelGenerationSystem
             return emptySides.All(side => !grid.ContainsKey(side));
         }
 
-        private List<Vector2> GetLocalConnectedSegments()
+        public List<Vector2> GetLocalConnectedSegments()
         {
             var connected = new List<Vector2>();
 

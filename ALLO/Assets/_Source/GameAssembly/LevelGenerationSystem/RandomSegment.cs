@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using LevelGenerationSystem.Data;
 using UnityEngine;
@@ -8,21 +7,20 @@ namespace LevelGenerationSystem
 {
     public class RandomSegment : MonoBehaviour
     {
-        [field: SerializeField] private LevelSegmentRandomGroup[] randomGroups = Array.Empty<LevelSegmentRandomGroup>();
-
-        private void OnEnable()
+        [field: SerializeField] public LevelSegmentRandomGroup[] UpRandomGroup { get; private set; }
+        [field: SerializeField] public LevelSegmentRandomGroup[] RightRandomGroup { get; private set; }
+        [field: SerializeField] public LevelSegmentRandomGroup[] DownRandomGroup { get; private set; }
+        [field: SerializeField] public LevelSegmentRandomGroup[] LeftRandomGroup { get; private set; }
+        [field: SerializeField] public LevelSegmentRandomGroup[] NonDoorsGorup { get; private set; }
+        
+        public void Generate(LevelSegmentRandomGroup[] randomGroup)
         {
-            Generate();
-        }
-
-        public void Generate()
-        {
-            if (randomGroups.Length == 0)
+            if (randomGroup.Length == 0)
                 return;
 
-            DeactivateAllVariants();
+            DeactivateAllVariants(randomGroup);
 
-            foreach (var group in randomGroups)
+            foreach (var group in randomGroup)
             {
                 var weightSum = group.Variants.Sum(variant => variant.Weight);
 
@@ -34,19 +32,22 @@ namespace LevelGenerationSystem
                         continue;
                     }
 
-                    if (variant.Variant)
-                        variant.Variant.SetActive(true);
+                    if (variant.Variants.Length > 0)
+                        foreach (var item in variant.Variants)
+                            item?.SetActive(true);
+
                     break;
                 }
             }
         }
 
-        private void DeactivateAllVariants()
+        private void DeactivateAllVariants(LevelSegmentRandomGroup[] randomGroup)
         {
-            foreach (var group in randomGroups)
+            foreach (var group in randomGroup)
             foreach (var variant in group.Variants)
-                if (variant.Variant)
-                    variant.Variant.SetActive(false);
+                if (variant.Variants.Length > 0)
+                    foreach (var item in variant.Variants)
+                        item?.SetActive(false);
         }
     }
 }
