@@ -3,7 +3,7 @@ using PlayerSystem.Attack.Shooting.Data;
 using UnityEngine;
 using Utils;
 
-namespace PlayerSystem.Items
+namespace PlayerSystem.Items.Collectable
 {
     public class CollectableAmmoBox : MonoBehaviour //TODO: Replace with multi-taking logic
     {

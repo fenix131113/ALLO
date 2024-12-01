@@ -8,5 +8,6 @@ namespace PlayerSystem.Attack.Melee.Data
     {
         [field: SerializeField] public int Damage { get; private set; }
         [field: SerializeField] public float Cooldown { get; private set; }
+        [field: SerializeField] public MeleeType MeleeType { get; private set; }
     }
 }

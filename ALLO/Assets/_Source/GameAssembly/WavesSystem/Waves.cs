@@ -4,6 +4,7 @@ using System.Linq;
 using PlayerSystem;
 using PlayerSystem.Attack.Shooting;
 using PlayerSystem.Items;
+using PlayerSystem.Items.Collectable;
 using UnityEngine;
 using Zenject;
 using Random = UnityEngine.Random;

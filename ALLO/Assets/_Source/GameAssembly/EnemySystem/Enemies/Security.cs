@@ -4,6 +4,7 @@ using DamageSystem.Data;
 using EntityDrawers.Humanoid;
 using PlayerSystem.Attack.Shooting;
 using PlayerSystem.Items;
+using PlayerSystem.Items.Collectable;
 using UnityEngine;
 using Utils;
 

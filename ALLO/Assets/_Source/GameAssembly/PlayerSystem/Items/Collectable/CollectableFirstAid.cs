@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Utils;
 
-namespace PlayerSystem.Items
+namespace PlayerSystem.Items.Collectable
 {
     public class CollectableFirstAid : MonoBehaviour //TODO: Replace with muliti-taking logic
     {

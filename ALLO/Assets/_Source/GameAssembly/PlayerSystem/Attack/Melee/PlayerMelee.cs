@@ -10,11 +10,13 @@ namespace PlayerSystem.Attack.Melee
     public class PlayerMelee : MonoBehaviour
     {
         private static readonly int _hitKey = Animator.StringToHash("Hit");
-        private static readonly int _meleeHit = Animator.StringToHash("MeleeHit");
+        private static readonly int _meleeHitKey = Animator.StringToHash("MeleeHit");
+        private static readonly int _knifeHitKey = Animator.StringToHash("KnifeHit");
 
         [SerializeField] private Animator handsAnim;
         [SerializeField] private Animator hitAnim;
-        [SerializeField] private DamageZone hitZone;
+        [SerializeField] private DamageZone areaHitZone;
+        [SerializeField] private DamageZone straightHitZone;
         [SerializeField] private float deactivationHitTime;
 
         private PlayerAttack _playerAttack;
@@ -32,10 +34,30 @@ namespace PlayerSystem.Attack.Melee
             if (!_canHit || !CurrentMelee)
                 return;
 
-            handsAnim.SetTrigger(_meleeHit);
-            hitAnim.SetTrigger(_hitKey);
-            StartCoroutine(HitZoneCooldown());
+            if (CurrentMelee.MeleeType == MeleeType.AREA_ATTACK)
+            {
+                AreaAttack();
+                StartCoroutine(HitZoneCooldown(areaHitZone));
+            }
+            else
+            {
+                StraightAttack();
+                StartCoroutine(HitZoneCooldown(straightHitZone));
+            }
+
+
             StartCoroutine(HitCooldown());
+        }
+
+        private void AreaAttack()
+        {
+            handsAnim.SetTrigger(_meleeHitKey);
+            hitAnim.SetTrigger(_hitKey);
+        }
+
+        private void StraightAttack()
+        {
+            handsAnim.SetTrigger(_knifeHitKey);
         }
 
         private IEnumerator HitCooldown()
@@ -45,11 +67,11 @@ namespace PlayerSystem.Attack.Melee
             _canHit = true;
         }
 
-        private IEnumerator HitZoneCooldown()
+        private IEnumerator HitZoneCooldown(DamageZone damageZone)
         {
-            hitZone.ActivateZone();
+            damageZone.ActivateZone();
             yield return new WaitForSeconds(deactivationHitTime);
-            hitZone.DisableZone();
+            damageZone.DisableZone();
         }
     }
 }
