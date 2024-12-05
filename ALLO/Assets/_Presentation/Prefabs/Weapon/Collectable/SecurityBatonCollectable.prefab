@@ -133,7 +133,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6acbf4b25a7243039454b17102335531, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lightColor: {r: 0, g: 1, b: 0.95477676, a: 1}
+  coloringTime: 0.5
   weapon: {fileID: 11400000, guid: 7e37a7c4f65f9da4094aec727a704296, type: 2}
+  weaponRenderer: {fileID: 5126961677897186074}
   interactionLayer:
     serializedVersion: 2
     m_Bits: 64
