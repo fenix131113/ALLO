@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3762483122706785358}
   - component: {fileID: 8246826104490801407}
   - component: {fileID: 1053563468585706157}
+  - component: {fileID: 7948197668226776546}
   m_Layer: 3
   m_Name: FatWalls_Grey_5
   m_TagString: Untagged
@@ -28,8 +29,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -18.083176, y: -2.9459999, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -74,12 +75,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -921459990, guid: 4eb34adc79bc89b46b6d9aeee2e31701, type: 3}
+  m_Sprite: {fileID: -2049406040, guid: 574d15e65b08146499abaf4f468ac871, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 1.31, y: 1.31}
+  m_Size: {x: 0.38292134, y: 0.22000192}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -117,16 +118,33 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.3168217}
+  m_Offset: {x: 0, y: 0.0506522}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.31, y: 1.31}
-    newSize: {x: 1.31, y: 1.31}
+    oldSize: {x: 0.32, y: 0.32}
+    newSize: {x: 0.38292134, y: 0.22000192}
     adaptiveTilingThreshold: 0.5
     drawMode: 2
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.31, y: 0.67635655}
+  m_Size: {x: 0.38064268, y: 0.124086216}
   m_EdgeRadius: 0
+--- !u!114 &7948197668226776546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3530280569246646184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4b9b5e368b647e59c1abbcf9d0d5b8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentRenderer: {fileID: 8246826104490801407}
+  whiteSprite: {fileID: -253571127, guid: 574d15e65b08146499abaf4f468ac871, type: 3}
+  redSprite: {fileID: -857065088, guid: 574d15e65b08146499abaf4f468ac871, type: 3}
+  graySprite: {fileID: -2049406040, guid: 574d15e65b08146499abaf4f468ac871, type: 3}
+  yellowSprite: {fileID: -1618808450, guid: 574d15e65b08146499abaf4f468ac871, type: 3}

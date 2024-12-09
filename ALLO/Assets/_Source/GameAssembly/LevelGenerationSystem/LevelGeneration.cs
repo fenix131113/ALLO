@@ -16,6 +16,7 @@ namespace LevelGenerationSystem
         private GenerationSettingsSO _generationSettings;
 
         private readonly Dictionary<Vector2, LevelSegment> _grid = new();
+        private LevelSpritesColor _selectedLevelColor;
         private float _nextSpawnXPosition;
 
         [Inject]
@@ -31,12 +32,25 @@ namespace LevelGenerationSystem
 
         private void GenerateLevel()
         {
+            SelectRandomLevelColor();
             CreateLevelSegment(_generationSettings.StartSegment, Vector3.zero, Vector2.zero);
 
             GenerateLevelSegments();
             GenerateExit();
             GenerateCorridors();
             RandomizeSegments();
+        }
+
+        private void SelectRandomLevelColor()
+        {
+            _selectedLevelColor = Random.Range(0, 4) switch
+            {
+                0 => LevelSpritesColor.WHITE,
+                1 => LevelSpritesColor.RED,
+                2 => LevelSpritesColor.GRAY,
+                3 => LevelSpritesColor.YELLOW,
+                _ => throw new ArgumentOutOfRangeException()
+            };
         }
 
         private void GenerateLevelSegments()
@@ -194,12 +208,12 @@ namespace LevelGenerationSystem
 
         private void RandomizeSegments()
         {
-            foreach (var segmentPair in _grid)
+            foreach (var segmentPair in _grid.Where(segmentPair => segmentPair.Value.RandomSegment))
             {
-                segmentPair.Value.RandomSegment?.Generate(segmentPair.Value.RandomSegment.NonDoorsGorup);
+                segmentPair.Value.RandomSegment.Generate(segmentPair.Value.RandomSegment.NonDoorsGorup);
 
                 var unconnected = segmentPair.Value.GetUnconnectedLocalSegmentsWithNonExist(_generationSettings);
-                segmentPair.Value.RandomSegment?.Generate(segmentPair.Value.RandomSegment.NonDoorsGorup);
+                segmentPair.Value.RandomSegment.Generate(segmentPair.Value.RandomSegment.NonDoorsGorup);
 
                 foreach (var cell in unconnected)
                     switch (GetDirectionBySecondRoom(segmentPair.Key, cell))
@@ -320,7 +334,7 @@ namespace LevelGenerationSystem
         {
             var spawned = Object.Instantiate(so.SegmentPrefab, position, Quaternion.Euler(0, 0, rotation))
                 .Init(so, gridPosition);
-            
+            spawned.SegmentColorManager?.SelectColor(_selectedLevelColor);
             spawned.name = spawned.name.Split(' ')[0].Replace("(Clone)", "") + $" ({gridPosition.x}, {gridPosition.y})";
 
             if (!_grid.TryAdd(gridPosition, spawned))

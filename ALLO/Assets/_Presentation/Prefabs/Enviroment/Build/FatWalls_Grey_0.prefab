@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3310273157116672740}
   - component: {fileID: 6559082738307824592}
   - component: {fileID: 1403672595396588632}
+  - component: {fileID: 211110045292922101}
   m_Layer: 3
   m_Name: FatWalls_Grey_0
   m_TagString: Untagged
@@ -27,9 +28,9 @@ Transform:
   m_GameObject: {fileID: 3450992780167664110}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -17.455, y: -4.054, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -74,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 190334544, guid: 4eb34adc79bc89b46b6d9aeee2e31701, type: 3}
+  m_Sprite: {fileID: -1588020112, guid: 574d15e65b08146499abaf4f468ac871, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -120,8 +121,8 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.77}
-    oldSize: {x: 1.31, y: 1.31}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.32, y: 0.32}
     newSize: {x: 1.32, y: 1.32}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -129,10 +130,27 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.655, y: 0.30130005}
-      - {x: -0.655, y: -1.0086999}
-      - {x: -0.23384914, y: -1.0103087}
-      - {x: -0.23379612, y: -0.11950493}
-      - {x: 0.6555302, y: -0.120747015}
-      - {x: 0.655, y: 0.30130005}
+    - - {x: -0.16002755, y: 0.16002963}
+      - {x: -0.16000359, y: -0.16003531}
+      - {x: -0.059998035, y: -0.1600375}
+      - {x: -0.059957713, y: -0.060032524}
+      - {x: 0.16007029, y: -0.060059197}
+      - {x: 0.1600128, y: 0.16001119}
   m_UseDelaunayMesh: 0
+--- !u!114 &211110045292922101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3450992780167664110}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4b9b5e368b647e59c1abbcf9d0d5b8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentRenderer: {fileID: 6559082738307824592}
+  whiteSprite: {fileID: 650283124, guid: 574d15e65b08146499abaf4f468ac871, type: 3}
+  redSprite: {fileID: 1758594022, guid: 574d15e65b08146499abaf4f468ac871, type: 3}
+  graySprite: {fileID: -1588020112, guid: 574d15e65b08146499abaf4f468ac871, type: 3}
+  yellowSprite: {fileID: -1018724120, guid: 574d15e65b08146499abaf4f468ac871, type: 3}
