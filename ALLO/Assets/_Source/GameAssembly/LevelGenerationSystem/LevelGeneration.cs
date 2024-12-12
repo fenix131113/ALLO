@@ -20,15 +20,9 @@ namespace LevelGenerationSystem
         private float _nextSpawnXPosition;
 
         [Inject]
-        private void Construct(GenerationSettingsSO generationSettings)
-        {
-            _generationSettings = generationSettings;
-        }
+        private void Construct(GenerationSettingsSO generationSettings) => _generationSettings = generationSettings;
 
-        public void Initialize()
-        {
-            GenerateLevel();
-        }
+        public void Initialize() => GenerateLevel();
 
         private void GenerateLevel()
         {
@@ -196,9 +190,9 @@ namespace LevelGenerationSystem
 
                 var corridor = GetCorridorDataByConnected(doorsList);
 
-                CreateLevelSegment(corridor.Item1,
+                CreateLevelSegment(corridor,
                     new Vector3(selected.Key.x * selected.Value.GetWidth(),
-                        selected.Key.y * selected.Value.GetHeight(), 0), selected.Key, corridor.Item2);
+                        selected.Key.y * selected.Value.GetHeight(), 0), selected.Key);
 
                 Object.Destroy(selected.Value.gameObject);
 
@@ -236,41 +230,41 @@ namespace LevelGenerationSystem
             }
         }
 
-        private (LevelSegmentSO, int) GetCorridorDataByConnected(List<DoorDirection> connected)
+        private LevelSegmentSO GetCorridorDataByConnected(List<DoorDirection> connected)
         {
             switch (connected.Count)
             {
                 case 2:
                     if (connected.Contains(DoorDirection.RIGHT) && connected.Contains(DoorDirection.DOWN))
-                        return (_generationSettings.CornerCorridorSegment, 0);
+                        return _generationSettings.CornerCorridorSegment;
                     if (connected.Contains(DoorDirection.DOWN) && connected.Contains(DoorDirection.LEFT))
-                        return (_generationSettings.CornerCorridorSegment, -90);
+                        return _generationSettings.CornerCorridorSegment90;
                     if (connected.Contains(DoorDirection.LEFT) && connected.Contains(DoorDirection.UP))
-                        return (_generationSettings.CornerCorridorSegment, -180);
+                        return _generationSettings.CornerCorridorSegment180;
                     if (connected.Contains(DoorDirection.UP) && connected.Contains(DoorDirection.RIGHT))
-                        return (_generationSettings.CornerCorridorSegment, -270);
+                        return _generationSettings.CornerCorridorSegment270;
                     if (connected.Contains(DoorDirection.RIGHT) && connected.Contains(DoorDirection.LEFT))
-                        return (_generationSettings.LineCorridorSegment, 0);
+                        return _generationSettings.LineCorridorSegment;
                     if (connected.Contains(DoorDirection.UP) && connected.Contains(DoorDirection.DOWN))
-                        return (_generationSettings.LineCorridorSegment, -90);
+                        return _generationSettings.LineCorridorSegment90;
                     break;
 
                 case 3:
                     if (connected.Contains(DoorDirection.UP) && connected.Contains(DoorDirection.RIGHT) &&
                         connected.Contains(DoorDirection.DOWN))
-                        return (_generationSettings.TCorridorSegment, 0);
+                        return _generationSettings.TCorridorSegment;
                     if (connected.Contains(DoorDirection.RIGHT) && connected.Contains(DoorDirection.DOWN) &&
                         connected.Contains(DoorDirection.LEFT))
-                        return (_generationSettings.TCorridorSegment, -90);
+                        return _generationSettings.TCorridorSegment90;
                     if (connected.Contains(DoorDirection.DOWN) && connected.Contains(DoorDirection.LEFT) &&
                         connected.Contains(DoorDirection.UP))
-                        return (_generationSettings.TCorridorSegment, -180);
+                        return _generationSettings.TCorridorSegment180;
                     if (connected.Contains(DoorDirection.LEFT) && connected.Contains(DoorDirection.UP) &&
                         connected.Contains(DoorDirection.RIGHT))
-                        return (_generationSettings.TCorridorSegment, -270);
+                        return _generationSettings.TCorridorSegment270;
                     break;
                 case 4:
-                    return (_generationSettings.XCorridorSegment, 0);
+                    return _generationSettings.XCorridorSegment;
             }
 
             throw new ArgumentException(

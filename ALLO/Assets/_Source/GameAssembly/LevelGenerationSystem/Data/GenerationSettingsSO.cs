@@ -16,7 +16,14 @@ namespace LevelGenerationSystem.Data
         [field: SerializeField] public LevelSegmentSO EndSegment { get; private set; }
         [field: SerializeField] public LevelSegmentSO XCorridorSegment { get; private set; }
         [field: SerializeField] public LevelSegmentSO TCorridorSegment { get; private set; }
+        [field: SerializeField] public LevelSegmentSO TCorridorSegment90 { get; private set; }
+        [field: SerializeField] public LevelSegmentSO TCorridorSegment180 { get; private set; }
+        [field: SerializeField] public LevelSegmentSO TCorridorSegment270 { get; private set; }
         [field: SerializeField] public LevelSegmentSO LineCorridorSegment { get; private set; }
+        [field: SerializeField] public LevelSegmentSO LineCorridorSegment90 { get; private set; }
         [field: SerializeField] public LevelSegmentSO CornerCorridorSegment { get; private set; }
+        [field: SerializeField] public LevelSegmentSO CornerCorridorSegment90 { get; private set; }
+        [field: SerializeField] public LevelSegmentSO CornerCorridorSegment180 { get; private set; }
+        [field: SerializeField] public LevelSegmentSO CornerCorridorSegment270 { get; private set; }
     }
 }
