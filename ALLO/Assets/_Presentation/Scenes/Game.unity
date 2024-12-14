@@ -18362,15 +18362,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1501724150}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ab216bccb3448a4cbe669b00d030743, type: 3}
+  m_Script: {fileID: 11500000, guid: f082c7622677499e8da38dd26a8e862a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1713425930}
   gameMenu: {fileID: 1665991220}
   playerConfig: {fileID: 11400000, guid: 802c943f1bace8a40b809dff9506e89a, type: 2}
   playerMouseTargeting: {fileID: 356259284}
-  startEquipmentProfile: {fileID: 11400000, guid: 6a1913ff6a0e86442a0cc75948508563, type: 2}
-  generationSettingsSO: {fileID: 0}
+  startEquipmentProfileSO: {fileID: 11400000, guid: 6a1913ff6a0e86442a0cc75948508563, type: 2}
 --- !u!1001 &1502880130
 PrefabInstance:
   m_ObjectHideFlags: 0

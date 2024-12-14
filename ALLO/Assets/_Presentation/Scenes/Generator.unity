@@ -1274,7 +1274,9 @@ GameObject:
   m_Component:
   - component: {fileID: 496375007}
   - component: {fileID: 496375009}
-  - component: {fileID: 496375008}
+  - component: {fileID: 496375011}
+  - component: {fileID: 496375010}
+  - component: {fileID: 496375012}
   m_Layer: 0
   m_Name: SceneContext
   m_TagString: Untagged
@@ -1297,25 +1299,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1131995155}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &496375008
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 496375006}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ab216bccb3448a4cbe669b00d030743, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 1135865256}
-  gameMenu: {fileID: 563210190}
-  pathFinder: {fileID: 1099173121}
-  playerConfig: {fileID: 11400000, guid: 802c943f1bace8a40b809dff9506e89a, type: 2}
-  playerMouseTargeting: {fileID: 2026029021}
-  startEquipmentProfile: {fileID: 11400000, guid: 6a1913ff6a0e86442a0cc75948508563, type: 2}
-  generationSettingsSO: {fileID: 11400000, guid: 28d8d6a95fa9c524cbb8d764402ceb0b, type: 2}
 --- !u!114 &496375009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1330,7 +1313,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scriptableObjectInstallers: []
   _monoInstallers:
-  - {fileID: 496375008}
+  - {fileID: 496375012}
+  - {fileID: 496375011}
+  - {fileID: 496375010}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -1348,6 +1333,49 @@ MonoBehaviour:
   _parentNewObjectsUnderSceneContext: 0
   _contractNames: []
   _parentContractNames: []
+--- !u!114 &496375010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 496375006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f082c7622677499e8da38dd26a8e862a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1135865256}
+  gameMenu: {fileID: 563210190}
+  playerConfig: {fileID: 11400000, guid: 802c943f1bace8a40b809dff9506e89a, type: 2}
+  playerMouseTargeting: {fileID: 2026029021}
+  startEquipmentProfileSO: {fileID: 11400000, guid: 6a1913ff6a0e86442a0cc75948508563, type: 2}
+--- !u!114 &496375011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 496375006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab27d90967004a38a23ba6fdb438d43c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &496375012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 496375006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ab216bccb3448a4cbe669b00d030743, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pathFinder: {fileID: 1099173121}
+  generationSettingsSO: {fileID: 11400000, guid: 28d8d6a95fa9c524cbb8d764402ceb0b, type: 2}
 --- !u!1 &508313769
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,7 +1,4 @@
-using Company;
-using GameMenuSystem;
-using LevelGenerationSystem;
-using LevelGenerationSystem.Data;
+﻿using GameMenuSystem;
 using PlayerSystem;
 using PlayerSystem.Attack;
 using PlayerSystem.Attack.Data;
@@ -9,60 +6,28 @@ using PlayerSystem.Attack.Melee;
 using PlayerSystem.Attack.Shooting;
 using PlayerSystem.Data;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using Zenject;
 
-namespace Core
+namespace Core.Installers
 {
-    public class GameInstaller : MonoInstaller
+    public class PlayerInstaller : MonoInstaller
     {
         [SerializeField] private Player player;
         [SerializeField] private GameMenu gameMenu;
-        [SerializeField] private AstarPath pathFinder;
 
         [SerializeField] private PlayerMovementConfig playerConfig;
         [SerializeField] private PlayerMouseTargeting playerMouseTargeting;
         [SerializeField] private StartEquipmentProfileSO startEquipmentProfileSO;
-        [SerializeField] private GenerationSettingsSO generationSettingsSO;
 
         public override void InstallBindings()
         {
-            //TODO: Delete this name checking
-            if (SceneManager.GetActiveScene().name != "Game")
-                BindLevelGeneration();
             BindPlayer();
             BindMenuSystem();
-            BindCompany();
         }
-
-        private void BindCompany()
-        {
-            Container.Bind<CompanyInterLevelDataContainer>()
-                .AsSingle()
-                .NonLazy();
-        }
-
         private void BindMenuSystem()
         {
             Container.Bind<GameMenu>()
                 .FromInstance(gameMenu)
-                .AsSingle()
-                .NonLazy();
-        }
-
-        private void BindLevelGeneration()
-        {
-            Container.BindInterfacesTo<LevelGeneration>()
-                .AsSingle()
-                .NonLazy();
-
-            Container.Bind<GenerationSettingsSO>()
-                .FromInstance(generationSettingsSO)
-                .AsSingle()
-                .NonLazy();
-
-            Container.Bind<AstarPath>()
-                .FromInstance(pathFinder)
                 .AsSingle()
                 .NonLazy();
         }
