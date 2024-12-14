@@ -15,9 +15,9 @@ namespace PlayerSystem.Attack.Shooting
         private readonly Dictionary<AmmoType, int> _playerStorageAmmo = new();
 
         [Inject]
-        public PlayerAmmoContainer(StartEquipmentProfile startEquipmentProfile)
+        public PlayerAmmoContainer(StartEquipmentProfileSO startEquipmentProfileSO)
         {
-            TryChangeAmmoInStorage(AmmoType.NINE_MM, startEquipmentProfile.StartNineMMAmmo);
+            TryChangeAmmoInStorage(AmmoType.NINE_MM, startEquipmentProfileSO.StartNineMMAmmo);
         }
 
         public void RegisterWeapon(FirearmsDataSO weapon, int ammo = 0)

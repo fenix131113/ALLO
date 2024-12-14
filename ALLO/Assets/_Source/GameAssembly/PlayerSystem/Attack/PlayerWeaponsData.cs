@@ -20,9 +20,9 @@ namespace PlayerSystem.Attack
         public event Action OnWeaponChanged;
 
         [Inject]
-        public PlayerWeaponsData(StartEquipmentProfile startEquipmentProfile, PlayerAmmoContainer playerAmmoContainer)
+        public PlayerWeaponsData(StartEquipmentProfileSO startEquipmentProfileSO, PlayerAmmoContainer playerAmmoContainer)
         {
-            foreach (var weapon in startEquipmentProfile.StartWeapons.Where(weapon => !Weapons.Contains(weapon)))
+            foreach (var weapon in startEquipmentProfileSO.StartWeapons.Where(weapon => !Weapons.Contains(weapon)))
             {
                 TryAddWeapon(weapon);
 

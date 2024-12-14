@@ -1,8 +1,10 @@
+using Company;
 using GameMenuSystem;
 using LevelGenerationSystem;
 using LevelGenerationSystem.Data;
 using PlayerSystem;
 using PlayerSystem.Attack;
+using PlayerSystem.Attack.Data;
 using PlayerSystem.Attack.Melee;
 using PlayerSystem.Attack.Shooting;
 using PlayerSystem.Data;
@@ -20,7 +22,7 @@ namespace Core
 
         [SerializeField] private PlayerMovementConfig playerConfig;
         [SerializeField] private PlayerMouseTargeting playerMouseTargeting;
-        [SerializeField] private StartEquipmentProfile startEquipmentProfile;
+        [SerializeField] private StartEquipmentProfileSO startEquipmentProfileSO;
         [SerializeField] private GenerationSettingsSO generationSettingsSO;
 
         public override void InstallBindings()
@@ -30,6 +32,14 @@ namespace Core
                 BindLevelGeneration();
             BindPlayer();
             BindMenuSystem();
+            BindCompany();
+        }
+
+        private void BindCompany()
+        {
+            Container.Bind<CompanyInterLevelDataContainer>()
+                .AsSingle()
+                .NonLazy();
         }
 
         private void BindMenuSystem()
@@ -100,8 +110,8 @@ namespace Core
                 .AsSingle()
                 .NonLazy();
 
-            Container.Bind<StartEquipmentProfile>()
-                .FromInstance(startEquipmentProfile)
+            Container.Bind<StartEquipmentProfileSO>()
+                .FromInstance(startEquipmentProfileSO)
                 .AsSingle()
                 .NonLazy();
 

@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/_Presentation/Scenes/Game.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
-    path: Assets/_Presentation/Scenes/GeneratorTest.unity
+    path: Assets/_Presentation/Scenes/Generator.unity
     guid: f8c41d13541ca6941a34f92d491f9dca
+  - enabled: 1
+    path: Assets/_Presentation/Scenes/LiftLoadingScene.unity
+    guid: a9da038953f7ab44cab57920bbd50a6d
   m_configObjects: {}
