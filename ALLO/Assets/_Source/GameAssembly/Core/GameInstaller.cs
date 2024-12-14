@@ -16,6 +16,7 @@ namespace Core
     {
         [SerializeField] private Player player;
         [SerializeField] private GameMenu gameMenu;
+        [SerializeField] private AstarPath pathFinder;
 
         [SerializeField] private PlayerMovementConfig playerConfig;
         [SerializeField] private PlayerMouseTargeting playerMouseTargeting;
@@ -47,6 +48,11 @@ namespace Core
 
             Container.Bind<GenerationSettingsSO>()
                 .FromInstance(generationSettingsSO)
+                .AsSingle()
+                .NonLazy();
+
+            Container.Bind<AstarPath>()
+                .FromInstance(pathFinder)
                 .AsSingle()
                 .NonLazy();
         }

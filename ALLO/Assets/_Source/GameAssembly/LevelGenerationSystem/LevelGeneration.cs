@@ -16,11 +16,16 @@ namespace LevelGenerationSystem
         private GenerationSettingsSO _generationSettings;
 
         private readonly Dictionary<Vector2, LevelSegment> _grid = new();
+        private AstarPath _pathFinder;
         private LevelSpritesColor _selectedLevelColor;
         private float _nextSpawnXPosition;
 
         [Inject]
-        private void Construct(GenerationSettingsSO generationSettings) => _generationSettings = generationSettings;
+        private void Construct(GenerationSettingsSO generationSettings, AstarPath pathFinder)
+        {
+            _generationSettings = generationSettings;
+            _pathFinder = pathFinder;
+        }
 
         public void Initialize() => GenerateLevel();
 
@@ -33,6 +38,7 @@ namespace LevelGenerationSystem
             GenerateExit();
             GenerateCorridors();
             RandomizeSegments();
+            _pathFinder.Scan();
         }
 
         private void SelectRandomLevelColor()
