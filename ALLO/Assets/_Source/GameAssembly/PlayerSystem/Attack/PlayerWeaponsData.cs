@@ -4,6 +4,7 @@ using System.Linq;
 using PlayerSystem.Attack.Data;
 using PlayerSystem.Attack.Shooting;
 using PlayerSystem.Attack.Shooting.Data;
+using UnityEngine;
 using Zenject;
 
 // ReSharper disable InvertIf
@@ -13,11 +14,19 @@ namespace PlayerSystem.Attack
     public class PlayerWeaponsData : IInitializable
     {
         public List<WeaponBaseDataSO> Weapons { get; private set; } = new();
-        public WeaponBaseDataSO CurrentWeapon => Weapons[_selectedIndex];
+        public WeaponBaseDataSO CurrentWeapon
+        {
+            get
+            {
+   
+                return Weapons.Count == 0 ? null : Weapons[_selectedIndex]; 
+            }
+        }
 
         private int _selectedIndex;
         
         public event Action OnWeaponChanged;
+        public event Action OnWeaponListChanged;
 
         [Inject]
         public PlayerWeaponsData(StartEquipmentProfileSO startEquipmentProfileSO, PlayerAmmoContainer playerAmmoContainer)
@@ -44,6 +53,7 @@ namespace PlayerSystem.Attack
             if (!Weapons.Contains(weapon))
             {
                 Weapons.Add(weapon);
+                OnWeaponListChanged?.Invoke();
                 return true;
             }
 

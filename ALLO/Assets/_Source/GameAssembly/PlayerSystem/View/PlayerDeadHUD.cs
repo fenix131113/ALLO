@@ -22,7 +22,7 @@ namespace PlayerSystem.View
 
 		private void Start()
 		{
-			_playerMutation.CurrentPlayer.OnDead += ActivateDeadMenu;
+			_playerMutation.OnDead += ActivateDeadMenu;
 		}
 
 		private void Bind()
@@ -33,7 +33,7 @@ namespace PlayerSystem.View
 
 		private void Expose()
 		{
-			_playerMutation.CurrentPlayer.OnDead -= ActivateDeadMenu;
+			_playerMutation.OnDead -= ActivateDeadMenu;
 			
 			restartButton.onClick.RemoveAllListeners();
 			menuButton.onClick.RemoveAllListeners();

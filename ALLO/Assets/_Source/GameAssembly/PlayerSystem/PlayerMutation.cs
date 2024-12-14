@@ -12,13 +12,19 @@ namespace PlayerSystem
 		public Player CurrentPlayer { get; private set; }
 		
 		public event Action OnMutated;
+		public event Action OnDead;
+		public event Action OnHealthChanged;
 
 		[Inject]
 		private void Construct(Player startPlayer)
 		{
 			CurrentPlayer = startPlayer;
 		}
-		
+
+		private void Awake() => Bind();
+
+		private void OnDestroy() => Expose();
+
 		private void SetPlayer(Player newPlayer)
 		{
 			CurrentPlayer.gameObject.SetActive(false);
@@ -32,6 +38,25 @@ namespace PlayerSystem
 		public void SwitchMutation()
 		{
 			SetPlayer(CurrentPlayer == DefaultPlayer ? MutatedPlayer : DefaultPlayer);
+		}
+		
+		private void InvokeDeadEvent() => OnDead?.Invoke();
+		private void InvokeHealthChangedEvent() => OnHealthChanged?.Invoke();
+		
+		private void Bind()
+		{
+			DefaultPlayer.OnThisPlayerDead += InvokeDeadEvent;
+			MutatedPlayer.OnThisPlayerDead += InvokeDeadEvent;
+			DefaultPlayer.OnThisPlayerHealthChanged += InvokeHealthChangedEvent;
+			MutatedPlayer.OnThisPlayerHealthChanged += InvokeHealthChangedEvent;
+		}
+		
+		private void Expose()
+		{
+			DefaultPlayer.OnThisPlayerDead -= InvokeDeadEvent;
+			MutatedPlayer.OnThisPlayerDead -= InvokeDeadEvent;
+			DefaultPlayer.OnThisPlayerHealthChanged -= InvokeHealthChangedEvent;
+			MutatedPlayer.OnThisPlayerHealthChanged -= InvokeHealthChangedEvent;
 		}
 	}
 }

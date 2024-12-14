@@ -220,7 +220,7 @@ MonoBehaviour:
   playerLayer:
     serializedVersion: 2
     m_Bits: 64
-  liftSceneIndex: 3
+  liftSceneIndex: 2
 --- !u!1 &7672933745802162275
 GameObject:
   m_ObjectHideFlags: 0

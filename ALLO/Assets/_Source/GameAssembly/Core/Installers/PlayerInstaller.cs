@@ -1,4 +1,5 @@
-﻿using GameMenuSystem;
+﻿using Company;
+using GameMenuSystem;
 using PlayerSystem;
 using PlayerSystem.Attack;
 using PlayerSystem.Attack.Data;
@@ -24,6 +25,7 @@ namespace Core.Installers
             BindPlayer();
             BindMenuSystem();
         }
+
         private void BindMenuSystem()
         {
             Container.Bind<GameMenu>()

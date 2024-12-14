@@ -17,40 +17,40 @@ namespace PlayerSystem.View
 		[SerializeField] private Image healthProgressFiller;
 		[SerializeField] private TMP_Text healthLabel;
 
-		private Player _player;
-		private int lastHealth;
+		private PlayerMutation _playerMutation;
+		private int _lastHealth;
 
 		[Inject]
-		private void Construct(Player player)
+		private void Construct(PlayerMutation player)
 		{
-			_player = player;
+			_playerMutation = player;
 		}
 
 		private void Start()
 		{
 			Bind();
 
-			lastHealth = _player.Health;
+			_lastHealth = _playerMutation.CurrentPlayer.Health;
 		}
 
 		private void Bind()
 		{
-			_player.OnHealthChanged += Redraw;
+			_playerMutation.OnHealthChanged += Redraw;
 		}
 
 		private void Expose()
 		{
-			_player.OnHealthChanged -= Redraw;
+			_playerMutation.OnHealthChanged -= Redraw;
 		}
 
 		private void Redraw() //TODO: Delete code repeating
 		{
-			if (_player.Health > lastHealth)
+			if (_playerMutation.CurrentPlayer.Health > _lastHealth)
 			{
 				healthProgressFiller.color = increaseHealthColor;
 				
 				var seq = DOTween.Sequence();
-				var fillAmount = (float)_player.Health / _player.MaxHealth;
+				var fillAmount = (float)_playerMutation.CurrentPlayer.Health / _playerMutation.CurrentPlayer.MaxHealth;
 				seq.Append(healthProgressFiller.DOFillAmount(fillAmount, healthAnimTime));
 				seq.AppendInterval(downProgressInterval);
 				seq.Append(healthFiller.DOFillAmount(fillAmount, redHealthAnimTime));
@@ -60,15 +60,15 @@ namespace PlayerSystem.View
 				healthProgressFiller.color = downHealthColor;
 				
 				var seq = DOTween.Sequence();
-				var fillAmount = (float)_player.Health / _player.MaxHealth;
+				var fillAmount = (float)_playerMutation.CurrentPlayer.Health / _playerMutation.CurrentPlayer.MaxHealth;
 				seq.Append(healthFiller.DOFillAmount(fillAmount, redHealthAnimTime));
 				seq.AppendInterval(downProgressInterval);
 				seq.Append(healthProgressFiller.DOFillAmount(fillAmount, healthAnimTime));
 			}
 
-			healthLabel.text = _player.Health + "/" + _player.MaxHealth;
+			healthLabel.text = _playerMutation.CurrentPlayer.Health + "/" + _playerMutation.CurrentPlayer.MaxHealth;
 
-			lastHealth = _player.Health;
+			_lastHealth = _playerMutation.CurrentPlayer.Health;
 		}
 
 		private void OnDestroy() => Expose();

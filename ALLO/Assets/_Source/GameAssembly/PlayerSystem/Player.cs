@@ -18,10 +18,9 @@ namespace PlayerSystem
 		[field: SerializeField] public Transform ShootPoint { get; private set; }
 		
 		[SerializeField] private float hitGlowTime;
-
-		//TODO: Change this
-		public event Action OnHealthChanged;
-		public event Action OnDead;
+		
+		public event Action OnThisPlayerHealthChanged;
+		public event Action OnThisPlayerDead;
 
 		public void OnMutated()
 		{
@@ -34,7 +33,7 @@ namespace PlayerSystem
 		public void AddHealth(int amount)
 		{
 			Health = Mathf.Clamp(Health + amount, 0, MaxHealth);
-			OnHealthChanged?.Invoke();
+			OnThisPlayerHealthChanged?.Invoke();
 		}
 		
 		public void TakeDamage(int damage)
@@ -42,13 +41,13 @@ namespace PlayerSystem
 			Health -= damage;
 			Health = Mathf.Clamp(Health, 0, MaxHealth);
 			BodyDrawer.GlowEffect(hitGlowTime);
-			OnHealthChanged?.Invoke();
+			OnThisPlayerHealthChanged?.Invoke();
 			
 			
 			if(Health == 0)
 				Die();
 		}
 
-		private void Die() => OnDead?.Invoke();
+		private void Die() => OnThisPlayerDead?.Invoke();
 	}
 }
