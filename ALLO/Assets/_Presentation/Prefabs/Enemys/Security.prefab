@@ -263,7 +263,7 @@ MonoBehaviour:
     m_Bits: 64
   visionLayers:
     serializedVersion: 2
-    m_Bits: 379
+    m_Bits: 123
 --- !u!58 &396307823315108629
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -463,7 +463,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3064031110573693880}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -14.48, y: 1.83, z: 0.023268202}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0

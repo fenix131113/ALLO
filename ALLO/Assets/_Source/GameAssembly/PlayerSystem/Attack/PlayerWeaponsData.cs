@@ -13,15 +13,8 @@ namespace PlayerSystem.Attack
 {
     public class PlayerWeaponsData : IInitializable
     {
-        public List<WeaponBaseDataSO> Weapons { get; private set; } = new();
-        public WeaponBaseDataSO CurrentWeapon
-        {
-            get
-            {
-   
-                return Weapons.Count == 0 ? null : Weapons[_selectedIndex]; 
-            }
-        }
+        public List<WeaponBaseDataSO> Weapons { get; } = new();
+        public WeaponBaseDataSO CurrentWeapon => Weapons.Count == 0 ? null : Weapons[_selectedIndex];
 
         private int _selectedIndex;
         

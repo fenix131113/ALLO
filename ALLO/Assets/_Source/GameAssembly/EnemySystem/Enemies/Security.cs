@@ -30,6 +30,7 @@ namespace EnemySystem.Enemies
 		private int _damageCounter;
 		private float _attackCooldownTimer;
 		private bool _canAttack = true;
+		private Vector3? _walkToPosition;
 
 		private void Start()
 		{
@@ -37,6 +38,24 @@ namespace EnemySystem.Enemies
 			AiPath.maxSpeed = Random.Range(AiPath.maxSpeed - 0.5f, AiPath.maxSpeed + 0.5f);
 		}
 
+		private void Update()
+		{
+			if (AiPath.reachedEndOfPath && Vision.CanSeeTarget)
+				Attack();
+			
+			bodyDrawer.SetCurrentMovement(AiPath.velocity, true);
+			
+			if (Vision.CanSeeTarget || _walkToPosition == null)
+				return;
+
+			Vector2 lookDirection = (Vector3)_walkToPosition - transform.position;
+
+			var lookDegrees = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
+
+			bodyDrawer.Rotate(lookDegrees);
+			handsDrawer.SetLookTarget((Vector3)_walkToPosition);
+		}
+		
 		public void Init(PlayerAmmoContainer playerAmmoContainer)
 		{
 			_playerAmmoContainer = playerAmmoContainer;
@@ -45,6 +64,20 @@ namespace EnemySystem.Enemies
 		protected override void OnTargetSpotted(Transform target)
 		{
 			handsDrawer.SetLookTarget(target);
+			LookAtTarget();
+		}
+
+		protected override void OnTargetLost(Transform target)
+		{
+			_walkToPosition = target.position;
+			SetDestination(target.position);
+			handsDrawer.SetLookTarget((Vector3)_walkToPosition);
+		}
+
+		protected override void OnSeeTarget(Transform target)
+		{
+			SetDestination(Vision.CurrentTarget.position);
+			LookAtTarget();
 		}
 
 		protected override void Die()
@@ -64,12 +97,6 @@ namespace EnemySystem.Enemies
 
 		private void LookAtTarget()
 		{
-			if (!Vision.CurrentTarget)
-			{
-				bodyDrawer.SetCurrentMovement(Vector2.zero, true);
-				return;
-			}
-
 			Vector2 lookDirection = Vision.CurrentTarget.position - handsDrawer.CenterPoint.position;
 
 			var lookDegrees = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
@@ -89,22 +116,6 @@ namespace EnemySystem.Enemies
 
 			if (!extraLifeModule.CanGetExtraLife(_damageCounter))
 				Die();
-		}
-
-		private void FixedUpdate()
-		{
-			LookAtTarget();
-
-			if (!Vision.CurrentTarget)
-				return;
-
-			SetDestination(Vision.CurrentTarget.position);
-		}
-
-		private void Update()
-		{
-			if (AiPath.reachedEndOfPath)
-				Attack();
 		}
 
 		private void Attack()

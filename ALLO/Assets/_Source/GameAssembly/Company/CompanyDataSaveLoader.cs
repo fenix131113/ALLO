@@ -4,6 +4,7 @@ using Zenject;
 
 namespace Company
 {
+    //TODO: Don't load on non-company scenes
     public class CompanyDataSaveLoader : IInitializable
     {
         private readonly CompanyInterLevelDataContainer _companyData;

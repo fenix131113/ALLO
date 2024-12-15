@@ -32,7 +32,7 @@ namespace EntityDrawers.Humanoid
 
 		private void CheckHandsDraw()
 		{
-			if(!LookTarget)
+			if(!LookTarget && LookPosition == null)
 				return;
 
 			var lookDegrees = GetLookDegrees();

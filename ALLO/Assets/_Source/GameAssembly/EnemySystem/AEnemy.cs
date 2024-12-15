@@ -19,6 +19,8 @@ namespace EnemySystem
 		}
 
 		protected abstract void OnTargetSpotted(Transform target);
+		protected abstract void OnTargetLost(Transform target);
+		protected abstract void OnSeeTarget(Transform target);
 		protected abstract void Die();
 		public abstract void TakeDamage(int damage);
 		
@@ -34,11 +36,15 @@ namespace EnemySystem
 		private void Bind()
 		{
 			Vision.OnTargetSpotted += OnTargetSpotted;
+			Vision.OnTargetLost += OnTargetLost;
+			Vision.OnSeeTarget += OnSeeTarget;
 		}
 
-		protected void Expose()
+		private void Expose()
 		{
 			Vision.OnTargetSpotted -= OnTargetSpotted;
+			Vision.OnTargetLost -= OnTargetLost;
+			Vision.OnSeeTarget -= OnSeeTarget;
 		}
 
 		private void OnDestroy() => Expose();

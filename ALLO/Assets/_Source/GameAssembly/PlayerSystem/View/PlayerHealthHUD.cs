@@ -43,7 +43,7 @@ namespace PlayerSystem.View
 			_playerMutation.OnHealthChanged -= Redraw;
 		}
 
-		private void Redraw() //TODO: Delete code repeating
+		private void Redraw()
 		{
 			if (_playerMutation.CurrentPlayer.Health > _lastHealth)
 			{

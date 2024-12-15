@@ -10,48 +10,61 @@ namespace EnemySystem
         [SerializeField] private LayerMask visionLayers;
 
         public Transform CurrentTarget { get; private set; }
+        public bool IsPlayerInRange { get; private set; }
+        public bool CanSeeTarget { get; private set; }
 
         public event Action<Transform> OnTargetSpotted;
-
-        private bool _isPlayerInRange;
-        private Transform _playerTransform;
+        public event Action<Transform> OnTargetLost;
+        public event Action<Transform> OnSeeTarget;
 
         private void Update()
         {
-            if(!_isPlayerInRange)
-                return;
-            
-            var hit = Physics2D.Raycast(transform.position,
-                _playerTransform.transform.position - Vector3.down * 0.1f - transform.position, Mathf.Infinity, visionLayers);
-
-            if (!hit || hit.transform != _playerTransform.transform)
+            if (!CurrentTarget)
                 return;
 
-            CurrentTarget = _playerTransform.transform;
-            OnTargetSpotted?.Invoke(_playerTransform.transform);
+            if (CanSeeTarget)
+                OnSeeTarget?.Invoke(CurrentTarget);
+
+            var hit = Physics2D.Raycast(transform.position + Vector3.down * 0.1f,
+                CurrentTarget.transform.position + Vector3.down * 0.2f - transform.position, Mathf.Infinity,
+                visionLayers);
+
+            if (!hit || hit.transform != CurrentTarget.transform)
+            {
+                if (CanSeeTarget)
+                    OnTargetLost?.Invoke(CurrentTarget.transform);
+
+                CanSeeTarget = false;
+                return;
+            }
+
+            CanSeeTarget = true;
+            OnTargetSpotted?.Invoke(CurrentTarget.transform);
         }
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (!LayerService.CheckLayersEquality(other.gameObject.layer, targetingLayer) || CurrentTarget)
+            if (!LayerService.CheckLayersEquality(other.gameObject.layer, targetingLayer))
                 return;
 
-            _isPlayerInRange = true;
-            _playerTransform = other.transform;
+            IsPlayerInRange = true;
+            CurrentTarget = other.transform;
         }
-        
+
         private void OnTriggerExit2D(Collider2D other)
         {
-            if (!LayerService.CheckLayersEquality(other.gameObject.layer, targetingLayer) || CurrentTarget)
+            if (!LayerService.CheckLayersEquality(other.gameObject.layer, targetingLayer) && CurrentTarget)
                 return;
 
-            _isPlayerInRange = false;
+            IsPlayerInRange = false;
         }
 
-        public void NativeSetTarget(Transform target)
+        public void NativeSetTarget(Transform target, bool withEvent = true)
         {
             CurrentTarget = target;
-            OnTargetSpotted?.Invoke(target);
+
+            if (withEvent)
+                OnTargetSpotted?.Invoke(target);
         }
     }
 }
