@@ -2,6 +2,7 @@
 using DamageSystem.Data;
 using EntityDrawers.Humanoid;
 using PlayerSystem.Attack.Shooting;
+using PlayerSystem.Attack.Shooting.Data;
 using UnityEngine;
 using Utils;
 using Random = UnityEngine.Random;
@@ -10,6 +11,8 @@ namespace EnemySystem.Enemies
 {
     public class ShooterEnemy : AEnemy
     {
+        [SerializeField] private FirearmsDataSO weaponData;
+        [SerializeField] private Transform shootPoint;
         [SerializeField] private HumanoidBodyDrawer bodyDrawer;
         [SerializeField] private HumanoidHandsDrawer handsDrawer;
         [SerializeField] private ExtraLifeModule extraLifeModule;
@@ -17,6 +20,7 @@ namespace EnemySystem.Enemies
         [SerializeField] private EnemyVision escapeZoneVision;
         [SerializeField] private CircleCollider2D escapeZoneVisionCollider;
         [SerializeField] private float escapeOffset;
+        [SerializeField] private float shootSpread;
         [SerializeField] private int hitDamage;
         [SerializeField] private float shootCooldown;
         [SerializeField] private float hitGlowTime;
@@ -24,33 +28,31 @@ namespace EnemySystem.Enemies
         private PlayerAmmoContainer _playerAmmoContainer;
         private int _damageCounter;
         private float _attackCooldownTimer;
-        private bool _canAttack = true;
+        private bool _canShoot = true;
         private Vector3? _walkToPosition;
 
         private void Start()
         {
-            AiPath.maxSpeed = Random.Range(AiPath.maxSpeed - 0.5f, AiPath.maxSpeed + 0.5f);
+            AiPath.maxSpeed = Random.Range(AiPath.maxSpeed, AiPath.maxSpeed + 0.5f);
             BindAdditional();
         }
 
         private void Update()
         {
-            if (AiPath.reachedEndOfPath)
-                Attack();
+            if (Vision.CanSeeTarget || escapeZoneVision.CanSeeTarget)
+                Shoot();
 
             bodyDrawer.SetCurrentMovement(AiPath.velocity, true);
-            
-            if ((!Vision.CanSeeTarget || !escapeZoneVision.CanSeeTarget) && _walkToPosition != null)
-            {
-                Vector2 lookDirection = (Vector3)_walkToPosition - transform.position;
 
-                var lookDegrees = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
+            if ((Vision.CanSeeTarget && escapeZoneVision.CanSeeTarget) || _walkToPosition == null)
+                return;
 
-                bodyDrawer.Rotate(lookDegrees);
-                handsDrawer.SetLookTarget((Vector3)_walkToPosition);
-            }
-            //if (AiPath.velocity == Vector3.zero)
-            //bodyDrawer.SetCurrentMovement(Vector2.zero, true);
+            Vector2 lookDirection = (Vector3)_walkToPosition - transform.position;
+
+            var lookDegrees = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
+
+            bodyDrawer.Rotate(lookDegrees);
+            handsDrawer.SetLookTarget((Vector3)_walkToPosition);
         }
 
         protected override void OnTargetSpotted(Transform target)
@@ -123,31 +125,32 @@ namespace EnemySystem.Enemies
                 Die();
         }
 
-        private void Attack()
+        private void Shoot()
         {
-            if (!_canAttack)
+            if (!_canShoot)
                 return;
 
-            StartCoroutine(AttackCooldown());
+            //Spawn bullet with spread applied
+            var finalRotation = handsDrawer.CenterPoint.rotation.eulerAngles + Vector3.forward *
+                                Random.Range(-shootSpread, shootSpread);
+            
+            Instantiate(weaponData.BulletPrefab, shootPoint.position, Quaternion.Euler(finalRotation))
+                .SetDamageOwner(Owner);
+
+            StartCoroutine(ShootCooldown());
         }
 
-        private void BindAdditional()
-        {
-            escapeZoneVision.OnTargetSpotted += OnTargetInEscapeZone;
-        }
+        private void BindAdditional() => escapeZoneVision.OnTargetSpotted += OnTargetInEscapeZone;
 
-        private void ExposeAdditional()
-        {
-            escapeZoneVision.OnTargetSpotted -= OnTargetInEscapeZone;
-        }
+        private void ExposeAdditional() => escapeZoneVision.OnTargetSpotted -= OnTargetInEscapeZone;
 
-        private IEnumerator AttackCooldown()
+        private IEnumerator ShootCooldown()
         {
-            _canAttack = false;
+            _canShoot = false;
 
             yield return new WaitForSeconds(shootCooldown);
 
-            _canAttack = true;
+            _canShoot = true;
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using PlayerSystem.Attack.Data;
+﻿using PlayerSystem.Attack.Data;
 using PlayerSystem.Attack.Melee;
 using PlayerSystem.Attack.Shooting;
 using Zenject;

@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using DamageSystem.Data;
 using PlayerSystem.Attack.Data;
 using PlayerSystem.Attack.Shooting.Data;
 using UnityEngine;
@@ -60,7 +61,7 @@ namespace PlayerSystem.Attack.Shooting
                 return;
 
             Instantiate(CurrentFirearm.BulletPrefab, shootPoint.position,
-                shootPoint.rotation); //TODO: Change to dynamic object pool
+                shootPoint.rotation).SetDamageOwner(DamageOwner.PLAYER); //TODO: Change to dynamic object pool
 
             StartCoroutine(ShootCooldown());
 
