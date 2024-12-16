@@ -29,6 +29,7 @@ namespace PlayerSystem.Attack.Shooting
                 Destroy(gameObject); //TODO: Deactivate instead destroying, use dynamic object pool
         }
 
-        public void SetDamageOwner(DamageOwner owner) => this.damageOwner = owner;
+        public void SetDamageOwner(DamageOwner owner) => damageOwner = owner;
+        public void SetDamage(int dmg) => damage = dmg;
     }
 }

@@ -132,10 +132,11 @@ namespace EnemySystem.Enemies
 
             //Spawn bullet with spread applied
             var finalRotation = handsDrawer.CenterPoint.rotation.eulerAngles + Vector3.forward *
-                                Random.Range(-shootSpread, shootSpread);
-            
-            Instantiate(weaponData.BulletPrefab, shootPoint.position, Quaternion.Euler(finalRotation))
-                .SetDamageOwner(Owner);
+                Random.Range(-shootSpread, shootSpread);
+
+            var bullet = Instantiate(weaponData.BulletPrefab, shootPoint.position, Quaternion.Euler(finalRotation));
+            bullet.SetDamageOwner(Owner);
+            bullet.SetDamage(weaponData.Damage);
 
             StartCoroutine(ShootCooldown());
         }

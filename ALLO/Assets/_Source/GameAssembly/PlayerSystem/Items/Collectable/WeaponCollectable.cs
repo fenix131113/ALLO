@@ -10,7 +10,7 @@ namespace PlayerSystem.Items.Collectable
         [field: SerializeField] private Color lightColor;
         [field: SerializeField] private float coloringTime;
         [field: SerializeField] private WeaponBaseDataSO weapon;
-        [field: SerializeField] private SpriteRenderer weaponRenderer;
+        [field: SerializeField] private SpriteRenderer flashingRenderer;
         [field: SerializeField] private LayerMask interactionLayer;
         
         private Color _originalColor;
@@ -19,7 +19,7 @@ namespace PlayerSystem.Items.Collectable
 
         private void Start()
         {
-            _originalColor = weaponRenderer.color;
+            _originalColor = flashingRenderer.color;
             LightOn();
         }
         
@@ -31,13 +31,13 @@ namespace PlayerSystem.Items.Collectable
 
         private void LightOn()
         {
-            _lightOnTween = weaponRenderer.DOColor(lightColor, coloringTime);
+            _lightOnTween = flashingRenderer.DOColor(lightColor, coloringTime);
             _lightOnTween.onComplete += LightBack;
         }
 
         private void LightBack()
         {
-            _lightBackTween = weaponRenderer.DOColor(_originalColor, coloringTime);
+            _lightBackTween = flashingRenderer.DOColor(_originalColor, coloringTime);
             _lightBackTween.onComplete += LightOn;
         }
 
