@@ -91,7 +91,7 @@ namespace LevelGenerationSystem
                 grid[segmentCoordinate].GetAllConnectedSegments(grid, connected);
         }
 
-        public List<Vector2> GetUnconnectedLocalSegments(GenerationSettingsSO settings)
+        public List<Vector2> GetUnconnectedLocalSegments(int xSize, int ySize)
         {
             var connected = GetLocalConnectedSegments();
 
@@ -109,10 +109,10 @@ namespace LevelGenerationSystem
             emptySides = emptySides.Except(connected).ToList();
 
             var result = emptySides.Where(coords =>
-                    coords.x <= settings.StartSegmentsXCount
+                    coords.x <= xSize
                     && coords.x >= 1
-                    && coords.y >= (settings.StartSegmentsYCount - 1) / -2
-                    && coords.y <= (settings.StartSegmentsYCount - 1) / 2)
+                    && coords.y >= (ySize - 1) / -2
+                    && coords.y <= (ySize - 1) / 2)
                 .ToList();
             
             return result;

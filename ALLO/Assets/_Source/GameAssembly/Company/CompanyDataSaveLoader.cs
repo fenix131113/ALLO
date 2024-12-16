@@ -1,4 +1,5 @@
-﻿using PlayerSystem;
+﻿using LevelGenerationSystem;
+using PlayerSystem;
 using PlayerSystem.Attack;
 using Zenject;
 
@@ -10,14 +11,18 @@ namespace Company
         private readonly CompanyInterLevelDataContainer _companyData;
         private readonly PlayerWeaponsData _playerWeaponsData;
         private readonly PlayerMutation _playerMutation;
+        private readonly LevelGeneration _generation;
 
         [Inject]
         public CompanyDataSaveLoader(CompanyInterLevelDataContainer companyData, PlayerWeaponsData playerWeaponsData,
-            PlayerMutation playerMutation)
+            PlayerMutation playerMutation, LevelGeneration generation)
         {
             _companyData = companyData;
             _playerWeaponsData = playerWeaponsData;
             _playerMutation = playerMutation;
+            _generation = generation;
+
+            ConstructLoad();
         }
 
         ~CompanyDataSaveLoader() => Expose();
@@ -30,6 +35,11 @@ namespace Company
 
         #region Load Data
 
+        private void ConstructLoad()
+        {
+            LoadCompletedLevels();
+        }
+
         private void LoadData()
         {
             LoadWeapons();
@@ -41,14 +51,13 @@ namespace Company
                 _playerWeaponsData.TryAddWeapon(weapon);
         }
 
+        private void LoadCompletedLevels() => _generation.SetCompletedLevels(_companyData.CompleteLevels);
+
         #endregion
 
         #region Save Data
 
-        private void SaveWeapons()
-        {
-            _companyData.SetWeaponsData(_playerWeaponsData.Weapons);
-        }
+        private void SaveWeapons() => _companyData.SetWeaponsData(_playerWeaponsData.Weapons);
 
         #endregion
 
@@ -58,12 +67,14 @@ namespace Company
         {
             _playerWeaponsData.OnWeaponListChanged += SaveWeapons;
             _playerMutation.OnDead += DeleteSavedData;
+            _playerMutation.OnCompanyLevelComplete += _companyData.IncreaseCompleteLevels;
         }
 
         private void Expose()
         {
             _playerWeaponsData.OnWeaponListChanged -= SaveWeapons;
             _playerMutation.OnDead -= DeleteSavedData;
+            _playerMutation.OnCompanyLevelComplete -= _companyData.IncreaseCompleteLevels;
         }
     }
 }

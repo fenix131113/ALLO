@@ -18,7 +18,7 @@ namespace Core.Installers
 
         private void BindLevelGeneration()
         {
-            Container.BindInterfacesTo<LevelGeneration>()
+            Container.BindInterfacesAndSelfTo<LevelGeneration>()
                 .AsSingle()
                 .NonLazy();
 

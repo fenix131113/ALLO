@@ -14,12 +14,10 @@ namespace PlayerSystem
 		public event Action OnMutated;
 		public event Action OnDead;
 		public event Action OnHealthChanged;
+		public event Action OnCompanyLevelComplete;
 
 		[Inject]
-		private void Construct(Player startPlayer)
-		{
-			CurrentPlayer = startPlayer;
-		}
+		private void Construct(Player startPlayer) => CurrentPlayer = startPlayer;
 
 		private void Awake() => Bind();
 
@@ -42,6 +40,7 @@ namespace PlayerSystem
 		
 		private void InvokeDeadEvent() => OnDead?.Invoke();
 		private void InvokeHealthChangedEvent() => OnHealthChanged?.Invoke();
+		private void InvokeCompanyLevelCompleteEvent() => OnCompanyLevelComplete?.Invoke();
 		
 		private void Bind()
 		{
@@ -49,6 +48,8 @@ namespace PlayerSystem
 			MutatedPlayer.OnThisPlayerDead += InvokeDeadEvent;
 			DefaultPlayer.OnThisPlayerHealthChanged += InvokeHealthChangedEvent;
 			MutatedPlayer.OnThisPlayerHealthChanged += InvokeHealthChangedEvent;
+			DefaultPlayer.OnCompanyLevelCompleted += InvokeCompanyLevelCompleteEvent;
+			MutatedPlayer.OnCompanyLevelCompleted += InvokeCompanyLevelCompleteEvent;
 		}
 		
 		private void Expose()
@@ -57,6 +58,8 @@ namespace PlayerSystem
 			MutatedPlayer.OnThisPlayerDead -= InvokeDeadEvent;
 			DefaultPlayer.OnThisPlayerHealthChanged -= InvokeHealthChangedEvent;
 			MutatedPlayer.OnThisPlayerHealthChanged -= InvokeHealthChangedEvent;
+			DefaultPlayer.OnCompanyLevelCompleted -= InvokeCompanyLevelCompleteEvent;
+			MutatedPlayer.OnCompanyLevelCompleted -= InvokeCompanyLevelCompleteEvent;
 		}
 	}
 }

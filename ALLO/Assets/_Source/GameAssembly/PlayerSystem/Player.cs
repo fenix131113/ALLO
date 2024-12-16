@@ -21,6 +21,7 @@ namespace PlayerSystem
 		
 		public event Action OnThisPlayerHealthChanged;
 		public event Action OnThisPlayerDead;
+		public event Action OnCompanyLevelCompleted;
 
 		public void OnMutated()
 		{
@@ -29,6 +30,8 @@ namespace PlayerSystem
 		public int GetHealth() => Health;
 		public int GetMaxHealth() => MaxHealth;
 		public DamageOwner GetOwner() => Owner;
+
+		public void OnLevelComplete() => OnCompanyLevelCompleted?.Invoke();
 
 		public void AddHealth(int amount)
 		{

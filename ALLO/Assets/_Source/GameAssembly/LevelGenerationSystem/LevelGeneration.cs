@@ -13,12 +13,18 @@ namespace LevelGenerationSystem
 {
     public class LevelGeneration : IInitializable
     {
+        private const int LEVEL_SIZE_INCREMENT_PER_CYCLE = 2;
+        private const int INCREMENT_CYCLE_LEVELS = 3;
+
         private GenerationSettingsSO _generationSettings;
 
         private readonly Dictionary<Vector2, LevelSegment> _grid = new();
         private AstarPath _pathFinder;
         private LevelSpritesColor _selectedLevelColor;
         private float _nextSpawnXPosition;
+        private int _completedLevels;
+        private int _finalXSize;
+        private int _finalYSize;
 
         [Inject]
         private void Construct(GenerationSettingsSO generationSettings, AstarPath pathFinder)
@@ -27,7 +33,19 @@ namespace LevelGenerationSystem
             _pathFinder = pathFinder;
         }
 
-        public void Initialize() => GenerateLevel();
+        public void Initialize()
+        {
+            _finalXSize = _generationSettings.StartSegmentsXCount +
+                          _completedLevels / INCREMENT_CYCLE_LEVELS * LEVEL_SIZE_INCREMENT_PER_CYCLE;
+            _finalYSize = _generationSettings.StartSegmentsYCount +
+                          _completedLevels / INCREMENT_CYCLE_LEVELS * LEVEL_SIZE_INCREMENT_PER_CYCLE;
+            GenerateLevel();
+        }
+
+        public void SetCompletedLevels(int completed)
+        {
+            _completedLevels = completed;
+        }
 
         private void GenerateLevel()
         {
@@ -71,11 +89,11 @@ namespace LevelGenerationSystem
 
 
             // Generate other rooms
-            while (spawnedCount < _generationSettings.StartSegmentsXCount * _generationSettings.StartSegmentsYCount)
+            while (spawnedCount < _finalXSize * _finalYSize)
             {
                 // Exclude already checked way
                 var unconnected =
-                    spawned.GetUnconnectedLocalSegments(_generationSettings).Except(excludeCoords).Except(_grid.Keys)
+                    spawned.GetUnconnectedLocalSegments(_finalXSize, _finalYSize).Except(excludeCoords).Except(_grid.Keys)
                         .ToList();
 
                 if (unconnected.Any())
@@ -132,8 +150,8 @@ namespace LevelGenerationSystem
             {
                 case 0:
                     gridPos = new Vector2(
-                        _generationSettings.StartSegmentsXCount - (_generationSettings.StartSegmentsXCount - 1) / 2,
-                        (_generationSettings.StartSegmentsYCount - 1) / 2 + 1);
+                        _finalXSize - (_finalXSize - 1) / 2,
+                        (_finalYSize - 1) / 2 + 1);
                     spawnPos = _grid[gridPos + GetGridVectorDirectionByDoorDirection(DoorDirection.DOWN)].transform
                             .position + Vector3.up *
                         (_grid[gridPos + GetGridVectorDirectionByDoorDirection(DoorDirection.DOWN)].GetHeight() +
@@ -143,7 +161,7 @@ namespace LevelGenerationSystem
                     break;
 
                 case 1:
-                    gridPos = new Vector2(_generationSettings.StartSegmentsXCount + 1, 0);
+                    gridPos = new Vector2(_finalXSize + 1, 0);
                     spawnPos = _grid[gridPos + GetGridVectorDirectionByDoorDirection(DoorDirection.LEFT)].transform
                             .position + Vector3.right *
                         (_grid[gridPos + GetGridVectorDirectionByDoorDirection(DoorDirection.LEFT)].GetWidth() +
@@ -154,8 +172,8 @@ namespace LevelGenerationSystem
 
                 case 2:
                     gridPos = new Vector2(
-                        _generationSettings.StartSegmentsXCount - (_generationSettings.StartSegmentsXCount - 1) / 2,
-                        -(_generationSettings.StartSegmentsYCount - 1) / 2 - 1);
+                        _finalXSize - (_finalXSize - 1) / 2,
+                        -(_finalYSize - 1) / 2 - 1);
                     spawnPos = _grid[gridPos + GetGridVectorDirectionByDoorDirection(DoorDirection.UP)].transform
                             .position + Vector3.down *
                         (_grid[gridPos + GetGridVectorDirectionByDoorDirection(DoorDirection.UP)].GetHeight() +
@@ -175,8 +193,8 @@ namespace LevelGenerationSystem
         {
             var tempGrid = _grid.ToDictionary(x => x.Key, x => x.Value);
 
-            var corridorsCount = (int)(_generationSettings.StartSegmentsYCount *
-                                       _generationSettings.StartSegmentsXCount *
+            var corridorsCount = (int)(_finalYSize *
+                                       _finalXSize *
                                        (_generationSettings.CorridorPercent / 100f));
 
             while (corridorsCount > 0)
