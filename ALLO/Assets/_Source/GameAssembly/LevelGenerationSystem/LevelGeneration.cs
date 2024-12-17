@@ -347,10 +347,9 @@ namespace LevelGenerationSystem
             };
         }
 
-        private LevelSegment CreateLevelSegment(LevelSegmentSO so, Vector3 position, Vector2 gridPosition,
-            int rotation = 0)
+        private LevelSegment CreateLevelSegment(LevelSegmentSO so, Vector3 position, Vector2 gridPosition)
         {
-            var spawned = Object.Instantiate(so.SegmentPrefab, position, Quaternion.Euler(0, 0, rotation))
+            var spawned = Object.Instantiate(so.SegmentPrefab, position, so.SegmentPrefab.transform.rotation)
                 .Init(so, gridPosition);
             spawned.SegmentColorManager?.SelectColor(_selectedLevelColor);
             spawned.name = spawned.name.Split(' ')[0].Replace("(Clone)", "") + $" ({gridPosition.x}, {gridPosition.y})";
