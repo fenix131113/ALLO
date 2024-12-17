@@ -153,4 +153,4 @@ MonoBehaviour:
   whiteSprite: {fileID: 650283124, guid: 574d15e65b08146499abaf4f468ac871, type: 3}
   redSprite: {fileID: 1758594022, guid: 574d15e65b08146499abaf4f468ac871, type: 3}
   graySprite: {fileID: -1588020112, guid: 574d15e65b08146499abaf4f468ac871, type: 3}
-  yellowSprite: {fileID: -1018724120, guid: 574d15e65b08146499abaf4f468ac871, type: 3}
+  yellowSprite: {fileID: 968939044, guid: 574d15e65b08146499abaf4f468ac871, type: 3}

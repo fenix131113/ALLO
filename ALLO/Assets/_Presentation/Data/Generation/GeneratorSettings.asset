@@ -25,6 +25,6 @@ MonoBehaviour:
   <LineCorridorSegment>k__BackingField: {fileID: 11400000, guid: f63d8bfa63e80e044b4f8874dd251746, type: 2}
   <LineCorridorSegment90>k__BackingField: {fileID: 11400000, guid: f63d8bfa63e80e044b4f8874dd251746, type: 2}
   <CornerCorridorSegment>k__BackingField: {fileID: 11400000, guid: c05dac9a71fcc7449b541d1ff0a0e5cc, type: 2}
-  <CornerCorridorSegment90>k__BackingField: {fileID: 11400000, guid: c05dac9a71fcc7449b541d1ff0a0e5cc, type: 2}
-  <CornerCorridorSegment180>k__BackingField: {fileID: 11400000, guid: c05dac9a71fcc7449b541d1ff0a0e5cc, type: 2}
-  <CornerCorridorSegment270>k__BackingField: {fileID: 11400000, guid: c05dac9a71fcc7449b541d1ff0a0e5cc, type: 2}
+  <CornerCorridorSegment90>k__BackingField: {fileID: 11400000, guid: 890628ca98076fe4080aa08164983fdf, type: 2}
+  <CornerCorridorSegment180>k__BackingField: {fileID: 11400000, guid: 16dac9c6ae954924a87988fa80a69700, type: 2}
+  <CornerCorridorSegment270>k__BackingField: {fileID: 11400000, guid: 62d1e50a7f52e6745b2ed5478ec92d7f, type: 2}

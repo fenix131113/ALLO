@@ -132,7 +132,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colorSelectors:
-  - {fileID: 0}
   - {fileID: 8813117582222170626}
   - {fileID: 3126268223643672524}
   - {fileID: 1179842764949606299}
