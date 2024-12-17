@@ -40,7 +40,15 @@ namespace EnemySystem.Enemies
         private void Update()
         {
             if (Vision.CanSeeTarget || escapeZoneVision.CanSeeTarget)
+            {
+                _walkToPosition = Vision.CurrentTarget.position;
                 Shoot();
+            }
+            else if (_walkToPosition != null)
+            {
+                SetDestination((Vector3)_walkToPosition);
+                _walkToPosition = null;
+            }
 
             bodyDrawer.SetCurrentMovement(AiPath.velocity, true);
 
@@ -63,9 +71,8 @@ namespace EnemySystem.Enemies
 
         protected override void OnTargetLost(Transform target)
         {
-            _walkToPosition = target.position;
-            SetDestination(target.position);
-            handsDrawer.SetLookTarget((Vector3)_walkToPosition);
+            if (_walkToPosition != null)
+                handsDrawer.SetLookTarget((Vector3)_walkToPosition);
         }
 
         protected override void OnSeeTarget(Transform target)

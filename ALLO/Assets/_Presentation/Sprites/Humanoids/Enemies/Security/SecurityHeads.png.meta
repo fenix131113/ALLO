@@ -126,12 +126,12 @@ TextureImporter:
       name: SecurityHeads_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 1
         y: 0
-        width: 37
+        width: 35
         height: 35
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -149,10 +149,10 @@ TextureImporter:
         serializedVersion: 2
         x: 37
         y: 0
-        width: 37
+        width: 35
         height: 35
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -168,12 +168,12 @@ TextureImporter:
       name: SecurityHeads_2
       rect:
         serializedVersion: 2
-        x: 74
+        x: 73
         y: 0
-        width: 37
+        width: 35
         height: 35
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -189,12 +189,12 @@ TextureImporter:
       name: SecurityHeads_3
       rect:
         serializedVersion: 2
-        x: 111
+        x: 109
         y: 0
-        width: 37
+        width: 35
         height: 35
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -210,12 +210,12 @@ TextureImporter:
       name: SecurityHeads_4
       rect:
         serializedVersion: 2
-        x: 148
+        x: 145
         y: 0
-        width: 37
+        width: 35
         height: 35
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -231,12 +231,12 @@ TextureImporter:
       name: SecurityHeads_5
       rect:
         serializedVersion: 2
-        x: 185
+        x: 181
         y: 0
-        width: 37
+        width: 35
         height: 35
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -252,12 +252,12 @@ TextureImporter:
       name: SecurityHeads_6
       rect:
         serializedVersion: 2
-        x: 222
+        x: 217
         y: 0
-        width: 37
+        width: 35
         height: 35
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -273,12 +273,12 @@ TextureImporter:
       name: SecurityHeads_7
       rect:
         serializedVersion: 2
-        x: 259
+        x: 253
         y: 0
-        width: 37
+        width: 35
         height: 35
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
