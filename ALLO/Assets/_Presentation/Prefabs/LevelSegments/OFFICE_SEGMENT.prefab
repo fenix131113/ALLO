@@ -312,7 +312,11 @@ MonoBehaviour:
     - <Variants>k__BackingField:
       - {fileID: 199531099892694916}
       <Weight>k__BackingField: 1
-  <NonDoorsGorup>k__BackingField: []
+  <NonDoorsGorup>k__BackingField:
+  - <Variants>k__BackingField:
+    - <Variants>k__BackingField:
+      - {fileID: 0}
+      <Weight>k__BackingField: 1
 --- !u!1 &9010757995543030956
 GameObject:
   m_ObjectHideFlags: 0

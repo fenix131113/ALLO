@@ -130,7 +130,7 @@ namespace EnemySystem.Enemies
         {
             damage = Mathf.Clamp(damage, 0, Health);
             Health -= damage;
-            _damageCounter += damage;
+            _damageCounter += 1;
             bodyDrawer.GlowEffect(hitGlowTime);
 
             if (!extraLifeModule.CanGetExtraLife(_damageCounter))

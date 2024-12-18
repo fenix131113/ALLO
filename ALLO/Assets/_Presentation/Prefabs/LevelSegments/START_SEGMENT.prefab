@@ -140,27 +140,7 @@ MonoBehaviour:
     - <Variants>k__BackingField:
       - {fileID: 2705594656297212025}
       <Weight>k__BackingField: 1
-  <NonDoorsGorup>k__BackingField:
-  - <Variants>k__BackingField:
-    - <Variants>k__BackingField:
-      - {fileID: 0}
-      <Weight>k__BackingField: 2
-    - <Variants>k__BackingField:
-      - {fileID: 0}
-      <Weight>k__BackingField: 1
-    - <Variants>k__BackingField:
-      - {fileID: 0}
-      <Weight>k__BackingField: 1
-  - <Variants>k__BackingField:
-    - <Variants>k__BackingField:
-      - {fileID: 0}
-      <Weight>k__BackingField: 2
-    - <Variants>k__BackingField:
-      - {fileID: 0}
-      <Weight>k__BackingField: 1
-    - <Variants>k__BackingField:
-      - {fileID: 0}
-      <Weight>k__BackingField: 1
+  <NonDoorsGorup>k__BackingField: []
 --- !u!114 &5824018661092051015
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -12,7 +12,7 @@ namespace LevelGenerationSystem
         [field: SerializeField] public LevelSegmentRandomGroup[] DownRandomGroup { get; private set; }
         [field: SerializeField] public LevelSegmentRandomGroup[] LeftRandomGroup { get; private set; }
         [field: SerializeField] public LevelSegmentRandomGroup[] NonDoorsGorup { get; private set; }
-        
+
         public void Generate(LevelSegmentRandomGroup[] randomGroup)
         {
             if (randomGroup.Length == 0)
@@ -34,7 +34,10 @@ namespace LevelGenerationSystem
 
                     if (variant.Variants.Length > 0)
                         foreach (var item in variant.Variants)
-                            item?.SetActive(true);
+                        {
+                            if (item)
+                                item.SetActive(true);
+                        }
 
                     break;
                 }
@@ -47,7 +50,10 @@ namespace LevelGenerationSystem
             foreach (var variant in group.Variants)
                 if (variant.Variants.Length > 0)
                     foreach (var item in variant.Variants)
-                        item?.SetActive(false);
+                    {
+                        if (item)
+                            item.SetActive(false);
+                    }
         }
     }
 }
