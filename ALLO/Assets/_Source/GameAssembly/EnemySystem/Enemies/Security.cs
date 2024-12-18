@@ -11,143 +11,156 @@ using Zenject;
 
 namespace EnemySystem.Enemies
 {
-	public class Security : AEnemy
-	{
-		private static readonly int Hit = Animator.StringToHash("Hit");
+    public class Security : AEnemy
+    {
+        private static readonly int Hit = Animator.StringToHash("Hit");
 
-		[SerializeField] private CollectableAmmoBox ammoBoxPrefab;
-		[SerializeField] private CollectableFirstAid firstAidPrefab;
-		[SerializeField] private HumanoidBodyDrawer bodyDrawer;
-		[SerializeField] private HumanoidHandsDrawer handsDrawer;
-		[SerializeField] private ExtraLifeModule extraLifeModule;
-		[SerializeField] private DamageZone damageZone;
-		[SerializeField] private ParticleSystem fleshParticles;
-		[SerializeField] private Animator hitEffectAnimator;
-		[SerializeField] private Animator hitAnimator;
-		[SerializeField] private int hitDamage;
-		[SerializeField] private float attackCooldown;
-		[SerializeField] private float hitGlowTime;
+        [SerializeField] private CollectableAmmoBox ammoBoxPrefab;
+        [SerializeField] private CollectableFirstAid firstAidPrefab;
+        [SerializeField] private HumanoidBodyDrawer bodyDrawer;
+        [SerializeField] private HumanoidHandsDrawer handsDrawer;
+        [SerializeField] private ExtraLifeModule extraLifeModule;
+        [SerializeField] private DamageZone damageZone;
+        [SerializeField] private ParticleSystem fleshParticles;
+        [SerializeField] private Animator hitEffectAnimator;
+        [SerializeField] private Animator hitAnimator;
+        [SerializeField] private int hitDamage;
+        [SerializeField] private float attackCooldown;
+        [SerializeField] private float hitGlowTime;
 
-		private PlayerAmmoContainer _playerAmmoContainer;
-		private PlayerMutation _playerMutation;
-		private int _damageCounter;
-		private float _attackCooldownTimer;
-		private bool _canAttack = true;
-		private Vector3? _walkToPosition;
-		
-		[Inject]
-		public void Construct(PlayerAmmoContainer playerAmmoContainer, PlayerMutation playerMutation)
-		{
-			_playerAmmoContainer = playerAmmoContainer;
-			_playerMutation = playerMutation;
-		}
-		
-		private void Start()
-		{
-			damageZone.SetDamage(Owner, hitDamage);
-			AiPath.maxSpeed = Random.Range(AiPath.maxSpeed - 0.5f, AiPath.maxSpeed + 0.5f);
-		}
+        private PlayerAmmoContainer _playerAmmoContainer;
+        private PlayerMutation _playerMutation;
+        private int _damageCounter;
+        private float _attackCooldownTimer;
+        private bool _canAttack = true;
+        private bool _isAlwaysSeePlayer;
+        private Vector3? _walkToPosition;
 
-		private void Update()
-		{
-			if (AiPath.reachedEndOfPath && Vision.CanSeeTarget)
-				Attack();
-			
-			bodyDrawer.SetCurrentMovement(AiPath.velocity, true);
-			
-			if (Vision.CanSeeTarget || _walkToPosition == null)
-				return;
+        [Inject]
+        public void Construct(PlayerAmmoContainer playerAmmoContainer, PlayerMutation playerMutation)
+        {
+            _playerAmmoContainer = playerAmmoContainer;
+            _playerMutation = playerMutation;
+        }
 
-			Vector2 lookDirection = (Vector3)_walkToPosition - transform.position;
+        private void Start()
+        {
+            damageZone.SetDamage(Owner, hitDamage);
+            AiPath.maxSpeed = Random.Range(AiPath.maxSpeed - 0.5f, AiPath.maxSpeed + 0.5f);
+        }
 
-			var lookDegrees = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
+        private void Update()
+        {
+            if(_isAlwaysSeePlayer)
+                SetDestination(Vision.CurrentTarget.position);
+            
+            if (AiPath.reachedEndOfPath && Vision.CanSeeTarget)
+                Attack();
+            
+            bodyDrawer.SetCurrentMovement(AiPath.velocity, true);
 
-			bodyDrawer.Rotate(lookDegrees);
-			handsDrawer.SetLookTarget((Vector3)_walkToPosition);
-		}
+            if (Vision.CanSeeTarget || _walkToPosition == null || _isAlwaysSeePlayer)
+                return;
 
-		protected override void OnTargetSpotted(Transform target)
-		{
-			handsDrawer.SetLookTarget(target);
-			LookAtTarget();
-		}
+            Vector2 lookDirection = (Vector3)_walkToPosition - transform.position;
 
-		protected override void OnTargetLost(Transform target)
-		{
-			_walkToPosition = target.position;
-			SetDestination(target.position);
-			handsDrawer.SetLookTarget((Vector3)_walkToPosition);
-		}
+            var lookDegrees = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
 
-		protected override void OnSeeTarget(Transform target)
-		{
-			SetDestination(Vision.CurrentTarget.position);
-			LookAtTarget();
-		}
+            bodyDrawer.Rotate(lookDegrees);
+            handsDrawer.SetLookTarget((Vector3)_walkToPosition);
+        }
 
-		protected override void Die()
-		{
-			//TODO: Delete hardcode
-			if(Random.Range(0f, 1f) <= 0.07f)
-				Instantiate(firstAidPrefab, transform.position, Quaternion.identity);
-			else if(Random.Range(0f, 1f) <= 0.15f)
-				Instantiate(ammoBoxPrefab, transform.position, Quaternion.identity).Init(_playerAmmoContainer);
-			
-			_playerMutation.IncreaseKillsCount();
-			fleshParticles.DestroyByTime(fleshParticles.main.duration);
-			fleshParticles.Play();
-			fleshParticles.transform.parent = null;
-			fleshParticles.gameObject.transform.localScale = Vector3.one;
-			Destroy(gameObject);
-		}
+        public void SetIsAlwaysSeePlayer(bool state) => _isAlwaysSeePlayer = state;
 
-		private void LookAtTarget()
-		{
-			Vector2 lookDirection = Vision.CurrentTarget.position - handsDrawer.CenterPoint.position;
 
-			var lookDegrees = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
+        protected override void OnTargetSpotted(Transform target)
+        {
+            handsDrawer.SetLookTarget(target);
+            LookAtTarget();
+        }
 
-			handsDrawer.CenterPoint.rotation = Quaternion.Euler(0, 0, lookDegrees);
+        protected override void OnTargetLost(Transform target)
+        {
+            if (_isAlwaysSeePlayer)
+                return;
 
-			bodyDrawer.SetCurrentMovement(AiPath.velocity, true);
-			bodyDrawer.Rotate(lookDegrees);
-		}
+            _walkToPosition = target.position;
+            SetDestination(target.position);
+            handsDrawer.SetLookTarget((Vector3)_walkToPosition);
+        }
 
-		public override void TakeDamage(int damage)
-		{
-			damage = Mathf.Clamp(damage, 0, Health);
-			Health -= damage;
-			_damageCounter += damage;
-			bodyDrawer.GlowEffect(hitGlowTime);
+        protected override void OnSeeTarget(Transform target)
+        {
+            if (_isAlwaysSeePlayer)
+                return;
 
-			if (!extraLifeModule.CanGetExtraLife(_damageCounter))
-				Die();
-		}
+            SetDestination(Vision.CurrentTarget.position);
+            LookAtTarget();
+        }
 
-		private void Attack()
-		{
-			if (!_canAttack)
-				return;
+        protected override void Die()
+        {
+            //TODO: Delete hardcode
+            if (Random.Range(0f, 1f) <= 0.07f)
+                Instantiate(firstAidPrefab, transform.position, Quaternion.identity);
+            else if (Random.Range(0f, 1f) <= 0.15f)
+                Instantiate(ammoBoxPrefab, transform.position, Quaternion.identity).Init(_playerAmmoContainer);
 
-			AttackEffect();
-			damageZone.ActivateZone();
+            _playerMutation.IncreaseKillsCount();
+            fleshParticles.DestroyByTime(fleshParticles.main.duration);
+            fleshParticles.Play();
+            fleshParticles.transform.parent = null;
+            fleshParticles.gameObject.transform.localScale = Vector3.one;
+            Destroy(gameObject);
+        }
 
-			StartCoroutine(AttackCooldown());
-		}
+        private void LookAtTarget()
+        {
+            Vector2 lookDirection = Vision.CurrentTarget.position - handsDrawer.CenterPoint.position;
 
-		private void AttackEffect()
-		{
-			hitEffectAnimator.SetTrigger(Hit);
-			hitAnimator.SetTrigger(Hit);
-		}
+            var lookDegrees = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
 
-		private IEnumerator AttackCooldown()
-		{
-			_canAttack = false;
+            handsDrawer.CenterPoint.rotation = Quaternion.Euler(0, 0, lookDegrees);
 
-			yield return new WaitForSeconds(attackCooldown);
+            bodyDrawer.SetCurrentMovement(AiPath.velocity, true);
+            bodyDrawer.Rotate(lookDegrees);
+        }
 
-			_canAttack = true;
-		}
-	}
+        public override void TakeDamage(int damage)
+        {
+            damage = Mathf.Clamp(damage, 0, Health);
+            Health -= damage;
+            _damageCounter += damage;
+            bodyDrawer.GlowEffect(hitGlowTime);
+
+            if (!extraLifeModule.CanGetExtraLife(_damageCounter))
+                Die();
+        }
+
+        private void Attack()
+        {
+            if (!_canAttack)
+                return;
+
+            AttackEffect();
+            damageZone.ActivateZone();
+
+            StartCoroutine(AttackCooldown());
+        }
+
+        private void AttackEffect()
+        {
+            hitEffectAnimator.SetTrigger(Hit);
+            hitAnimator.SetTrigger(Hit);
+        }
+
+        private IEnumerator AttackCooldown()
+        {
+            _canAttack = false;
+
+            yield return new WaitForSeconds(attackCooldown);
+
+            _canAttack = true;
+        }
+    }
 }

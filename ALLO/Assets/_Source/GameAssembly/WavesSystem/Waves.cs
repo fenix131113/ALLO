@@ -25,14 +25,16 @@ namespace WavesSystem
 		private readonly List<Security> _spawnedEnemies = new();
 		private PlayerMutation _playerMutation;
 		private PlayerAmmoContainer _playerAmmoContainer;
+		private DiContainer _diContainer;
 
 		public event Action OnEnemyCountChanged;
 
 		[Inject]
-		private void Construct(PlayerMutation playerMutation, PlayerAmmoContainer playerAmmoContainer)
+		private void Construct(PlayerMutation playerMutation, PlayerAmmoContainer playerAmmoContainer, DiContainer diContainer)
 		{
 			_playerMutation = playerMutation;
 			_playerAmmoContainer = playerAmmoContainer;
+			_diContainer = diContainer;
 		}
 
 		private void NextWave()
@@ -72,6 +74,8 @@ namespace WavesSystem
 				
 				var spawned = Instantiate(enemyPrefab, availableSpawnPoint.ElementAt(Random.Range(0, availableSpawnPoint.Count())).position,
 					Quaternion.identity);
+				_diContainer.InjectGameObject(spawned.gameObject);
+				spawned.SetIsAlwaysSeePlayer(true);
 				spawned.Vision.NativeSetTarget(_playerMutation.CurrentPlayer.transform);
 				_spawnedEnemies.Add(spawned);
 			}

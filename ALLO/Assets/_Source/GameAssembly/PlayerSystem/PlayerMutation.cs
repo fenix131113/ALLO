@@ -11,7 +11,7 @@ namespace PlayerSystem
         [field: SerializeField] public Player MutatedPlayer { get; private set; }
         [field: SerializeField] public int KillsToMutation { get; private set; }
         [SerializeField] public float mutatedMaxTime;
-
+        
         public Player CurrentPlayer { get; private set; }
         public int ScoredKills{ get; private set; }
 
@@ -22,7 +22,10 @@ namespace PlayerSystem
         public event Action OnCompanyLevelComplete;
 
         [Inject]
-        private void Construct(Player startPlayer) => CurrentPlayer = startPlayer;
+        private void Construct(Player startPlayer)
+        {
+            CurrentPlayer = startPlayer;
+        }
 
         private void Awake() => Bind();
 
@@ -46,6 +49,7 @@ namespace PlayerSystem
             SetPlayer(MutatedPlayer);
             ScoredKills = 0;
             OnPlayerKillsChanged?.Invoke();
+            StartCoroutine(ReturnToDefaultPlayer());
         }
 
         public void IncreaseKillsCount()
