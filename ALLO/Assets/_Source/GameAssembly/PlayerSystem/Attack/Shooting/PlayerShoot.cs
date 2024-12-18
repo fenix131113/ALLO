@@ -14,6 +14,11 @@ namespace PlayerSystem.Attack.Shooting
             ? _playerAttack.CurrentWeapon.GetCurrentWeaponSO<FirearmsDataSO>()
             : null;
 
+        /// <summary>
+        /// Percentage
+        /// </summary>
+        public int ReloadTimeReduction { get; private set; }
+
         private PlayerAttack _playerAttack;
         private PlayerAmmoContainer _ammoContainer;
         private PlayerWeaponsData _playerWeaponsData;
@@ -40,6 +45,8 @@ namespace PlayerSystem.Attack.Shooting
         private void Bind() => _playerWeaponsData.OnWeaponChanged += OnWeaponChanged;
 
         private void Expose() => _playerWeaponsData.OnWeaponChanged -= OnWeaponChanged;
+
+        public void AddReloadTimeReductionPercentage(int percentage) => ReloadTimeReduction += percentage;
 
         private void OnWeaponChanged()
         {
@@ -102,8 +109,8 @@ namespace PlayerSystem.Attack.Shooting
             _canShoot = false;
             _isReloading = true;
             OnStartReloading?.Invoke();
-
-            yield return new WaitForSeconds(CurrentFirearm.ReloadTime);
+            
+            yield return new WaitForSeconds(CurrentFirearm.ReloadTime - CurrentFirearm.ReloadTime * ((float)ReloadTimeReduction / 100));
 
             if (_ammoContainer.GetAmmoFromStorage(CurrentFirearm.AmmoType) >=
                 CurrentFirearm.MaxAmmoInClip - _ammoContainer.GetWeaponAmmo(CurrentFirearm))

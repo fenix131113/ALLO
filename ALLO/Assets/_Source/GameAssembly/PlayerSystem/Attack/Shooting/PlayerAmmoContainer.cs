@@ -9,15 +9,24 @@ namespace PlayerSystem.Attack.Shooting
 {
     public class PlayerAmmoContainer
     {
+        public IReadOnlyDictionary<FirearmsDataSO, int> PlayerWeaponAmmo => _playerWeaponAmmo;
+        public IReadOnlyDictionary<AmmoType, int> PlayerStorageAmmo => _playerStorageAmmo; 
+        
         public event Action OnWeaponAmmoChanged;
 
-        private readonly Dictionary<FirearmsDataSO, int> _playerWeaponAmmo = new();
-        private readonly Dictionary<AmmoType, int> _playerStorageAmmo = new();
+        private Dictionary<FirearmsDataSO, int> _playerWeaponAmmo = new();
+        private Dictionary<AmmoType, int> _playerStorageAmmo = new();
 
         [Inject]
         public PlayerAmmoContainer(StartEquipmentProfileSO startEquipmentProfileSO)
         {
             TryChangeAmmoInStorage(AmmoType.NINE_MM, startEquipmentProfileSO.StartNineMMAmmo);
+        }
+
+        public void LoadData(Dictionary<FirearmsDataSO, int> playerWeaponAmmo, Dictionary<AmmoType, int> playerStorageAmmo)
+        {
+            _playerWeaponAmmo = playerWeaponAmmo;
+            _playerStorageAmmo = playerStorageAmmo;
         }
 
         public void RegisterWeapon(FirearmsDataSO weapon, int ammo = 0)
@@ -42,10 +51,7 @@ namespace PlayerSystem.Attack.Shooting
         }
 
 
-        public int GetWeaponAmmo(FirearmsDataSO weapon)
-        {
-            return _playerWeaponAmmo.GetValueOrDefault(weapon, 0);
-        }
+        public int GetWeaponAmmo(FirearmsDataSO weapon) => _playerWeaponAmmo.GetValueOrDefault(weapon, 0);
 
         public bool TryChangeAmmoInStorage(AmmoType ammoType, int count)
         {

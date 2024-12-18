@@ -17,6 +17,8 @@ namespace DamageSystem
 
         private readonly Dictionary<GameObject, IDamageable> _damageableInside = new();
 
+        private bool _takenInstantDamage;
+
         public void SetDamage(DamageOwner newDamageOwner, int newDamage)
         {
             damageOwner = newDamageOwner;
@@ -32,6 +34,7 @@ namespace DamageSystem
         public void ActivateZone()
         {
             gameObject.SetActive(true);
+            _takenInstantDamage = false;
 
             if (deactivatingByTime)
                 StartCoroutine(DeactivateZoneByTime());
@@ -42,8 +45,10 @@ namespace DamageSystem
             if (instantDamage)
             {
                 if (!other.gameObject.TryGetComponent(out IDamageable instantDamageable)) return;
-                if (instantDamageable.GetOwner() == damageOwner) return;
-
+                if (instantDamageable.GetOwner() == damageOwner || _takenInstantDamage) return;
+                
+                _takenInstantDamage = true;
+                
                 instantDamageable.TakeDamage(damage);
                 DisableZone();
             }
@@ -51,11 +56,11 @@ namespace DamageSystem
             {
                 if (_damageableInside.ContainsKey(other.gameObject) ||
                     !other.TryGetComponent(out IDamageable damageable)) return;
-                if (damageable.GetOwner() != damageOwner)
-                {
-                    damageable.TakeDamage(damage);
-                    _damageableInside.Add(other.gameObject, damageable);
-                }
+                
+                if (damageable.GetOwner() == damageOwner)
+                    return;
+                damageable.TakeDamage(damage);
+                _damageableInside.Add(other.gameObject, damageable);
             }
         }
 

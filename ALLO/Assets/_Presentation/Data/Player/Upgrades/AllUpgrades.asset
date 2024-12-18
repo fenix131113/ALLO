@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6041f1d084be4e0ea3646a536839a9aa, type: 3}
+  m_Name: AllUpgrades
+  m_EditorClassIdentifier: 
+  <AllUpgrades>k__BackingField:
+  - {fileID: 11400000, guid: b82142a6111617244aa60aa72271dbfe, type: 2}
+  - {fileID: 11400000, guid: d195dc10f47ddb844b46001ed8778c52, type: 2}
+  - {fileID: 11400000, guid: 549238c04d64357409231722a1dfa8f2, type: 2}
+  - {fileID: 11400000, guid: 95c3c708b5d7ab74ba9e098ba4e6003a, type: 2}
+  - {fileID: 11400000, guid: ca97d501f7b6e0648baf5db9fce8a5da, type: 2}

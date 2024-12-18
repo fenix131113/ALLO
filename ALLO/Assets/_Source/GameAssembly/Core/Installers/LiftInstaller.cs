@@ -1,4 +1,5 @@
 ﻿using Company;
+using PlayerSystem;
 using Zenject;
 
 namespace Core.Installers
@@ -7,12 +8,11 @@ namespace Core.Installers
     {
         public override void InstallBindings()
         {
-            BindLevelGeneration();
+            BindLift();
         }
-
-        private void BindLevelGeneration()
+        private void BindLift()
         {
-            Container.Bind<LiftLoading>()
+            Container.BindInterfacesAndSelfTo<LiftLoading>()
                 .AsSingle()
                 .NonLazy();
         }
