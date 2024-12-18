@@ -119,6 +119,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: 4
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -126,12 +139,12 @@ TextureImporter:
       name: ChairsPack_01_0
       rect:
         serializedVersion: 2
-        x: 3
-        y: 0
-        width: 111
-        height: 157
+        x: 0
+        y: 46
+        width: 12
+        height: 18
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -147,12 +160,12 @@ TextureImporter:
       name: ChairsPack_01_1
       rect:
         serializedVersion: 2
-        x: 120
-        y: 0
-        width: 97
-        height: 157
+        x: 16
+        y: 46
+        width: 11
+        height: 18
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -168,12 +181,12 @@ TextureImporter:
       name: ChairsPack_01_2
       rect:
         serializedVersion: 2
-        x: 230
+        x: 1
         y: 0
-        width: 111
-        height: 157
+        width: 31
+        height: 44
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -181,6 +194,48 @@ TextureImporter:
       bones: []
       spriteID: 64bdf5e299403044ca4b4f4a68947576
       internalID: -1064305315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChairsPack_01_3
+      rect:
+        serializedVersion: 2
+        x: 34
+        y: 0
+        width: 27
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9961ef29c125a434fa7b8b866dc29457
+      internalID: 575009652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChairsPack_01_4
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 0
+        width: 31
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9adb01ea25b690348826f401333d1f09
+      internalID: -1990033212
       vertices: []
       indices: 
       edges: []
@@ -199,6 +254,8 @@ TextureImporter:
       ChairsPack_01_0: -841862163
       ChairsPack_01_1: -432822633
       ChairsPack_01_2: -1064305315
+      ChairsPack_01_3: 575009652
+      ChairsPack_01_4: -1990033212
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
