@@ -29,20 +29,24 @@ namespace PlayerSystem.View
 		private void Start()
 		{
 			Bind();
+			RedrawInstant();
+		}
+
+		private void Bind() => _playerMutation.OnHealthChanged += Redraw;
+
+		private void Expose() => _playerMutation.OnHealthChanged -= Redraw;
+
+		private void RedrawInstant()
+		{
+			var fillAmount = (float)_playerMutation.CurrentPlayer.Health / _playerMutation.CurrentPlayer.MaxHealth;
+			healthProgressFiller.fillAmount = fillAmount;
+			healthFiller.fillAmount = fillAmount;
+			
+			healthLabel.text = _playerMutation.CurrentPlayer.Health + "/" + _playerMutation.CurrentPlayer.MaxHealth;
 
 			_lastHealth = _playerMutation.CurrentPlayer.Health;
 		}
-
-		private void Bind()
-		{
-			_playerMutation.OnHealthChanged += Redraw;
-		}
-
-		private void Expose()
-		{
-			_playerMutation.OnHealthChanged -= Redraw;
-		}
-
+		
 		private void Redraw()
 		{
 			if (_playerMutation.CurrentPlayer.Health > _lastHealth)

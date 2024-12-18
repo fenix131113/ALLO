@@ -1,6 +1,8 @@
-﻿using LevelGenerationSystem;
+﻿using System.Linq;
+using LevelGenerationSystem;
 using PlayerSystem;
 using PlayerSystem.Attack;
+using PlayerSystem.Attack.Shooting;
 using Zenject;
 
 namespace Company
@@ -12,15 +14,20 @@ namespace Company
         private readonly PlayerWeaponsData _playerWeaponsData;
         private readonly PlayerMutation _playerMutation;
         private readonly LevelGeneration _generation;
+        private readonly PlayerUpgrade _playerUpgrade;
+        private readonly PlayerAmmoContainer _playerAmmoContainer;
 
         [Inject]
         public CompanyDataSaveLoader(CompanyInterLevelDataContainer companyData, PlayerWeaponsData playerWeaponsData,
-            PlayerMutation playerMutation, LevelGeneration generation)
+            PlayerMutation playerMutation, LevelGeneration generation, PlayerUpgrade playerUpgrade,
+            PlayerAmmoContainer playerAmmoContainer)
         {
             _companyData = companyData;
             _playerWeaponsData = playerWeaponsData;
             _playerMutation = playerMutation;
             _generation = generation;
+            _playerUpgrade = playerUpgrade;
+            _playerAmmoContainer = playerAmmoContainer;
 
             ConstructLoad();
         }
@@ -29,7 +36,7 @@ namespace Company
 
         public void Initialize()
         {
-            LoadData();
+            InitLoad();
             Bind();
         }
 
@@ -40,9 +47,22 @@ namespace Company
             LoadCompletedLevels();
         }
 
-        private void LoadData()
+        private void InitLoad()
         {
+            if (_companyData.CompleteLevels == 0)
+                return;
+
             LoadWeapons();
+
+            //Load players data
+            _playerMutation.DefaultPlayer.LoadData(_companyData.DefaultPlayerHealth);
+            _playerMutation.MutatedPlayer.LoadData(_companyData.MutatedPlayerHealth);
+
+            // Load player upgrades (need to be after players data load always)
+            _playerUpgrade.LoadUpgrades(_companyData.CurrentUpgradesLevels);
+
+            // Load player weapon data
+            _playerAmmoContainer.LoadData(_companyData.PlayerWeaponAmmo, _companyData.PlayerStorageAmmo);
         }
 
         private void LoadWeapons()
@@ -57,7 +77,23 @@ namespace Company
 
         #region Save Data
 
-        private void SaveWeapons() => _companyData.SetWeaponsData(_playerWeaponsData.Weapons);
+        private void SaveData()
+        {
+            //Save weapons
+            _companyData.SetWeaponsData(_playerWeaponsData.Weapons);
+
+            //Save players data
+            _companyData.SetDefaultPlayerHealth(_playerMutation.DefaultPlayer.Health);
+            _companyData.SetMutatedPlayerHealth(_playerMutation.MutatedPlayer.Health);
+
+            //Increase completed levels in saved data
+            _companyData.IncreaseCompleteLevels();
+
+            // Save Player Ammo Data
+            _companyData.SetWeaponAmmoData(
+                _playerAmmoContainer.PlayerWeaponAmmo.ToDictionary(key => key.Key, value => value.Value),
+                _playerAmmoContainer.PlayerStorageAmmo.ToDictionary(key => key.Key, value => value.Value));
+        }
 
         #endregion
 
@@ -65,16 +101,14 @@ namespace Company
 
         private void Bind()
         {
-            _playerWeaponsData.OnWeaponListChanged += SaveWeapons;
+            _playerMutation.OnCompanyLevelComplete += SaveData;
             _playerMutation.OnDead += DeleteSavedData;
-            _playerMutation.OnCompanyLevelComplete += _companyData.IncreaseCompleteLevels;
         }
 
         private void Expose()
         {
-            _playerWeaponsData.OnWeaponListChanged -= SaveWeapons;
+            _playerMutation.OnCompanyLevelComplete -= SaveData;
             _playerMutation.OnDead -= DeleteSavedData;
-            _playerMutation.OnCompanyLevelComplete -= _companyData.IncreaseCompleteLevels;
         }
     }
 }

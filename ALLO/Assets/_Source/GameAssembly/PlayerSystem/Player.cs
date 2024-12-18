@@ -3,6 +3,7 @@ using DamageSystem;
 using DamageSystem.Data;
 using EntityDrawers.Humanoid;
 using UnityEngine;
+using Zenject;
 
 namespace PlayerSystem
 {
@@ -22,6 +23,11 @@ namespace PlayerSystem
 		public event Action OnThisPlayerHealthChanged;
 		public event Action OnThisPlayerDead;
 		public event Action OnCompanyLevelCompleted;
+		
+		private PlayerMovement _playerMovement;
+
+		[Inject]
+		private void Construct(PlayerMovement playerMovement) => _playerMovement = playerMovement;
 
 		public void OnMutated()
 		{
@@ -33,6 +39,17 @@ namespace PlayerSystem
 
 		public void OnLevelComplete() => OnCompanyLevelCompleted?.Invoke();
 
+		public void LoadData(int health)
+		{
+			Health = health;
+			OnThisPlayerHealthChanged?.Invoke();
+		}
+
+		public void SetMaxHealth(int maxHealth)
+		{
+			MaxHealth = maxHealth;
+		}
+		
 		public void AddHealth(int amount)
 		{
 			Health = Mathf.Clamp(Health + amount, 0, MaxHealth);
@@ -41,6 +58,9 @@ namespace PlayerSystem
 		
 		public void TakeDamage(int damage)
 		{
+			if(_playerMovement.IsDashTimerProceed)
+				return;
+			
 			Health -= damage;
 			Health = Mathf.Clamp(Health, 0, MaxHealth);
 			BodyDrawer.GlowEffect(hitGlowTime);

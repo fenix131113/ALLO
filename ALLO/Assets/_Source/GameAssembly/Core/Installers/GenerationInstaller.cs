@@ -1,5 +1,6 @@
 using LevelGenerationSystem;
 using LevelGenerationSystem.Data;
+using PlayerSystem;
 using UnityEngine;
 using Zenject;
 
@@ -14,6 +15,14 @@ namespace Core.Installers
         public override void InstallBindings()
         {
             BindLevelGeneration();
+            BindUpgrades();
+        }
+
+        private void BindUpgrades()
+        {
+            Container.Bind<PlayerUpgrade>()
+                .AsSingle()
+                .NonLazy();
         }
 
         private void BindLevelGeneration()
