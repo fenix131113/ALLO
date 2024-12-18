@@ -5,6 +5,7 @@ using PlayerSystem.Attack.Data;
 using PlayerSystem.Attack.Shooting.Data;
 using UnityEngine;
 using Zenject;
+using Random = UnityEngine.Random;
 
 namespace PlayerSystem.Attack.Shooting
 {
@@ -22,7 +23,6 @@ namespace PlayerSystem.Attack.Shooting
         private PlayerAttack _playerAttack;
         private PlayerAmmoContainer _ammoContainer;
         private PlayerWeaponsData _playerWeaponsData;
-        private PlayerMutation _playerMutation;
         private bool _canShoot = true;
         private bool _isReloading;
 
@@ -32,12 +32,11 @@ namespace PlayerSystem.Attack.Shooting
 
         [Inject]
         private void Construct(PlayerAttack playerAttack, PlayerAmmoContainer ammoContainer,
-            PlayerWeaponsData playerWeaponsData, PlayerMutation playerMutation)
+            PlayerWeaponsData playerWeaponsData)
         {
             _playerAttack = playerAttack;
             _ammoContainer = ammoContainer;
             _playerWeaponsData = playerWeaponsData;
-            _playerMutation = playerMutation;
         }
 
         private void Awake() => Bind();
@@ -69,10 +68,28 @@ namespace PlayerSystem.Attack.Shooting
             if (!_canShoot || _isReloading || _ammoContainer.GetWeaponAmmo(CurrentFirearm) == 0)
                 return;
 
-            var bullet = Instantiate(CurrentFirearm.BulletPrefab, shootPoint.position,
-                shootPoint.rotation); //TODO: Change to dynamic object pool
+            var spread = new Vector3(0, 0, Random.Range(-CurrentFirearm.SpreadDegrees, CurrentFirearm.SpreadDegrees));
 
-            bullet.SetDamageOwner(DamageOwner.PLAYER);
+            if (CurrentFirearm.IsFraction)
+            {
+                for (var i = 0; i < CurrentFirearm.FractionCount; i++)
+                {
+                    spread = new Vector3(0, 0, Random.Range(-CurrentFirearm.SpreadDegrees, CurrentFirearm.SpreadDegrees));
+                    var bullet = Instantiate(CurrentFirearm.BulletPrefab, shootPoint.position,
+                        Quaternion.Euler(shootPoint.rotation.eulerAngles +
+                                         spread)); //TODO: Change to dynamic object pool
+
+                    bullet.SetDamageOwner(DamageOwner.PLAYER);
+                }
+            }
+            else
+
+            {
+                var bullet = Instantiate(CurrentFirearm.BulletPrefab, shootPoint.position,
+                    Quaternion.Euler(shootPoint.rotation.eulerAngles + spread)); //TODO: Change to dynamic object pool
+
+                bullet.SetDamageOwner(DamageOwner.PLAYER);
+            }
 
             StartCoroutine(ShootCooldown());
 
@@ -113,8 +130,9 @@ namespace PlayerSystem.Attack.Shooting
             _canShoot = false;
             _isReloading = true;
             OnStartReloading?.Invoke();
-            
-            yield return new WaitForSeconds(CurrentFirearm.ReloadTime - CurrentFirearm.ReloadTime * ((float)ReloadTimeReduction / 100));
+
+            yield return new WaitForSeconds(CurrentFirearm.ReloadTime -
+                                            CurrentFirearm.ReloadTime * ((float)ReloadTimeReduction / 100));
 
             if (_ammoContainer.GetAmmoFromStorage(CurrentFirearm.AmmoType) >=
                 CurrentFirearm.MaxAmmoInClip - _ammoContainer.GetWeaponAmmo(CurrentFirearm))

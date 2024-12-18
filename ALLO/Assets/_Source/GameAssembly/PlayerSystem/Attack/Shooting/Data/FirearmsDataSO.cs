@@ -10,7 +10,10 @@ namespace PlayerSystem.Attack.Shooting.Data
         [field: SerializeField] public AmmoType AmmoType { get; private set; }
         [field: SerializeField] public float ShootCooldown { get; private set; }
         [field: SerializeField] public float ReloadTime { get; private set; }
+        [field: SerializeField] public float SpreadDegrees { get; private set; }
         [field: SerializeField] public int MaxAmmoInClip { get; private set; }
         [field: SerializeField] public int Damage { get; private set; }
+        [field: SerializeField] public bool IsFraction { get; private set; }
+        [field: SerializeField] public int FractionCount { get; private set; }
     }
 }

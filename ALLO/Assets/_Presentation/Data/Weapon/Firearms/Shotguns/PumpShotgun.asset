@@ -10,13 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a7b32d116ca40558261fa4f2b10a2b5, type: 3}
-  m_Name: USP
+  m_Name: PumpShotgun
   m_EditorClassIdentifier: 
   <WeaponType>k__BackingField: 0
-  <WeaponName>k__BackingField: USP
-  <BulletPrefab>k__BackingField: {fileID: 4397985047773982997, guid: 8f444db585226b847a191a8b0b465a1f, type: 3}
+  <WeaponName>k__BackingField: Pump-action shotgun
+  <BulletPrefab>k__BackingField: {fileID: 7965965831061298002, guid: bec1d368d02928a45a3769b3fb18691c, type: 3}
   <AmmoType>k__BackingField: 0
-  <ShootCooldown>k__BackingField: 0.15
-  <ReloadTime>k__BackingField: 1.5
-  <MaxAmmoInClip>k__BackingField: 15
+  <ShootCooldown>k__BackingField: 0.6
+  <ReloadTime>k__BackingField: 2.5
+  <SpreadDegrees>k__BackingField: 20
+  <MaxAmmoInClip>k__BackingField: 6
   <Damage>k__BackingField: 1
+  <IsFraction>k__BackingField: 1
+  <FractionCount>k__BackingField: 6

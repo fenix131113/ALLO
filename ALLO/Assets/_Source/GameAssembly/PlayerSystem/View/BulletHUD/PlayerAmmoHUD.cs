@@ -107,6 +107,7 @@ namespace PlayerSystem.View.BulletHUD
         private void ThrowFirstBullet()
         {
             var current = _currentBullets[0];
+            current.transform.parent = current.transform.parent.parent.parent;
             current.StartRotate();
 
             current.Rect.DOJump(new Vector2(Screen.width + 25f, Random.Range(0, Screen.height / 3 + 1)), 0.2f, 1,

@@ -73,7 +73,7 @@ namespace PlayerSystem
 
         private void ReadAttackInput()
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButton(0))
                 _playerAttack.Attack();
         }
 
