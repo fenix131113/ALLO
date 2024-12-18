@@ -8,10 +8,12 @@ namespace DamageSystem.Data
 	public class ExtraLifeModule : ScriptableObject
 	{
 		[SerializeField] private List<ExtraLifeGroup> extraLifeGroups = new();
+		
+		public IReadOnlyList<ExtraLifeGroup> ExtraLifeGroups => extraLifeGroups;
 
-		public bool CanGetExtraLife(int hitCount)
+		public bool CanGetExtraLife(int groupIndex)
 		{
-			var findGroup = extraLifeGroups.Find(group => group.HitNumber == hitCount);
+			var findGroup = extraLifeGroups[groupIndex];
 
 			if (findGroup != null)
 				return Random.Range(0, 1f) <= findGroup.ExtraLifeChance;

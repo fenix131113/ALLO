@@ -5,6 +5,7 @@ using PlayerSystem.Attack;
 using PlayerSystem.Attack.Data;
 using PlayerSystem.Attack.Melee;
 using PlayerSystem.Attack.Shooting;
+using PlayerSystem.Attack.Throwable;
 using PlayerSystem.Data;
 using UnityEngine;
 using Zenject;
@@ -83,6 +84,11 @@ namespace Core.Installers
                 .NonLazy();
 
             Container.Bind<PlayerMelee>()
+                .FromComponentInHierarchy()
+                .AsSingle()
+                .NonLazy();
+
+            Container.Bind<PlayerThrowable>()
                 .FromComponentInHierarchy()
                 .AsSingle()
                 .NonLazy();

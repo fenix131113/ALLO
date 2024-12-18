@@ -13,5 +13,4 @@ MonoBehaviour:
   m_Name: SecurityExtraLifes
   m_EditorClassIdentifier: 
   extraLifeGroups:
-  - <HitNumber>k__BackingField: 1
-    <ExtraLifeChance>k__BackingField: 0.25
+  - <ExtraLifeChance>k__BackingField: 0.25

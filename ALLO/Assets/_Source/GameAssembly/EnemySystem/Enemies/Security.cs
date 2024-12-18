@@ -30,7 +30,7 @@ namespace EnemySystem.Enemies
 
         private PlayerAmmoContainer _playerAmmoContainer;
         private PlayerMutation _playerMutation;
-        private int _damageCounter;
+        private int _extraLifeUsed;
         private float _attackCooldownTimer;
         private bool _canAttack = true;
         private bool _isAlwaysSeePlayer;
@@ -51,12 +51,12 @@ namespace EnemySystem.Enemies
 
         private void Update()
         {
-            if(_isAlwaysSeePlayer)
+            if (_isAlwaysSeePlayer)
                 SetDestination(Vision.CurrentTarget.position);
-            
+
             if (AiPath.reachedEndOfPath && Vision.CanSeeTarget)
                 Attack();
-            
+
             bodyDrawer.SetCurrentMovement(AiPath.velocity, true);
 
             if (Vision.CanSeeTarget || _walkToPosition == null || _isAlwaysSeePlayer)
@@ -130,11 +130,13 @@ namespace EnemySystem.Enemies
         {
             damage = Mathf.Clamp(damage, 0, Health);
             Health -= damage;
-            _damageCounter += 1;
             bodyDrawer.GlowEffect(hitGlowTime);
 
-            if (!extraLifeModule.CanGetExtraLife(_damageCounter))
+            if (extraLifeModule.ExtraLifeGroups.Count == _extraLifeUsed ||
+                !extraLifeModule.CanGetExtraLife(_extraLifeUsed))
                 Die();
+            else
+                _extraLifeUsed += 1;
         }
 
         private void Attack()

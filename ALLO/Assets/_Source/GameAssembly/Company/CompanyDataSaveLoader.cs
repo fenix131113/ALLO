@@ -3,6 +3,7 @@ using LevelGenerationSystem;
 using PlayerSystem;
 using PlayerSystem.Attack;
 using PlayerSystem.Attack.Shooting;
+using PlayerSystem.Attack.Throwable;
 using Zenject;
 
 namespace Company
@@ -16,11 +17,12 @@ namespace Company
         private readonly LevelGeneration _generation;
         private readonly PlayerUpgrade _playerUpgrade;
         private readonly PlayerAmmoContainer _playerAmmoContainer;
+        private readonly PlayerThrowable _playerThrowable;
 
         [Inject]
         public CompanyDataSaveLoader(CompanyInterLevelDataContainer companyData, PlayerWeaponsData playerWeaponsData,
             PlayerMutation playerMutation, LevelGeneration generation, PlayerUpgrade playerUpgrade,
-            PlayerAmmoContainer playerAmmoContainer)
+            PlayerAmmoContainer playerAmmoContainer, PlayerThrowable playerThrowable)
         {
             _companyData = companyData;
             _playerWeaponsData = playerWeaponsData;
@@ -28,6 +30,7 @@ namespace Company
             _generation = generation;
             _playerUpgrade = playerUpgrade;
             _playerAmmoContainer = playerAmmoContainer;
+            _playerThrowable = playerThrowable;
 
             ConstructLoad();
         }
@@ -63,6 +66,9 @@ namespace Company
 
             // Load player weapon data
             _playerAmmoContainer.LoadData(_companyData.PlayerWeaponAmmo, _companyData.PlayerStorageAmmo);
+            
+            // Load player throwable data
+            _playerThrowable.LoadData(_companyData.GrenadesCount);
         }
 
         private void LoadWeapons()
@@ -93,6 +99,9 @@ namespace Company
             _companyData.SetWeaponAmmoData(
                 _playerAmmoContainer.PlayerWeaponAmmo.ToDictionary(key => key.Key, value => value.Value),
                 _playerAmmoContainer.PlayerStorageAmmo.ToDictionary(key => key.Key, value => value.Value));
+            
+            // Save throwable data
+            _companyData.SetGrenadesCount(_playerThrowable.GrenadesCount);
         }
 
         #endregion

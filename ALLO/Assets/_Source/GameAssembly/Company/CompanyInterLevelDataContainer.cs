@@ -17,6 +17,7 @@ namespace Company
         public int CompleteLevels { get; private set; }
         public int DefaultPlayerHealth { get; private set; }
         public int MutatedPlayerHealth { get; private set; }
+        public int GrenadesCount { get; private set; }
 
         private void Awake() => DontDestroyOnLoad(gameObject);
 
@@ -30,6 +31,8 @@ namespace Company
         public void SetDefaultPlayerHealth(int health) => DefaultPlayerHealth = health;
 
         public void SetMutatedPlayerHealth(int health) => MutatedPlayerHealth = health;
+        
+        public void SetGrenadesCount(int count) => GrenadesCount = count;
 
         public void SetWeaponAmmoData(Dictionary<FirearmsDataSO, int> playerWeaponAmmo, Dictionary<AmmoType, int> playerStorageAmmo)
         {

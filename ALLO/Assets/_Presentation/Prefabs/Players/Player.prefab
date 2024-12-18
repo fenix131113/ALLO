@@ -908,6 +908,7 @@ GameObject:
   - component: {fileID: 3351454041112725860}
   - component: {fileID: 4771089097759474526}
   - component: {fileID: 5300883415363932390}
+  - component: {fileID: 4682147179006010938}
   - component: {fileID: 3682978553415841161}
   m_Layer: 6
   m_Name: Player
@@ -1134,6 +1135,20 @@ MonoBehaviour:
     <WeaponGFX>k__BackingField: {fileID: 5194402864837923559}
   - <Weapon>k__BackingField: {fileID: 11400000, guid: cb8d6ac926cd8dd4c8816ba2d8d9e518, type: 2}
     <WeaponGFX>k__BackingField: {fileID: 6041967666026870901}
+--- !u!114 &4682147179006010938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5374662644270566943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 12d8141e014e4590b119ecd44899243a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grenadePrefab: {fileID: 411658834227935987, guid: 6a20f259b477602478a239a39f4fbfea, type: 3}
+  throwPoint: {fileID: 1791065880407555310}
 --- !u!114 &3682978553415841161
 MonoBehaviour:
   m_ObjectHideFlags: 0

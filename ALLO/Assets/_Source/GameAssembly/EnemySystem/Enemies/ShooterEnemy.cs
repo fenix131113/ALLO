@@ -26,7 +26,7 @@ namespace EnemySystem.Enemies
         [SerializeField] private float hitGlowTime;
 
         private PlayerAmmoContainer _playerAmmoContainer;
-        private int _damageCounter;
+        private int _extraLifeUsed;
         private float _attackCooldownTimer;
         private bool _canShoot = true;
         private Vector3? _walkToPosition;
@@ -125,11 +125,12 @@ namespace EnemySystem.Enemies
         {
             damage = Mathf.Clamp(damage, 0, Health);
             Health -= damage;
-            _damageCounter += damage;
             bodyDrawer.GlowEffect(hitGlowTime);
 
-            if (!extraLifeModule.CanGetExtraLife(_damageCounter))
+            if (extraLifeModule.ExtraLifeGroups.Count == _extraLifeUsed || !extraLifeModule.CanGetExtraLife(_extraLifeUsed))
                 Die();
+            else
+                _extraLifeUsed += 1;
         }
 
         private void Shoot()

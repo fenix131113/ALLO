@@ -1,6 +1,6 @@
 using GameMenuSystem;
 using PlayerSystem.Attack;
-using PlayerSystem.Attack.Shooting;
+using PlayerSystem.Attack.Throwable;
 using UnityEngine;
 using Zenject;
 
@@ -13,18 +13,20 @@ namespace PlayerSystem
         private readonly GameMenu _gameMenu;
         private readonly PlayerAttack _playerAttack;
         private readonly PlayerWeaponsData _playerWeaponsData;
+        private readonly PlayerThrowable _playerThrowable;
 
         private bool _isReadPaused;
 
         [Inject]
         public PlayerInputHandler(PlayerMovement playerMovement, PlayerMutation playerMutation, GameMenu gameMenu,
-            PlayerAttack playerAttack, PlayerWeaponsData playerWeaponsData)
+            PlayerAttack playerAttack, PlayerWeaponsData playerWeaponsData, PlayerThrowable playerThrowable)
         {
             _playerMovement = playerMovement;
             _playerMutation = playerMutation;
             _gameMenu = gameMenu;
             _playerAttack = playerAttack;
             _playerWeaponsData = playerWeaponsData;
+            _playerThrowable = playerThrowable;
         }
 
         public void Tick()
@@ -40,11 +42,18 @@ namespace PlayerSystem
             ReadAttackInput();
             ReadReloadInput();
             ReadScrollInput();
+            ReadThrowInput();
         }
 
         public void Initialize()
         {
             _gameMenu.OnContinue += Unpause;
+        }
+
+        private void ReadThrowInput()
+        {
+            if (Input.GetMouseButtonDown(1))
+                _playerThrowable.Throw();
         }
 
         private void ReadScrollInput()
