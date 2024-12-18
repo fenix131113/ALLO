@@ -328,9 +328,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51bc47c50c614db4dade1a80f3749cca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <Health>k__BackingField: 20
+  <MaxHealth>k__BackingField: 20
+  <Owner>k__BackingField: 0
   <Rb>k__BackingField: {fileID: 8165482764647587891}
-  <Renderer>k__BackingField: {fileID: 3793662261022525970}
   <LookRotationPivot>k__BackingField: {fileID: 2095011147116572960}
+  <BodyDrawer>k__BackingField: {fileID: 0}
+  <ShootPoint>k__BackingField: {fileID: 0}
+  hitGlowTime: 0
 --- !u!61 &6335190533782047119
 BoxCollider2D:
   m_ObjectHideFlags: 0

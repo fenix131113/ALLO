@@ -22,6 +22,7 @@ namespace PlayerSystem.Attack.Shooting
         private PlayerAttack _playerAttack;
         private PlayerAmmoContainer _ammoContainer;
         private PlayerWeaponsData _playerWeaponsData;
+        private PlayerMutation _playerMutation;
         private bool _canShoot = true;
         private bool _isReloading;
 
@@ -31,11 +32,12 @@ namespace PlayerSystem.Attack.Shooting
 
         [Inject]
         private void Construct(PlayerAttack playerAttack, PlayerAmmoContainer ammoContainer,
-            PlayerWeaponsData playerWeaponsData)
+            PlayerWeaponsData playerWeaponsData, PlayerMutation playerMutation)
         {
             _playerAttack = playerAttack;
             _ammoContainer = ammoContainer;
             _playerWeaponsData = playerWeaponsData;
+            _playerMutation = playerMutation;
         }
 
         private void Awake() => Bind();
@@ -67,8 +69,10 @@ namespace PlayerSystem.Attack.Shooting
             if (!_canShoot || _isReloading || _ammoContainer.GetWeaponAmmo(CurrentFirearm) == 0)
                 return;
 
-            Instantiate(CurrentFirearm.BulletPrefab, shootPoint.position,
-                shootPoint.rotation).SetDamageOwner(DamageOwner.PLAYER); //TODO: Change to dynamic object pool
+            var bullet = Instantiate(CurrentFirearm.BulletPrefab, shootPoint.position,
+                shootPoint.rotation); //TODO: Change to dynamic object pool
+
+            bullet.SetDamageOwner(DamageOwner.PLAYER);
 
             StartCoroutine(ShootCooldown());
 

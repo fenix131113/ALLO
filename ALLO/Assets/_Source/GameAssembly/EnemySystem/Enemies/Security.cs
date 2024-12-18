@@ -2,10 +2,12 @@
 using DamageSystem;
 using DamageSystem.Data;
 using EntityDrawers.Humanoid;
+using PlayerSystem;
 using PlayerSystem.Attack.Shooting;
 using PlayerSystem.Items.Collectable;
 using UnityEngine;
 using Utils;
+using Zenject;
 
 namespace EnemySystem.Enemies
 {
@@ -27,11 +29,19 @@ namespace EnemySystem.Enemies
 		[SerializeField] private float hitGlowTime;
 
 		private PlayerAmmoContainer _playerAmmoContainer;
+		private PlayerMutation _playerMutation;
 		private int _damageCounter;
 		private float _attackCooldownTimer;
 		private bool _canAttack = true;
 		private Vector3? _walkToPosition;
-
+		
+		[Inject]
+		public void Construct(PlayerAmmoContainer playerAmmoContainer, PlayerMutation playerMutation)
+		{
+			_playerAmmoContainer = playerAmmoContainer;
+			_playerMutation = playerMutation;
+		}
+		
 		private void Start()
 		{
 			damageZone.SetDamage(Owner, hitDamage);
@@ -54,11 +64,6 @@ namespace EnemySystem.Enemies
 
 			bodyDrawer.Rotate(lookDegrees);
 			handsDrawer.SetLookTarget((Vector3)_walkToPosition);
-		}
-		
-		public void Init(PlayerAmmoContainer playerAmmoContainer)
-		{
-			_playerAmmoContainer = playerAmmoContainer;
 		}
 
 		protected override void OnTargetSpotted(Transform target)
@@ -88,6 +93,7 @@ namespace EnemySystem.Enemies
 			else if(Random.Range(0f, 1f) <= 0.15f)
 				Instantiate(ammoBoxPrefab, transform.position, Quaternion.identity).Init(_playerAmmoContainer);
 			
+			_playerMutation.IncreaseKillsCount();
 			fleshParticles.DestroyByTime(fleshParticles.main.duration);
 			fleshParticles.Play();
 			fleshParticles.transform.parent = null;

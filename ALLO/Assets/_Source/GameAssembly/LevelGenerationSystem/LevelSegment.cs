@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using EnemySystem;
 using LevelGenerationSystem.Data;
 using UnityEngine;
+using Zenject;
 
 // ReSharper disable PossibleLossOfFraction
 
@@ -23,14 +25,22 @@ namespace LevelGenerationSystem
         public LevelSegmentSO SO { get; private set; }
         public Vector2 Coordinates { get; private set; }
 
+        private DiContainer _diContainer;
 
-        public LevelSegment Init(LevelSegmentSO so, Vector2 coordinates)
+
+        public LevelSegment Init(LevelSegmentSO so, Vector2 coordinates, DiContainer diContainer)
         {
             if (SO)
                 return null;
 
             SO = so;
             Coordinates = coordinates;
+            _diContainer = diContainer;
+            
+            var enemies = transform.GetComponentsInChildren<AEnemy>();
+            foreach (var enemy in enemies)
+                _diContainer.InjectGameObject(enemy.gameObject);
+            
             return this;
         }
 

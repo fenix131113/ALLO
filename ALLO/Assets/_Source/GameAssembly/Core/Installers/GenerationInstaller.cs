@@ -3,11 +3,13 @@ using LevelGenerationSystem.Data;
 using PlayerSystem;
 using UnityEngine;
 using Zenject;
+using Security = EnemySystem.Enemies.Security;
 
 namespace Core.Installers
 {
     public class GenerationInstaller : MonoInstaller
     {
+        [SerializeField] private Security securityPrefab;
         [SerializeField] private AstarPath pathFinder;
 
         [SerializeField] private GenerationSettingsSO generationSettingsSO;

@@ -73,7 +73,6 @@ namespace WavesSystem
 				var spawned = Instantiate(enemyPrefab, availableSpawnPoint.ElementAt(Random.Range(0, availableSpawnPoint.Count())).position,
 					Quaternion.identity);
 				spawned.Vision.NativeSetTarget(_playerMutation.CurrentPlayer.transform);
-				spawned.Init(_playerAmmoContainer);
 				_spawnedEnemies.Add(spawned);
 			}
 			

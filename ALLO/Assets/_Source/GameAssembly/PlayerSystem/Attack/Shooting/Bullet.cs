@@ -10,7 +10,7 @@ namespace PlayerSystem.Attack.Shooting
         [SerializeField] private float speed;
         [SerializeField] private float lifetime;
         [SerializeField] private int damage;
-
+        
         private bool _isKill;
 
         private void Start() => Destroy(gameObject, lifetime);
@@ -23,9 +23,10 @@ namespace PlayerSystem.Attack.Shooting
             {
                 damageable.TakeDamage(damage);
                 _isKill = true;
+                
                 Destroy(gameObject);
             }
-            else if(damageable == null)
+            else if (damageable == null)
                 Destroy(gameObject); //TODO: Deactivate instead destroying, use dynamic object pool
         }
 

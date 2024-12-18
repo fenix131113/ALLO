@@ -20,6 +20,7 @@ namespace PlayerSystem.Attack.Melee
         [SerializeField] private float deactivationHitTime;
 
         private PlayerAttack _playerAttack;
+        private PlayerMutation _playerMutation;
         private bool _canHit = true;
 
         public MeleeDataSO CurrentMelee => _playerAttack.CurrentWeapon.WeaponType == WeaponType.MELEE
@@ -27,7 +28,11 @@ namespace PlayerSystem.Attack.Melee
             : null;
 
         [Inject]
-        private void Construct(PlayerAttack playerAttack) => _playerAttack = playerAttack;
+        private void Construct(PlayerAttack playerAttack, PlayerMutation playerMutation)
+        {
+            _playerAttack = playerAttack;
+            _playerMutation = playerMutation;
+        }
 
         public void Hit()
         {

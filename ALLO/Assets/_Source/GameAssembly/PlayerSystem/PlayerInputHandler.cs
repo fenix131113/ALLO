@@ -35,7 +35,7 @@ namespace PlayerSystem
                 return;
 
             ReadMovementInput();
-            //ReadMutationInput();
+            ReadMutationInput();
             ReadDashMovementInput();
             ReadAttackInput();
             ReadReloadInput();
@@ -96,7 +96,7 @@ namespace PlayerSystem
         private void ReadMutationInput()
         {
             if (Input.GetKeyDown(KeyCode.F))
-                _playerMutation.SwitchMutation();
+                _playerMutation.SwitchToMutant();
         }
     }
 }

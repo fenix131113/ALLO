@@ -31,6 +31,7 @@ namespace PlayerSystem
 
 		public void OnMutated()
 		{
+			
 		}
 
 		public int GetHealth() => Health;

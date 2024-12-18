@@ -6,6 +6,7 @@ using UnityEngine;
 using Zenject;
 using Object = UnityEngine.Object;
 using Random = UnityEngine.Random;
+using Security = EnemySystem.Enemies.Security;
 
 // ReSharper disable PossibleLossOfFraction
 
@@ -14,12 +15,13 @@ namespace LevelGenerationSystem
     public class LevelGeneration : IInitializable
     {
         private const int LEVEL_SIZE_INCREMENT_PER_CYCLE = 2;
-        private const int INCREMENT_CYCLE_LEVELS = 3;
+        private const int INCREMENT_CYCLE_LEVELS = 5;
 
         private GenerationSettingsSO _generationSettings;
 
         private readonly Dictionary<Vector2, LevelSegment> _grid = new();
         private AstarPath _pathFinder;
+        private DiContainer _diContainer;
         private LevelSpritesColor _selectedLevelColor;
         private float _nextSpawnXPosition;
         private int _completedLevels;
@@ -27,10 +29,11 @@ namespace LevelGenerationSystem
         private int _finalYSize;
 
         [Inject]
-        private void Construct(GenerationSettingsSO generationSettings, AstarPath pathFinder)
+        private void Construct(GenerationSettingsSO generationSettings, AstarPath pathFinder, DiContainer diContainer)
         {
             _generationSettings = generationSettings;
             _pathFinder = pathFinder;
+            _diContainer = diContainer;
         }
 
         public void Initialize()
@@ -42,10 +45,7 @@ namespace LevelGenerationSystem
             GenerateLevel();
         }
 
-        public void SetCompletedLevels(int completed)
-        {
-            _completedLevels = completed;
-        }
+        public void SetCompletedLevels(int completed) => _completedLevels = completed;
 
         private void GenerateLevel()
         {
@@ -350,7 +350,7 @@ namespace LevelGenerationSystem
         private LevelSegment CreateLevelSegment(LevelSegmentSO so, Vector3 position, Vector2 gridPosition)
         {
             var spawned = Object.Instantiate(so.SegmentPrefab, position, so.SegmentPrefab.transform.rotation)
-                .Init(so, gridPosition);
+                .Init(so, gridPosition, _diContainer);
             spawned.SegmentColorManager?.SelectColor(_selectedLevelColor);
             spawned.name = spawned.name.Split(' ')[0].Replace("(Clone)", "") + $" ({gridPosition.x}, {gridPosition.y})";
 
