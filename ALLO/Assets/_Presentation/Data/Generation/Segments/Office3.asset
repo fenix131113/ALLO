@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fc5d85c084c349f5b977426f08bc4444, type: 3}
-  m_Name: Office
+  m_Name: Office3
   m_EditorClassIdentifier: 
-  <SegmentPrefab>k__BackingField: {fileID: 7344038880005019269, guid: 7b98a3ee8bd8da642a909d6e1415e200, type: 3}
+  <SegmentPrefab>k__BackingField: {fileID: 4337242385674859454, guid: bf716641c4a00fc4cb0ab6ada2d2cbd9, type: 3}
   <ConnectableTo>k__BackingField:
   - <Segment>k__BackingField: {fileID: 11400000, guid: 3090b0cc7418e794ca595c84f1db975b, type: 2}
     <Weight>k__BackingField: 1
   - <Segment>k__BackingField: {fileID: 11400000}
-    <Weight>k__BackingField: 4
-  - <Segment>k__BackingField: {fileID: 11400000, guid: 6e39571ac75b1204c8a424a953018e4c, type: 2}
-    <Weight>k__BackingField: 4
+    <Weight>k__BackingField: 3
+  - <Segment>k__BackingField: {fileID: 11400000, guid: a881c96507c23e840929ff305cd16880, type: 2}
+    <Weight>k__BackingField: 3
   - <Segment>k__BackingField: {fileID: 11400000, guid: e0f4b305a94f6804a9a24d4754c05637, type: 2}
-    <Weight>k__BackingField: 4
-  - <Segment>k__BackingField: {fileID: 11400000, guid: f1095c2bb09daf946a9dba3d26994a97, type: 2}
-    <Weight>k__BackingField: 4
+    <Weight>k__BackingField: 3
+  - <Segment>k__BackingField: {fileID: 11400000, guid: 6e39571ac75b1204c8a424a953018e4c, type: 2}
+    <Weight>k__BackingField: 3

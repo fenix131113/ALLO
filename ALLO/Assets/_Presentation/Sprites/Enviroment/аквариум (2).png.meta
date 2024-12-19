@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 47df6839d8cb24c4eb5e2b9e3551166a
+guid: 308e0d337f64aa948b3cc60423f382d3
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -107,23 +107,10 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
     buildTarget: Windows Store Apps
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 4
+    textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -136,64 +123,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Cactuses_0
+      name: "\u0430\u043A\u0432\u0430\u0440\u0438\u0443\u043C (2)_0"
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 35
-        height: 50
-      alignment: 2
-      pivot: {x: 0.5, y: 1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 558556485ba1e4d41bd18c70b967bb21
-      internalID: -675060102
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cactuses_1
-      rect:
-        serializedVersion: 2
-        x: 35
-        y: 0
-        width: 22
-        height: 38
-      alignment: 9
-      pivot: {x: 0.47685605, y: 1.3165197}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c129e8ab2c63cc24bbcd7f924c894b7a
-      internalID: -713061939
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cactuses_2
-      rect:
-        serializedVersion: 2
-        x: 57
+        x: 1
         y: 1
-        width: 30
-        height: 26
-      alignment: 9
-      pivot: {x: 0.48868534, y: 1.8773566}
+        width: 51
+        height: 58
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5e013460a58b56c48a03e73772ee2f9f
-      internalID: -254209396
+      spriteID: c935f2182cc9b4e45be5518f68e24e8e
+      internalID: 166477697
       vertices: []
       indices: 
       edges: []
@@ -209,9 +154,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Cactuses_0: -675060102
-      Cactuses_1: -713061939
-      Cactuses_2: -254209396
+      "\u0430\u043A\u0432\u0430\u0440\u0438\u0443\u043C (2)_0": 166477697
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
