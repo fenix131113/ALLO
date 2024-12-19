@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 47df6839d8cb24c4eb5e2b9e3551166a
+guid: ef9651ae04fc4b946a1ef085fc5be42c
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 40
+  spritePixelsToUnits: 125
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -107,23 +107,10 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
     buildTarget: Windows Store Apps
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 4
+    textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -136,55 +123,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Cactuses_0
+      name: Kitchen_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 35
-        height: 50
-      alignment: 2
-      pivot: {x: 0.5, y: 1}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 558556485ba1e4d41bd18c70b967bb21
-      internalID: -675060102
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cactuses_1
-      rect:
-        serializedVersion: 2
-        x: 35
-        y: 0
-        width: 22
-        height: 38
-      alignment: 9
-      pivot: {x: 0.5, y: 1.12}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c129e8ab2c63cc24bbcd7f924c894b7a
-      internalID: -713061939
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cactuses_2
-      rect:
-        serializedVersion: 2
-        x: 57
-        y: 1
-        width: 30
-        height: 26
+        x: 11
+        y: 11
+        width: 139
+        height: 291
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -192,8 +137,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5e013460a58b56c48a03e73772ee2f9f
-      internalID: -254209396
+      spriteID: d1f8a8cc650804c4380f04493ada9bd9
+      internalID: 731355331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Kitchen_1
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 11
+        width: 64
+        height: 291
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba9fd73de4c9cd5409936f2d31d9769b
+      internalID: 428822602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Kitchen_2
+      rect:
+        serializedVersion: 2
+        x: 268
+        y: 11
+        width: 471
+        height: 291
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4af6f56d4174c844ba4325ba6a10fe06
+      internalID: 338054345
       vertices: []
       indices: 
       edges: []
@@ -209,9 +196,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Cactuses_0: -675060102
-      Cactuses_1: -713061939
-      Cactuses_2: -254209396
+      Kitchen_0: 731355331
+      Kitchen_1: 428822602
+      Kitchen_2: 338054345
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

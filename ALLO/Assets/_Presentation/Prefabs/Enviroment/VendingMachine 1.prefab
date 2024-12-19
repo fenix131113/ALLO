@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4368977904522398713
+--- !u!1 &6690196805925197320
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,40 +8,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 676058348306474612}
-  - component: {fileID: 6015801676678556437}
-  - component: {fileID: 9097844564921159127}
-  - component: {fileID: 6434053182871819832}
-  - component: {fileID: 3561403742155944090}
+  - component: {fileID: 8559647710619182000}
+  - component: {fileID: 8638757548839448410}
+  - component: {fileID: 5687390593867709778}
+  - component: {fileID: 4696271921791681390}
   m_Layer: 3
-  m_Name: Closet
+  m_Name: VendingMachine 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &676058348306474612
+--- !u!4 &8559647710619182000
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4368977904522398713}
+  m_GameObject: {fileID: 6690196805925197320}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.82, y: 3.12, z: 0}
+  m_LocalPosition: {x: 2.0812352, y: -1.0714793, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &6015801676678556437
+--- !u!212 &8638757548839448410
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4368977904522398713}
+  m_GameObject: {fileID: 6690196805925197320}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -76,24 +75,24 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 965931734, guid: f9cf6aa0506f6524489f13a92a949a43, type: 3}
+  m_Sprite: {fileID: -197923186, guid: 2a42752aac3fa8744acd5e15c8c1bfbb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.4571428, y: 2.2285714}
+  m_Size: {x: 0.85, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &9097844564921159127
+--- !u!61 &5687390593867709778
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4368977904522398713}
+  m_GameObject: {fileID: 6690196805925197320}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -119,54 +118,48 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.14683998}
+  m_Offset: {x: 0.03862384, y: -0.5352155}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.5925926, y: 1.4444444}
-    newSize: {x: 2.4571428, y: 2.2285714}
+    oldSize: {x: 0.85, y: 2}
+    newSize: {x: 0.85, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.5015198, y: 1.0236311}
+  m_Size: {x: 0.77275234, y: 0.42194128}
   m_EdgeRadius: 0
---- !u!114 &6434053182871819832
+--- !u!114 &4696271921791681390
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4368977904522398713}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d43c5b7402d4256946a797b889b9dfe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 0
-  maxHealth: 0
-  breakParticle: {fileID: 0}
-  damageParticle: {fileID: 0}
---- !u!114 &3561403742155944090
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4368977904522398713}
+  m_GameObject: {fileID: 6690196805925197320}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 05a23ce224e68224e811549cc0a7e7c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentRenderer: {fileID: 6015801676678556437}
+  currentRenderer: {fileID: 8638757548839448410}
   spritesList:
-  - <Sprite>k__BackingField: {fileID: 965931734, guid: f9cf6aa0506f6524489f13a92a949a43, type: 3}
-    <Weight>k__BackingField: 3
-  - <Sprite>k__BackingField: {fileID: -723999237, guid: f9cf6aa0506f6524489f13a92a949a43, type: 3}
+  - <Sprite>k__BackingField: {fileID: -197923186, guid: 2a42752aac3fa8744acd5e15c8c1bfbb, type: 3}
+    <Weight>k__BackingField: 30
+  - <Sprite>k__BackingField: {fileID: -98248809, guid: 2a42752aac3fa8744acd5e15c8c1bfbb, type: 3}
+    <Weight>k__BackingField: 10
+  - <Sprite>k__BackingField: {fileID: -1470933877, guid: 2a42752aac3fa8744acd5e15c8c1bfbb, type: 3}
+    <Weight>k__BackingField: 10
+  - <Sprite>k__BackingField: {fileID: 1834979560, guid: 2a42752aac3fa8744acd5e15c8c1bfbb, type: 3}
     <Weight>k__BackingField: 1
-  - <Sprite>k__BackingField: {fileID: 900830970, guid: f9cf6aa0506f6524489f13a92a949a43, type: 3}
+  - <Sprite>k__BackingField: {fileID: -1330685560, guid: 2a42752aac3fa8744acd5e15c8c1bfbb, type: 3}
     <Weight>k__BackingField: 1
-  - <Sprite>k__BackingField: {fileID: -1202531720, guid: f9cf6aa0506f6524489f13a92a949a43, type: 3}
-    <Weight>k__BackingField: 3
+  - <Sprite>k__BackingField: {fileID: -1712134836, guid: 2a42752aac3fa8744acd5e15c8c1bfbb, type: 3}
+    <Weight>k__BackingField: 1
+  - <Sprite>k__BackingField: {fileID: -940993143, guid: 2a42752aac3fa8744acd5e15c8c1bfbb, type: 3}
+    <Weight>k__BackingField: 1
+  - <Sprite>k__BackingField: {fileID: -538498408, guid: 2a42752aac3fa8744acd5e15c8c1bfbb, type: 3}
+    <Weight>k__BackingField: 1
+  - <Sprite>k__BackingField: {fileID: -417910786, guid: 2a42752aac3fa8744acd5e15c8c1bfbb, type: 3}
+    <Weight>k__BackingField: 1
