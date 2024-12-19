@@ -5,10 +5,10 @@ using UnityEngine;
 
 namespace EntityDrawers.Humanoid
 {
-	public class HumanoidBodyDrawer : HumanoidDrawer
+	public class BodyDrawerBase : DrawerBase
 	{
-		private static readonly int LegsBlendTreeX = Animator.StringToHash("X");
-		private static readonly int LegsBlendTreeY = Animator.StringToHash("Y");
+		private static readonly int _legsBlendTreeX = Animator.StringToHash("X");
+		private static readonly int _legsBlendTreeY = Animator.StringToHash("Y");
 
 		[SerializeField] private SpriteRenderer headRenderer;
 		[SerializeField] private SpriteRenderer bodyRenderer;
@@ -34,53 +34,38 @@ namespace EntityDrawers.Humanoid
 		private Vector2 _moveDirection;
 		private float _currentRotateDegrees;
 
-		public void Rotate(float degrees)
+		public override void Rotate(float degrees)
 		{
 			// Drawer
 			var newRotation = HumanoidRotationsEnum.DOWN;
 
 			_currentRotateDegrees = degrees;
 
-			switch (degrees)
+			newRotation = degrees switch
 			{
 				//Down
-				case (> -112.5f and < -67.5f):
-					newRotation = HumanoidRotationsEnum.DOWN;
-					break;
+				> -112.5f and < -67.5f => HumanoidRotationsEnum.DOWN,
 				//Down_Right
-				case (> -67.5f and < -22.5f):
-					newRotation = HumanoidRotationsEnum.DOWN_RIGHT;
-					break;
+				> -67.5f and < -22.5f => HumanoidRotationsEnum.DOWN_RIGHT,
 				//Right
-				case (> -22.5f and < 22.5f):
-					newRotation = HumanoidRotationsEnum.RIGHT;
-					break;
+				> -22.5f and < 22.5f => HumanoidRotationsEnum.RIGHT,
 				//Right_Up
-				case (> 22.5f and < 67.5f):
-					newRotation = HumanoidRotationsEnum.RIGHT_UP;
-					break;
+				> 22.5f and < 67.5f => HumanoidRotationsEnum.RIGHT_UP,
 				//Up
-				case (> 67.5f and < 112.5f):
-					newRotation = HumanoidRotationsEnum.UP;
-					break;
+				> 67.5f and < 112.5f => HumanoidRotationsEnum.UP,
 				//Up_Left
-				case (> 112.5f and < 157.5f):
-					newRotation = HumanoidRotationsEnum.UP_LEFT;
-					break;
+				> 112.5f and < 157.5f => HumanoidRotationsEnum.UP_LEFT,
 				//Left
-				case (> 157.5f or < -157.5f):
-					newRotation = HumanoidRotationsEnum.LEFT;
-					break;
+				> 157.5f or < -157.5f => HumanoidRotationsEnum.LEFT,
 				//Left_Down
-				case (> -157.5f and < -112.5f):
-					newRotation = HumanoidRotationsEnum.LEFT_DOWN;
-					break;
-			}
+				> -157.5f and < -112.5f => HumanoidRotationsEnum.LEFT_DOWN,
+				_ => newRotation
+			};
 
 			Rotate(newRotation);
 		}
 
-		private void Rotate(HumanoidRotationsEnum rotation)
+		protected override void Rotate(HumanoidRotationsEnum rotation)
 		{
 			switch (rotation)
 			{
@@ -117,8 +102,8 @@ namespace EntityDrawers.Humanoid
 		{
 			headRenderer.sprite = rotationGroup.Head;
 			bodyRenderer.sprite = rotationGroup.Body;
-			legsAnimator.SetFloat(LegsBlendTreeX, _moveDirection.x);
-			legsAnimator.SetFloat(LegsBlendTreeY, _moveDirection.y);
+			legsAnimator.SetFloat(_legsBlendTreeX, _moveDirection.x);
+			legsAnimator.SetFloat(_legsBlendTreeY, _moveDirection.y);
 
 			if (_moveDirection.magnitude == 0)
 			{
@@ -134,20 +119,20 @@ namespace EntityDrawers.Humanoid
 			legsAnimator.speed = _runState ? 1f : 0.5f;
 		}
 
-		public void SetCurrentMovement(Vector2 movementVector, bool run)
+		public override void SetCurrentMovement(Vector2 movementVector, bool run)
 		{
 			SetMovementDirection(movementVector);
 			Rotate(_currentRotateDegrees);
 			SetRunState(run);
 		}
 
-		public void SetRunState(bool state)
+		public override void SetRunState(bool state)
 		{
 			_runState = state;
 			CheckAnimatorSpeed();
 		}
 
-		public void GlowEffect(float time)
+		public override void GlowEffect(float time)
 		{
 			var glowSeq = DOTween.Sequence();
 			glowSeq.Append(headRenderer.DOColor(glowColor, time));
@@ -163,7 +148,7 @@ namespace EntityDrawers.Humanoid
 			};
 		}
 
-		public void SetMovementDirection(Vector2 movementVector)
+		public override void SetMovementDirection(Vector2 movementVector)
 		{
 			_moveDirection = movementVector;
 		}

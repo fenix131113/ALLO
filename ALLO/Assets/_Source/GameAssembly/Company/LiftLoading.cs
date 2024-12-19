@@ -34,6 +34,9 @@ namespace Company
             FirstUpgrade = first;
             SecondUpgrade = second;
             ThirdUpgrade = third;
+            
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
 
         public static void LoadNextLevel()

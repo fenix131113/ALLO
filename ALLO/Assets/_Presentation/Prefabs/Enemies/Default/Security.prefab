@@ -83,7 +83,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 1
   m_SpriteSortPoint: 0
 --- !u!95 &6977471933420903160
 Animator:
@@ -465,7 +465,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 1
   m_SpriteSortPoint: 0
 --- !u!1 &3064031110573693880
 GameObject:
@@ -598,8 +598,8 @@ MonoBehaviour:
   <Owner>k__BackingField: 1
   ammoBoxPrefab: {fileID: 8414387051592902386, guid: d34dae8ae3747634685b749503dbe971, type: 3}
   firstAidPrefab: {fileID: 8029918169034736024, guid: 620711f68920a0c49bb7c32c41dc4ec5, type: 3}
-  bodyDrawer: {fileID: 6146786374674693558}
-  handsDrawer: {fileID: 914365007515306734}
+  bodyDrawerBase: {fileID: 6146786374674693558}
+  handsDrawerBase: {fileID: 914365007515306734}
   extraLifeModule: {fileID: 11400000, guid: 46bc70be33eff1d499ec24ecd21130c0, type: 2}
   damageZone: {fileID: 8966868292732761777}
   fleshParticles: {fileID: 7368626249262900244}
@@ -1073,7 +1073,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 1
   m_SpriteSortPoint: 0
 --- !u!1 &6323410799140153201
 GameObject:
@@ -1247,7 +1247,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 1
   m_SpriteSortPoint: 0
 --- !u!1 &6935329840086390248
 GameObject:
@@ -1362,7 +1362,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 1
   m_SpriteSortPoint: 0
 --- !u!1 &9200453468669813067
 GameObject:
@@ -1446,7 +1446,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 1
   m_SpriteSortPoint: 0
 --- !u!1001 &8612362061423259926
 PrefabInstance:

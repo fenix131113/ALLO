@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
+using EntityDrawers.Humanoid.Data;
 using UnityEngine;
 
 namespace EntityDrawers.Humanoid
 {
-	public class HumanoidHandsDrawer : HumanoidDrawer
+	public class HandsDrawerBase : DrawerBase
 	{
 		[SerializeField] private SpriteRenderer rightHand;
 		[SerializeField] private SpriteRenderer leftHand;
@@ -108,6 +109,36 @@ namespace EntityDrawers.Humanoid
 		{
 			foreach (var item in _handsItems)
 				item.sortingOrder = order;
+		}
+
+		public override void GlowEffect(float time)
+		{
+			throw new System.NotImplementedException();
+		}
+
+		protected override void Rotate(HumanoidRotationsEnum rotation)
+		{
+			throw new System.NotImplementedException();
+		}
+
+		public override void Rotate(float degrees)
+		{
+			throw new System.NotImplementedException();
+		}
+
+		public override void SetCurrentMovement(Vector2 movementVector, bool run)
+		{
+			throw new System.NotImplementedException();
+		}
+
+		public override void SetRunState(bool state)
+		{
+			throw new System.NotImplementedException();
+		}
+
+		public override void SetMovementDirection(Vector2 movementVector)
+		{
+			throw new System.NotImplementedException();
 		}
 	}
 }

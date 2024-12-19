@@ -5106,7 +5106,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 1
   m_SpriteSortPoint: 0
 --- !u!95 &6907876181090191671
 Animator:
@@ -5212,7 +5212,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 1
   m_SpriteSortPoint: 0
 --- !u!1 &2001419683938332546
 GameObject:
@@ -5489,8 +5489,8 @@ MonoBehaviour:
   <Owner>k__BackingField: 1
   ammoBoxPrefab: {fileID: 8414387051592902386, guid: d34dae8ae3747634685b749503dbe971, type: 3}
   firstAidPrefab: {fileID: 8029918169034736024, guid: 620711f68920a0c49bb7c32c41dc4ec5, type: 3}
-  bodyDrawer: {fileID: 6316501794229289173}
-  handsDrawer: {fileID: 7924710144537733069}
+  bodyDrawerBase: {fileID: 6316501794229289173}
+  handsDrawerBase: {fileID: 7924710144537733069}
   extraLifeModule: {fileID: 11400000, guid: 46bc70be33eff1d499ec24ecd21130c0, type: 2}
   damageZone: {fileID: 8779407750528608004}
   fleshParticles: {fileID: 8683658097662034045}
@@ -5655,7 +5655,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.70710784, w: 0.70710576}
   m_LocalPosition: {x: 0.346, y: 0.03, z: -0.011634101}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalScale: {x: 2.21595, y: 2.21595, z: 2.21595}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 863280290289642898}
@@ -5710,7 +5710,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 1
   m_SpriteSortPoint: 0
 --- !u!95 &4597424113147629978
 Animator:
@@ -5815,7 +5815,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 1
   m_SpriteSortPoint: 0
 --- !u!1 &5698920347690324668
 GameObject:
@@ -11126,7 +11126,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 1
   m_SpriteSortPoint: 0
 --- !u!1 &8726566608189283671
 GameObject:
@@ -11241,7 +11241,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 1
   m_SpriteSortPoint: 0
 --- !u!1 &9074228000174121131
 GameObject:
@@ -11325,7 +11325,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 1
   m_SpriteSortPoint: 0
 --- !u!1 &9170861506806485355
 GameObject:

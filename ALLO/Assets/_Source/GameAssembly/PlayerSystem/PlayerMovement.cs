@@ -45,12 +45,10 @@ namespace PlayerSystem
 
             CurrentRunState = run;
 
-            _playerMutation.CurrentPlayer.BodyDrawer.SetRunState(run);
-
-
             CurrentMovementVector = movementVector.normalized *
                                     (run ? GetUpgradedRunSpeed() : GetUpgradedWalkSpeed());
-            _playerMutation.CurrentPlayer.Rb.velocity = CurrentMovementVector;
+            _playerMutation.CurrentPlayer.MovePlayer(CurrentMovementVector, CurrentRunState,
+                _playerMutation.CurrentPlayer != _playerMutation.DefaultPlayer);
 
             return;
 

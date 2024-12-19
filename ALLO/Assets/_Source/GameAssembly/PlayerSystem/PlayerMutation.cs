@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using EntityDrawers;
 using UnityEngine;
 using Zenject;
 
@@ -15,6 +16,8 @@ namespace PlayerSystem
         public Player CurrentPlayer { get; private set; }
         public int ScoredKills{ get; private set; }
 
+        private MutantDrawer _mutantDrawer;
+        
         public event Action OnPlayerKillsChanged;
         public event Action OnMutated;
         public event Action OnDead;
@@ -22,9 +25,10 @@ namespace PlayerSystem
         public event Action OnCompanyLevelComplete;
 
         [Inject]
-        private void Construct(Player startPlayer)
+        private void Construct(Player startPlayer, MutantDrawer mutantDrawer)
         {
             CurrentPlayer = startPlayer;
+            _mutantDrawer = mutantDrawer;
         }
 
         private void Awake() => Bind();
@@ -39,6 +43,7 @@ namespace PlayerSystem
             CurrentPlayer.gameObject.SetActive(true);
             CurrentPlayer.OnMutated();
             OnMutated?.Invoke();
+            OnHealthChanged?.Invoke();
         }
 
         public void SwitchToMutant()
@@ -46,7 +51,10 @@ namespace PlayerSystem
             if (CurrentPlayer != DefaultPlayer || ScoredKills != KillsToMutation)
                 return;
             
+            MutatedPlayer.AddHealth(DefaultPlayer.Health + 5);
             SetPlayer(MutatedPlayer);
+            _mutantDrawer.SetAttackState(true);
+            _mutantDrawer.ResetHitEffect();
             ScoredKills = 0;
             OnPlayerKillsChanged?.Invoke();
             StartCoroutine(ReturnToDefaultPlayer());

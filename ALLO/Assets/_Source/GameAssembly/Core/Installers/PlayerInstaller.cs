@@ -1,4 +1,4 @@
-﻿using Company;
+﻿using EntityDrawers;
 using GameMenuSystem;
 using PlayerSystem;
 using PlayerSystem.Attack;
@@ -89,6 +89,11 @@ namespace Core.Installers
                 .NonLazy();
 
             Container.Bind<PlayerThrowable>()
+                .FromComponentInHierarchy()
+                .AsSingle()
+                .NonLazy();
+
+            Container.Bind<MutantDrawer>()
                 .FromComponentInHierarchy()
                 .AsSingle()
                 .NonLazy();

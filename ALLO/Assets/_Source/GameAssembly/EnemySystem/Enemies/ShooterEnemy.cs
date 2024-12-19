@@ -13,8 +13,8 @@ namespace EnemySystem.Enemies
     {
         [SerializeField] private FirearmsDataSO weaponData;
         [SerializeField] private Transform shootPoint;
-        [SerializeField] private HumanoidBodyDrawer bodyDrawer;
-        [SerializeField] private HumanoidHandsDrawer handsDrawer;
+        [SerializeField] private BodyDrawerBase bodyDrawerBase;
+        [SerializeField] private HandsDrawerBase handsDrawerBase;
         [SerializeField] private ExtraLifeModule extraLifeModule;
         [SerializeField] private ParticleSystem fleshParticles;
         [SerializeField] private EnemyVision escapeZoneVision;
@@ -55,7 +55,7 @@ namespace EnemySystem.Enemies
                 _walkToPosition = null;
             }
 
-            bodyDrawer.SetCurrentMovement(AiPath.velocity, true);
+            bodyDrawerBase.SetCurrentMovement(AiPath.velocity, true);
 
             if ((Vision.CanSeeTarget && escapeZoneVision.CanSeeTarget) || _walkToPosition == null)
                 return;
@@ -64,8 +64,8 @@ namespace EnemySystem.Enemies
 
             var lookDegrees = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
 
-            bodyDrawer.Rotate(lookDegrees);
-            handsDrawer.SetLookTarget((Vector3)_walkToPosition);
+            bodyDrawerBase.Rotate(lookDegrees);
+            handsDrawerBase.SetLookTarget((Vector3)_walkToPosition);
         }
 
         protected override void OnTargetSpotted(Transform target)
@@ -77,7 +77,7 @@ namespace EnemySystem.Enemies
         protected override void OnTargetLost(Transform target)
         {
             if (_walkToPosition != null)
-                handsDrawer.SetLookTarget((Vector3)_walkToPosition);
+                handsDrawerBase.SetLookTarget((Vector3)_walkToPosition);
         }
 
         protected override void OnSeeTarget(Transform target)
@@ -100,7 +100,7 @@ namespace EnemySystem.Enemies
             direction.Normalize();
             direction *= escapeZoneVisionCollider.radius + escapeOffset;
             SetDestination(target.position + direction);
-            handsDrawer.SetLookTarget(target);
+            handsDrawerBase.SetLookTarget(target);
             LookAtTarget();
         }
 
@@ -120,17 +120,17 @@ namespace EnemySystem.Enemies
 
             var lookDegrees = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
 
-            handsDrawer.CenterPoint.rotation = Quaternion.Euler(0, 0, lookDegrees);
+            handsDrawerBase.CenterPoint.rotation = Quaternion.Euler(0, 0, lookDegrees);
 
-            bodyDrawer.SetCurrentMovement(AiPath.velocity, true);
-            bodyDrawer.Rotate(lookDegrees);
+            bodyDrawerBase.SetCurrentMovement(AiPath.velocity, true);
+            bodyDrawerBase.Rotate(lookDegrees);
         }
 
         public override void TakeDamage(int damage)
         {
             damage = Mathf.Clamp(damage, 0, Health);
             Health -= damage;
-            bodyDrawer.GlowEffect(hitGlowTime);
+            bodyDrawerBase.GlowEffect(hitGlowTime);
 
             switch (Health)
             {
@@ -150,7 +150,7 @@ namespace EnemySystem.Enemies
                 return;
 
             //Spawn bullet with spread applied
-            var finalRotation = handsDrawer.CenterPoint.rotation.eulerAngles + Vector3.forward *
+            var finalRotation = handsDrawerBase.CenterPoint.rotation.eulerAngles + Vector3.forward *
                 Random.Range(-shootSpread, shootSpread);
 
             var bullet = Instantiate(weaponData.BulletPrefab, shootPoint.position, Quaternion.Euler(finalRotation));

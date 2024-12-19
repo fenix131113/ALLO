@@ -88,7 +88,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 1
   m_SpriteSortPoint: 0
 --- !u!1 &922004516435792562
 GameObject:
@@ -231,7 +231,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 1
   m_SpriteSortPoint: 0
 --- !u!1 &1387979645979538956
 GameObject:
@@ -346,7 +346,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 1
   m_SpriteSortPoint: 0
 --- !u!1 &2307617054823476306
 GameObject:
@@ -430,7 +430,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 1
   m_SpriteSortPoint: 0
 --- !u!1 &3502115351995737166
 GameObject:
@@ -514,7 +514,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 1
   m_SpriteSortPoint: 0
 --- !u!1 &3770019746643641096
 GameObject:
@@ -598,7 +598,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 1
   m_SpriteSortPoint: 0
 --- !u!1 &4178244421524735145
 GameObject:
@@ -691,7 +691,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94b7f5210ffc4c628a32b0a304c70afc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  instantDamage: 0
+  instantDamage: 1
   deactivatingByTime: 0
   deactivationTime: 0
   damageOwner: 0
@@ -805,7 +805,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 1
   m_SpriteSortPoint: 0
 --- !u!1 &5194402864837923559
 GameObject:
@@ -889,7 +889,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 1
   m_SpriteSortPoint: 0
 --- !u!1 &5374662644270566943
 GameObject:
@@ -972,12 +972,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51bc47c50c614db4dade1a80f3749cca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Health>k__BackingField: 20
-  <MaxHealth>k__BackingField: 20
+  <Health>k__BackingField: 5
+  <MaxHealth>k__BackingField: 5
   <Owner>k__BackingField: 0
   <Rb>k__BackingField: {fileID: 5655168584764114801}
   <LookRotationPivot>k__BackingField: {fileID: 1791065880407555310}
-  <BodyDrawer>k__BackingField: {fileID: 7466378792248432705}
+  <BodyDrawerBase>k__BackingField: {fileID: 7466378792248432705}
   <ShootPoint>k__BackingField: {fileID: 7107519922681956335}
   hitGlowTime: 0.1
 --- !u!114 &7065268553094033886
@@ -1292,7 +1292,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 1
   m_SpriteSortPoint: 0
 --- !u!95 &1394651783187416145
 Animator:
@@ -1397,7 +1397,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 1
   m_SpriteSortPoint: 0
 --- !u!1 &6332937024084969951
 GameObject:
@@ -1605,7 +1605,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 1
   m_SpriteSortPoint: 0
 --- !u!95 &8248521713890321728
 Animator:
@@ -1710,5 +1710,5 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 1
   m_SpriteSortPoint: 0

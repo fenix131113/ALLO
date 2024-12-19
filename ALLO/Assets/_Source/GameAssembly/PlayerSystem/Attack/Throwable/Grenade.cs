@@ -27,8 +27,6 @@ namespace PlayerSystem.Attack.Throwable
 
         private void Explode()
         {
-            //TODO: Logic
-
             var damageableList = Physics2D.CircleCastAll(transform.position, explodeRadius, transform.up)
                 .Select(find =>
                 {

@@ -5071,8 +5071,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.70710784, w: 0.70710576}
   m_LocalPosition: {x: 0.346, y: 0.03, z: -0.011634101}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2.5, y: 2.5, z: 2.5}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 7496881394482947225}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
@@ -10535,7 +10535,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 1
   m_SpriteSortPoint: 0
 --- !u!95 &8171477394058613065
 Animator:
@@ -10841,7 +10841,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 1
   m_SpriteSortPoint: 0
 --- !u!1 &8052859175297504840
 GameObject:
@@ -10956,7 +10956,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 1
   m_SpriteSortPoint: 0
 --- !u!1 &8419853048486897650
 GameObject:
@@ -11092,8 +11092,8 @@ MonoBehaviour:
   <Owner>k__BackingField: 1
   weaponData: {fileID: 11400000, guid: aee417d4e3b6643479fc9da3f822daa2, type: 2}
   shootPoint: {fileID: 7739353497715136596}
-  bodyDrawer: {fileID: 3664578480389918162}
-  handsDrawer: {fileID: 3072109042574164890}
+  bodyDrawerBase: {fileID: 3664578480389918162}
+  handsDrawerBase: {fileID: 3072109042574164890}
   extraLifeModule: {fileID: 11400000, guid: 46bc70be33eff1d499ec24ecd21130c0, type: 2}
   fleshParticles: {fileID: 2808506776656109710}
   escapeZoneVision: {fileID: 200869510614272377}
@@ -11315,7 +11315,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 1
   m_SpriteSortPoint: 0
 --- !u!1 &8613971383712631761
 GameObject:
@@ -11399,5 +11399,5 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 1
   m_SpriteSortPoint: 0

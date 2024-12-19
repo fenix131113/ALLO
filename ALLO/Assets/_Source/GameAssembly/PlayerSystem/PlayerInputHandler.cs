@@ -1,3 +1,4 @@
+using EntityDrawers;
 using GameMenuSystem;
 using PlayerSystem.Attack;
 using PlayerSystem.Attack.Throwable;
@@ -14,12 +15,14 @@ namespace PlayerSystem
         private readonly PlayerAttack _playerAttack;
         private readonly PlayerWeaponsData _playerWeaponsData;
         private readonly PlayerThrowable _playerThrowable;
+        private readonly MutantDrawer _mutantDrawer;
 
         private bool _isReadPaused;
 
         [Inject]
         public PlayerInputHandler(PlayerMovement playerMovement, PlayerMutation playerMutation, GameMenu gameMenu,
-            PlayerAttack playerAttack, PlayerWeaponsData playerWeaponsData, PlayerThrowable playerThrowable)
+            PlayerAttack playerAttack, PlayerWeaponsData playerWeaponsData, PlayerThrowable playerThrowable,
+            MutantDrawer mutantDrawer)
         {
             _playerMovement = playerMovement;
             _playerMutation = playerMutation;
@@ -27,6 +30,7 @@ namespace PlayerSystem
             _playerAttack = playerAttack;
             _playerWeaponsData = playerWeaponsData;
             _playerThrowable = playerThrowable;
+            _mutantDrawer = mutantDrawer;
         }
 
         public void Tick()
@@ -40,9 +44,13 @@ namespace PlayerSystem
             ReadMutationInput();
             ReadDashMovementInput();
             ReadAttackInput();
-            ReadReloadInput();
-            ReadScrollInput();
             ReadThrowInput();
+
+            if (_playerMutation.CurrentPlayer != _playerMutation.DefaultPlayer)
+                return;
+
+            ReadScrollInput();
+            ReadReloadInput();
         }
 
         public void Initialize()
@@ -52,8 +60,13 @@ namespace PlayerSystem
 
         private void ReadThrowInput()
         {
-            if (Input.GetMouseButtonDown(1))
+            if (!Input.GetMouseButtonDown(1))
+                return;
+            
+            if (_playerMutation.CurrentPlayer == _playerMutation.DefaultPlayer)
                 _playerThrowable.Throw();
+            else
+                _mutantDrawer.Spit();
         }
 
         private void ReadScrollInput()

@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using EntityDrawers;
 using LevelGenerationSystem;
 using PlayerSystem;
 using PlayerSystem.Attack;
@@ -18,11 +19,12 @@ namespace Company
         private readonly PlayerUpgrade _playerUpgrade;
         private readonly PlayerAmmoContainer _playerAmmoContainer;
         private readonly PlayerThrowable _playerThrowable;
+        private readonly MutantDrawer _mutantDrawer;
 
         [Inject]
         public CompanyDataSaveLoader(CompanyInterLevelDataContainer companyData, PlayerWeaponsData playerWeaponsData,
             PlayerMutation playerMutation, LevelGeneration generation, PlayerUpgrade playerUpgrade,
-            PlayerAmmoContainer playerAmmoContainer, PlayerThrowable playerThrowable)
+            PlayerAmmoContainer playerAmmoContainer, PlayerThrowable playerThrowable, MutantDrawer mutantDrawer)
         {
             _companyData = companyData;
             _playerWeaponsData = playerWeaponsData;
@@ -31,6 +33,7 @@ namespace Company
             _playerUpgrade = playerUpgrade;
             _playerAmmoContainer = playerAmmoContainer;
             _playerThrowable = playerThrowable;
+            _mutantDrawer = mutantDrawer;
 
             ConstructLoad();
         }

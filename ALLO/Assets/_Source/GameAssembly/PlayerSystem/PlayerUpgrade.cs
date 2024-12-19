@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using EntityDrawers;
 using PlayerSystem.Attack.Shooting;
 using PlayerSystem.Data;
 using UnityEngine;
@@ -16,18 +17,21 @@ namespace PlayerSystem
         private readonly PlayerMutation _playerMutation;
         private readonly PlayerShoot _playerShoot;
         private readonly PlayerMovement _playerMovement;
+        private readonly MutantDrawer _mutantDrawer;
 
         public IReadOnlyDictionary<UpgradeType, int> CurrentUpgradesLevels => _currentUpgradesLevels;
 
         [Inject]
         public PlayerUpgrade(AllUpgradesConfigSO allUpgrades, PlayerUpgradesGenerator upgradesGenerator,
-            PlayerMutation playerMutation, PlayerShoot playerShoot, PlayerMovement playerMovement)
+            PlayerMutation playerMutation, PlayerShoot playerShoot, PlayerMovement playerMovement,
+            MutantDrawer mutantDrawer)
         {
             _allUpgrades = allUpgrades;
             _upgradesGenerator = upgradesGenerator;
             _playerMutation = playerMutation;
             _playerShoot = playerShoot;
             _playerMovement = playerMovement;
+            _mutantDrawer = mutantDrawer;
         }
 
         public void GenerateUpgrades(out UpgradesDataSO firstUpgrade, out UpgradesDataSO secondUpgrade,
@@ -76,6 +80,10 @@ namespace PlayerSystem
                 case UpgradeType.DASH:
                     if (TryUpgradeSingle(UpgradeType.DASH))
                         _playerMovement.UnlockDash();
+                    break;
+                case UpgradeType.SPIT:
+                    if (TryUpgradeSingle(UpgradeType.SPIT))
+                        _mutantDrawer.UnlockSpit();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(upgrade), upgrade, null);

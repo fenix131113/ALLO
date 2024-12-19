@@ -17,8 +17,8 @@ namespace EnemySystem.Enemies
 
         [SerializeField] private CollectableAmmoBox ammoBoxPrefab;
         [SerializeField] private CollectableFirstAid firstAidPrefab;
-        [SerializeField] private HumanoidBodyDrawer bodyDrawer;
-        [SerializeField] private HumanoidHandsDrawer handsDrawer;
+        [SerializeField] private BodyDrawerBase bodyDrawerBase;
+        [SerializeField] private HandsDrawerBase handsDrawerBase;
         [SerializeField] private ExtraLifeModule extraLifeModule;
         [SerializeField] private DamageZone damageZone;
         [SerializeField] private ParticleSystem fleshParticles;
@@ -57,7 +57,7 @@ namespace EnemySystem.Enemies
             if (AiPath.reachedEndOfPath && Vision.CanSeeTarget)
                 Attack();
 
-            bodyDrawer.SetCurrentMovement(AiPath.velocity, true);
+            bodyDrawerBase.SetCurrentMovement(AiPath.velocity, true);
 
             if (Vision.CanSeeTarget || _walkToPosition == null || _isAlwaysSeePlayer)
                 return;
@@ -66,8 +66,8 @@ namespace EnemySystem.Enemies
 
             var lookDegrees = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
 
-            bodyDrawer.Rotate(lookDegrees);
-            handsDrawer.SetLookTarget((Vector3)_walkToPosition);
+            bodyDrawerBase.Rotate(lookDegrees);
+            handsDrawerBase.SetLookTarget((Vector3)_walkToPosition);
         }
 
         public void SetIsAlwaysSeePlayer(bool state) => _isAlwaysSeePlayer = state;
@@ -75,7 +75,7 @@ namespace EnemySystem.Enemies
 
         protected override void OnTargetSpotted(Transform target)
         {
-            handsDrawer.SetLookTarget(target);
+            handsDrawerBase.SetLookTarget(target);
             LookAtTarget();
         }
 
@@ -86,7 +86,7 @@ namespace EnemySystem.Enemies
 
             _walkToPosition = target.position;
             SetDestination(target.position);
-            handsDrawer.SetLookTarget((Vector3)_walkToPosition);
+            handsDrawerBase.SetLookTarget((Vector3)_walkToPosition);
         }
 
         protected override void OnSeeTarget(Transform target)
@@ -116,21 +116,21 @@ namespace EnemySystem.Enemies
 
         private void LookAtTarget()
         {
-            Vector2 lookDirection = Vision.CurrentTarget.position - handsDrawer.CenterPoint.position;
+            Vector2 lookDirection = Vision.CurrentTarget.position - handsDrawerBase.CenterPoint.position;
 
             var lookDegrees = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
 
-            handsDrawer.CenterPoint.rotation = Quaternion.Euler(0, 0, lookDegrees);
+            handsDrawerBase.CenterPoint.rotation = Quaternion.Euler(0, 0, lookDegrees);
 
-            bodyDrawer.SetCurrentMovement(AiPath.velocity, true);
-            bodyDrawer.Rotate(lookDegrees);
+            bodyDrawerBase.SetCurrentMovement(AiPath.velocity, true);
+            bodyDrawerBase.Rotate(lookDegrees);
         }
 
         public override void TakeDamage(int damage)
         {
             damage = Mathf.Clamp(damage, 0, Health);
             Health -= damage;
-            bodyDrawer.GlowEffect(hitGlowTime);
+            bodyDrawerBase.GlowEffect(hitGlowTime);
 
             switch (Health)
             {

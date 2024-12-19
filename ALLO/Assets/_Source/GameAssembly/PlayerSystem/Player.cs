@@ -15,7 +15,7 @@ namespace PlayerSystem
 		[field: SerializeField] public DamageOwner Owner { get; private set; }
 		[field: SerializeField] public Rigidbody2D Rb { get; private set; }
 		[field: SerializeField] public Transform LookRotationPivot { get; private set; }
-		[field: SerializeField] public HumanoidBodyDrawer BodyDrawer { get; private set; }
+		[field: SerializeField] public DrawerBase BodyDrawerBase { get; private set; }
 		[field: SerializeField] public Transform ShootPoint { get; private set; }
 		
 		[SerializeField] private float hitGlowTime;
@@ -64,7 +64,7 @@ namespace PlayerSystem
 			
 			Health -= damage;
 			Health = Mathf.Clamp(Health, 0, MaxHealth);
-			BodyDrawer.GlowEffect(hitGlowTime);
+			BodyDrawerBase.GlowEffect(hitGlowTime);
 			OnThisPlayerHealthChanged?.Invoke();
 			
 			
@@ -73,5 +73,13 @@ namespace PlayerSystem
 		}
 
 		private void Die() => OnThisPlayerDead?.Invoke();
+
+		public void MovePlayer(Vector2 movement, bool run, bool moveWithAnimator = true)
+		{
+			Rb.velocity = movement;
+			
+			if(moveWithAnimator)
+				BodyDrawerBase.SetCurrentMovement(movement, run);
+		}
 	}
 }

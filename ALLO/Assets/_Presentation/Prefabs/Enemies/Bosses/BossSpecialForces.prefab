@@ -5420,7 +5420,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 1
   m_SpriteSortPoint: 0
 --- !u!1 &3549187613231468778
 GameObject:
@@ -5505,7 +5505,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 1
   m_SpriteSortPoint: 0
 --- !u!95 &8703172213954766162
 Animator:
@@ -5662,8 +5662,8 @@ MonoBehaviour:
   <Owner>k__BackingField: 1
   weaponData: {fileID: 11400000, guid: aee417d4e3b6643479fc9da3f822daa2, type: 2}
   shootPoint: {fileID: 8417254059662667229}
-  bodyDrawer: {fileID: 5047194979720844955}
-  handsDrawer: {fileID: 3183382062643458361}
+  bodyDrawerBase: {fileID: 5047194979720844955}
+  handsDrawerBase: {fileID: 3183382062643458361}
   extraLifeModule: {fileID: 11400000, guid: 46bc70be33eff1d499ec24ecd21130c0, type: 2}
   fleshParticles: {fileID: 7818488528493087222}
   escapeZoneVision: {fileID: 6990868428357912434}
@@ -5885,7 +5885,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 1
   m_SpriteSortPoint: 0
 --- !u!1 &5562618202315412638
 GameObject:
@@ -6137,7 +6137,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 1
   m_SpriteSortPoint: 0
 --- !u!1 &6439975988311687186
 GameObject:
@@ -11399,5 +11399,5 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 1
   m_SpriteSortPoint: 0

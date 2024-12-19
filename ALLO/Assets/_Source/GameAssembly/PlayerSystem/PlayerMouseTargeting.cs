@@ -46,8 +46,12 @@ namespace PlayerSystem
 
 		private void ChangeRotation()
 		{
-			_playerMutation.CurrentPlayer.BodyDrawer.Rotate(LookDegrees);
-			_playerMutation.CurrentPlayer.BodyDrawer.SetMovementDirection(_playerMovement.CurrentMovementVector.magnitude != 0 ? LookDirection : Vector2.zero);
+			if (_playerMutation.CurrentPlayer != _playerMutation.DefaultPlayer)
+				return;
+			
+			_playerMutation.CurrentPlayer.BodyDrawerBase.Rotate(LookDegrees);
+			_playerMutation.CurrentPlayer.BodyDrawerBase.SetMovementDirection(
+				_playerMovement.CurrentMovementVector.magnitude != 0 ? LookDirection : Vector2.zero);
 		}
 	}
 }
