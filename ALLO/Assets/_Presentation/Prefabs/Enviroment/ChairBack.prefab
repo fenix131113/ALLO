@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -165394708, guid: 2866a830120e8714b9433b4bcf72d3dd, type: 3}
+  m_Sprite: {fileID: -1769628898, guid: 283bf333633a72442b19172b489b7434, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -146,6 +146,10 @@ MonoBehaviour:
   currentRenderer: {fileID: 8188699813658206392}
   spritesList:
   - <Sprite>k__BackingField: {fileID: -1769628898, guid: 283bf333633a72442b19172b489b7434, type: 3}
-    <Weight>k__BackingField: 1
+    <Weight>k__BackingField: 10
   - <Sprite>k__BackingField: {fileID: -1957130655, guid: 283bf333633a72442b19172b489b7434, type: 3}
+    <Weight>k__BackingField: 10
+  - <Sprite>k__BackingField: {fileID: -2029425135, guid: 283bf333633a72442b19172b489b7434, type: 3}
+    <Weight>k__BackingField: 1
+  - <Sprite>k__BackingField: {fileID: 286083853, guid: 283bf333633a72442b19172b489b7434, type: 3}
     <Weight>k__BackingField: 1
