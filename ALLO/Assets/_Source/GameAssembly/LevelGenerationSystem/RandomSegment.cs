@@ -11,7 +11,7 @@ namespace LevelGenerationSystem
         [field: SerializeField] public LevelSegmentRandomGroup[] RightRandomGroup { get; private set; }
         [field: SerializeField] public LevelSegmentRandomGroup[] DownRandomGroup { get; private set; }
         [field: SerializeField] public LevelSegmentRandomGroup[] LeftRandomGroup { get; private set; }
-        [field: SerializeField] public LevelSegmentRandomGroup[] NonDoorsGorup { get; private set; }
+        [field: SerializeField] public LevelSegmentRandomGroup[] NonDoorsGroup { get; private set; }
 
         public void Generate(LevelSegmentRandomGroup[] randomGroup)
         {

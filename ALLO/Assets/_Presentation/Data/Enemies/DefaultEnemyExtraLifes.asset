@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d5649fd8adfc47cdac835c5394d727b3, type: 3}
-  m_Name: SecurityExtraLifes
+  m_Name: DefaultEnemyExtraLifes
   m_EditorClassIdentifier: 
   extraLifeGroups:
   - <ExtraLifeChance>k__BackingField: 0.25

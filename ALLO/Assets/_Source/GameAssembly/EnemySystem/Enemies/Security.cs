@@ -132,11 +132,16 @@ namespace EnemySystem.Enemies
             Health -= damage;
             bodyDrawer.GlowEffect(hitGlowTime);
 
-            if (extraLifeModule.ExtraLifeGroups.Count == _extraLifeUsed ||
-                !extraLifeModule.CanGetExtraLife(_extraLifeUsed))
-                Die();
-            else
-                _extraLifeUsed += 1;
+            switch (Health)
+            {
+                case 0 when (extraLifeModule.ExtraLifeGroups.Count == _extraLifeUsed ||
+                             !extraLifeModule.CanGetExtraLife(_extraLifeUsed)):
+                    Die();
+                    break;
+                case 0:
+                    _extraLifeUsed += 1;
+                    break;
+            }
         }
 
         private void Attack()

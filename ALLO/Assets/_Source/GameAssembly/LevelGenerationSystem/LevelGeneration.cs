@@ -56,7 +56,6 @@ namespace LevelGenerationSystem
             GenerateExit();
             GenerateCorridors();
             RandomizeSegments();
-            _pathFinder.Scan();
         }
 
         private void SelectRandomLevelColor()
@@ -228,10 +227,10 @@ namespace LevelGenerationSystem
         {
             foreach (var segmentPair in _grid.Where(segmentPair => segmentPair.Value.RandomSegment))
             {
-                segmentPair.Value.RandomSegment.Generate(segmentPair.Value.RandomSegment.NonDoorsGorup);
+                segmentPair.Value.RandomSegment.Generate(segmentPair.Value.RandomSegment.NonDoorsGroup);
 
                 var unconnected = segmentPair.Value.GetUnconnectedLocalSegmentsWithNonExist(_generationSettings);
-                segmentPair.Value.RandomSegment.Generate(segmentPair.Value.RandomSegment.NonDoorsGorup);
+                segmentPair.Value.RandomSegment.Generate(segmentPair.Value.RandomSegment.NonDoorsGroup);
 
                 foreach (var cell in unconnected)
                     switch (GetDirectionBySecondRoom(segmentPair.Key, cell))

@@ -24,17 +24,22 @@ namespace EnemySystem.Enemies
         [SerializeField] private int hitDamage;
         [SerializeField] private float shootCooldown;
         [SerializeField] private float hitGlowTime;
+        [SerializeField] private int ammoInClip;
+        [SerializeField] private float reloadTime;
 
         private PlayerAmmoContainer _playerAmmoContainer;
         private int _extraLifeUsed;
         private float _attackCooldownTimer;
         private bool _canShoot = true;
+        private bool _isReloading;
         private Vector3? _walkToPosition;
-
+        private int _ammoLeft;
+        
         private void Start()
         {
             AiPath.maxSpeed = Random.Range(AiPath.maxSpeed, AiPath.maxSpeed + 0.5f);
             BindAdditional();
+            _ammoLeft = ammoInClip;
         }
 
         private void Update()
@@ -127,15 +132,21 @@ namespace EnemySystem.Enemies
             Health -= damage;
             bodyDrawer.GlowEffect(hitGlowTime);
 
-            if (extraLifeModule.ExtraLifeGroups.Count == _extraLifeUsed || !extraLifeModule.CanGetExtraLife(_extraLifeUsed))
-                Die();
-            else
-                _extraLifeUsed += 1;
+            switch (Health)
+            {
+                case 0 when extraLifeModule.ExtraLifeGroups.Count == _extraLifeUsed ||
+                            !extraLifeModule.CanGetExtraLife(_extraLifeUsed):
+                    Die();
+                    break;
+                case 0:
+                    _extraLifeUsed += 1;
+                    break;
+            }
         }
 
         private void Shoot()
         {
-            if (!_canShoot)
+            if (!_canShoot || _isReloading)
                 return;
 
             //Spawn bullet with spread applied
@@ -144,9 +155,12 @@ namespace EnemySystem.Enemies
 
             var bullet = Instantiate(weaponData.BulletPrefab, shootPoint.position, Quaternion.Euler(finalRotation));
             bullet.SetDamageOwner(Owner);
-            bullet.SetDamage(weaponData.Damage);
-
+            bullet.SetDamage(hitDamage);
+            _ammoLeft--;
             StartCoroutine(ShootCooldown());
+
+            if (_ammoLeft == 0 && ammoInClip > 0)
+                StartCoroutine(ReloadCooldown());
         }
 
         private void BindAdditional() => escapeZoneVision.OnTargetSpotted += OnTargetInEscapeZone;
@@ -160,6 +174,16 @@ namespace EnemySystem.Enemies
             yield return new WaitForSeconds(shootCooldown);
 
             _canShoot = true;
+        }
+
+        private IEnumerator ReloadCooldown()
+        {
+            _isReloading = true;
+            
+            yield return new WaitForSeconds(reloadTime);
+
+            _ammoLeft = ammoInClip;
+            _isReloading = false;
         }
     }
 }

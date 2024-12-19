@@ -7,14 +7,19 @@ namespace PlayerSystem.Attack.Throwable
     {
         [SerializeField] private Grenade grenadePrefab;
         [SerializeField] private Transform throwPoint;
-        
+
+        //TODO: Move to container script
         public int GrenadesCount { get; private set; }
 
         public event Action OnThrowableCountChanged;
 
         public void Throw()
         {
+            if (GrenadesCount <= 0)
+                return;
+            
             Instantiate(grenadePrefab, transform.position, throwPoint.rotation);
+            GrenadesCount--;
         }
 
         public void IncreaseGrenadesCount()
