@@ -18,6 +18,8 @@ MonoBehaviour:
   <AmmoType>k__BackingField: 0
   <ShootCooldown>k__BackingField: 0.35
   <ReloadTime>k__BackingField: 1.5
-  <SpreadDegrees>k__BackingField: 12
+  <SpreadDegrees>k__BackingField: 5
   <MaxAmmoInClip>k__BackingField: 30
   <Damage>k__BackingField: 1
+  <IsFraction>k__BackingField: 0
+  <FractionCount>k__BackingField: 0

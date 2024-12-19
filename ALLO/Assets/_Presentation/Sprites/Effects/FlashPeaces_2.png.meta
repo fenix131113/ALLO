@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d1040c283d59ba944894cbadb19e6483
+guid: dcb8f7a1c16b0de48926aaf4dd18330e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -71,7 +71,7 @@ TextureImporter:
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 4
+    textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -123,13 +123,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: JuggernautBody_0
+      name: FlashPeaces_2_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 252
-        width: 56
-        height: 36
+        x: 9
+        y: 8
+        width: 14
+        height: 11
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,20 +137,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d699180285b600f42928d80fd2d2279d
-      internalID: -1896608146
+      spriteID: f865954b28e93694cbb2d7d48400c37b
+      internalID: -1738521227
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: JuggernautBody_1
+      name: FlashPeaces_2_1
       rect:
         serializedVersion: 2
-        x: 0
-        y: 216
-        width: 56
-        height: 36
+        x: 42
+        y: 7
+        width: 13
+        height: 14
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -158,20 +158,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fa94e6d3bdf7509488fa52ee5b8bb440
-      internalID: 725344549
+      spriteID: 5c72deb56cf73e34499df946efbd37cf
+      internalID: -1920994755
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: JuggernautBody_2
+      name: FlashPeaces_2_2
       rect:
         serializedVersion: 2
-        x: 0
-        y: 180
-        width: 56
-        height: 36
+        x: 74
+        y: 7
+        width: 17
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -179,20 +179,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 95b26f0b8b6699348825a1ab5e6ee557
-      internalID: -1237392328
+      spriteID: 7bdd80bf41b673843ada727ff3c5668c
+      internalID: 244811407
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: JuggernautBody_3
+      name: FlashPeaces_2_3
       rect:
         serializedVersion: 2
-        x: 0
-        y: 144
-        width: 56
-        height: 36
+        x: 102
+        y: 6
+        width: 20
+        height: 10
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -200,92 +200,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 87fc1e3be340d1545b707a332d6096b6
-      internalID: 1399571405
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: JuggernautBody_4
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 108
-        width: 56
-        height: 36
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b9a2cea9b91455441b4e5f9ab42444ff
-      internalID: -637483190
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: JuggernautBody_5
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 72
-        width: 56
-        height: 36
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e93068e7ff43e834092f6dd59334f604
-      internalID: 1421472648
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: JuggernautBody_6
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 36
-        width: 56
-        height: 36
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4b81b435148f5d94d948e3e73ac9d711
-      internalID: -1140328273
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: JuggernautBody_7
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 56
-        height: 36
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e8c6861152f410f4e953bebda9b0f8f3
-      internalID: -1743271473
+      spriteID: 540bcc9d715d8164884d440c0af1bccb
+      internalID: 201595710
       vertices: []
       indices: 
       edges: []
@@ -301,14 +217,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      JuggernautBody_0: -1896608146
-      JuggernautBody_1: 725344549
-      JuggernautBody_2: -1237392328
-      JuggernautBody_3: 1399571405
-      JuggernautBody_4: -637483190
-      JuggernautBody_5: 1421472648
-      JuggernautBody_6: -1140328273
-      JuggernautBody_7: -1743271473
+      FlashPeaces_2_0: -1738521227
+      FlashPeaces_2_1: -1920994755
+      FlashPeaces_2_2: 244811407
+      FlashPeaces_2_3: 201595710
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

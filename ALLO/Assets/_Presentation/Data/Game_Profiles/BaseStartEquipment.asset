@@ -16,4 +16,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 05f4633b546a1bc458c827c9b23b67bc, type: 2}
   - {fileID: 11400000, guid: 15f2c675f55d8e84da00294993a8a380, type: 2}
   - {fileID: 11400000, guid: d750ef8db9d61c5498171a1ce7ada0b3, type: 2}
-  <StartNineMMAmmo>k__BackingField: 25
+  <StartNineMMAmmo>k__BackingField: 500

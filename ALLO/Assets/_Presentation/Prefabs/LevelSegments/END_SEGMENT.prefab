@@ -330,7 +330,7 @@ SpriteRenderer:
   m_Size: {x: 10, y: 10}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &6175819133806870674
@@ -610,6 +610,7 @@ GameObject:
   - component: {fileID: 1182452805613637025}
   - component: {fileID: 7344038880005019269}
   - component: {fileID: 7479291918491188789}
+  - component: {fileID: 7120505111996346426}
   m_Layer: 0
   m_Name: END_SEGMENT
   m_TagString: Untagged
@@ -698,6 +699,21 @@ MonoBehaviour:
   - {fileID: 5640849633348644228}
   - {fileID: 4652604546126319353}
   - {fileID: 6773530133583760211}
+--- !u!114 &7120505111996346426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7672933745802162275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac871d3dac014037ba0da2fc8c62f504, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activateWhenDoorDown: []
+  activateWhenDoorLeft: []
+  activateWhenDoorUp: []
 --- !u!1 &8929674264426821192
 GameObject:
   m_ObjectHideFlags: 0
