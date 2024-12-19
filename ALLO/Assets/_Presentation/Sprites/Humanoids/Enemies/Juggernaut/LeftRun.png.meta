@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2866a830120e8714b9433b4bcf72d3dd
+guid: 1237a61a806ae8645ab83f0f9da6c0cf
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 48
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -107,7 +107,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
-    buildTarget: Windows Store Apps
+    buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -123,190 +123,169 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Tables_chairs_0
+      name: LeftRun_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 92
-        width: 77
-        height: 64
+        x: 0
+        y: 0
+        width: 36
+        height: 50
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d6f13b78a52b66d4895644f1d352b76a
-      internalID: -593437986
+      spriteID: 2a66230a1358e4d4b85d19b91c682ffc
+      internalID: 26772085
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tables_chairs_1
+      name: LeftRun_1
       rect:
         serializedVersion: 2
-        x: 80
-        y: 92
-        width: 77
-        height: 64
+        x: 36
+        y: 0
+        width: 36
+        height: 50
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4892ebc588db88145a3101a97821f178
-      internalID: -651048302
+      spriteID: ad850ce176e8c1549a105d91afb29fba
+      internalID: 1185709314
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tables_chairs_2
+      name: LeftRun_2
       rect:
         serializedVersion: 2
-        x: 158
-        y: 79
-        width: 41
-        height: 77
-      alignment: 9
-      pivot: {x: 0.49566686, y: 0.9452582}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 200afe9f4228bc1468f771c7db4e7480
-      internalID: -1678956899
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Tables_chairs_3
-      rect:
-        serializedVersion: 2
-        x: 200
-        y: 113
-        width: 33
-        height: 43
+        x: 72
+        y: 0
+        width: 36
+        height: 50
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7443d14cc97e73a46b0fe3815e07033c
-      internalID: -1962047124
+      spriteID: 7585380dc58bf8e4ca26a35128d07515
+      internalID: 1708221241
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tables_chairs_4
+      name: LeftRun_3
       rect:
         serializedVersion: 2
-        x: 234
-        y: 113
-        width: 26
-        height: 43
+        x: 108
+        y: 0
+        width: 36
+        height: 50
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 688d2c264d6ab134d94d8c6cfdb77cd9
-      internalID: 988378588
+      spriteID: 098da411bedc8ef4493eac7a66d9dae5
+      internalID: -297899895
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tables_chairs_5
+      name: LeftRun_4
       rect:
         serializedVersion: 2
-        x: 261
-        y: 113
-        width: 33
-        height: 43
+        x: 144
+        y: 0
+        width: 36
+        height: 50
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6905b154fe70f604a9d8562a71325cd7
-      internalID: -165394708
+      spriteID: 878d38d5098c3154d8dad3b530700ace
+      internalID: -1952401758
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tables_chairs_6
+      name: LeftRun_5
       rect:
         serializedVersion: 2
-        x: 1
-        y: 14
-        width: 77
-        height: 64
+        x: 180
+        y: 0
+        width: 36
+        height: 50
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ef5b6faaf43b4ed45a374070daf1fd0a
-      internalID: -2102302883
+      spriteID: 108ba5cf9682596458bde33e41bceac4
+      internalID: -705048503
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tables_chairs_7
+      name: LeftRun_6
       rect:
         serializedVersion: 2
-        x: 80
-        y: 14
-        width: 77
-        height: 64
+        x: 216
+        y: 0
+        width: 36
+        height: 50
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 47abc5dac46e78a4ea6db6fb4b554ece
-      internalID: 85132890
+      spriteID: fec2c2df98083254989ae1558cbed589
+      internalID: -55982873
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Tables_chairs_8
+      name: LeftRun_7
       rect:
         serializedVersion: 2
-        x: 158
-        y: 1
-        width: 41
-        height: 77
-      alignment: 9
-      pivot: {x: 0.47833624, y: 0.95217955}
+        x: 252
+        y: 0
+        width: 36
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2a1c4ba7c1b4dd447b813234a3d8de29
-      internalID: -2041241025
+      spriteID: f4ec1546d4565f54aaa35169d5e1f528
+      internalID: -1196250767
       vertices: []
       indices: 
       edges: []
@@ -322,15 +301,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Tables_chairs_0: -593437986
-      Tables_chairs_1: -651048302
-      Tables_chairs_2: -1678956899
-      Tables_chairs_3: -1962047124
-      Tables_chairs_4: 988378588
-      Tables_chairs_5: -165394708
-      Tables_chairs_6: -2102302883
-      Tables_chairs_7: 85132890
-      Tables_chairs_8: -2041241025
+      LeftRun_0: 26772085
+      LeftRun_1: 1185709314
+      LeftRun_2: 1708221241
+      LeftRun_3: -297899895
+      LeftRun_4: -1952401758
+      LeftRun_5: -705048503
+      LeftRun_6: -55982873
+      LeftRun_7: -1196250767
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
