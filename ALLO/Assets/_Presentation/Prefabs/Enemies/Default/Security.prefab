@@ -333,7 +333,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1.1089759
+  m_Radius: 1.26
 --- !u!60 &680412545142588049
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -615,6 +615,10 @@ MonoBehaviour:
   hitDamage: 1
   attackCooldown: 1
   hitGlowTime: 0.1
+  notifyLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  notifyRadius: 3
 --- !u!70 &675589751519103248
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

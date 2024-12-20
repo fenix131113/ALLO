@@ -859,6 +859,10 @@ MonoBehaviour:
   hitGlowTime: 0.1
   ammoInClip: 0
   reloadTime: 0
+  notifyLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  notifyRadius: 3
 --- !u!114 &9011791199071223377
 MonoBehaviour:
   m_ObjectHideFlags: 0

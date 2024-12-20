@@ -5506,6 +5506,10 @@ MonoBehaviour:
   hitDamage: 1
   attackCooldown: 1
   hitGlowTime: 0.1
+  notifyLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  notifyRadius: 3
 --- !u!70 &8835632918228667943
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

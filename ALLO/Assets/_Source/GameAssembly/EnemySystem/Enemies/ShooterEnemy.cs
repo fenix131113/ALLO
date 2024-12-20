@@ -29,7 +29,9 @@ namespace EnemySystem.Enemies
         [SerializeField] private float hitGlowTime;
         [SerializeField] private int ammoInClip;
         [SerializeField] private float reloadTime;
-        
+        [SerializeField] private LayerMask notifyLayer;
+        [SerializeField] private float notifyRadius;
+
         private int _extraLifeUsed;
         private float _attackCooldownTimer;
         private bool _canShoot = true;
@@ -37,9 +39,14 @@ namespace EnemySystem.Enemies
         private Vector3? _walkToPosition;
         private int _ammoLeft;
         private DiContainer _diContainer;
-        
+        private PlayerMutation _playerMutation;
+
         [Inject]
-        public void Construct(DiContainer diContainer) => _diContainer = diContainer;
+        public void Construct(DiContainer diContainer, PlayerMutation playerMutation)
+        {
+            _diContainer = diContainer;
+            _playerMutation = playerMutation;
+        }
 
         private void Start()
         {
@@ -76,6 +83,7 @@ namespace EnemySystem.Enemies
 
         protected override void OnTargetSpotted(Transform target)
         {
+            NotifyNeighbours();
             FollowDistanceTarget(target);
             escapeZoneVision.NativeSetTarget(target, false);
         }
@@ -120,12 +128,12 @@ namespace EnemySystem.Enemies
             fleshParticles.gameObject.transform.localScale = Vector3.one;
             Destroy(gameObject);
         }
-        
+
         private void GenerateDropObject()
         {
             var weightSum = DropGroups.Sum(item => item.Weight);
             var sortedGroups = DropGroups.OrderByDescending(item => item.Weight).ToList();
-            
+
             foreach (var group in sortedGroups)
             {
                 if (Random.Range(0, weightSum + 1) <= group.Weight)
@@ -136,10 +144,26 @@ namespace EnemySystem.Enemies
                         Instantiate(group.DropObject, transform.position, Quaternion.identity));
                 return;
             }
-            
+
             if (sortedGroups[^1].DropObject)
                 _diContainer.InjectGameObject(
                     Instantiate(sortedGroups[^1].DropObject, transform.position, Quaternion.identity));
+        }
+
+        private void NotifyNeighbours()
+        {
+            var neighbours = Physics2D.OverlapCircleAll(transform.position, notifyRadius, notifyLayer);
+            var enemies = neighbours.Select(n =>
+            {
+                n.TryGetComponent(out AEnemy enemy);
+                return enemy;
+            }).ToList();
+
+            if (enemies.Count <= 0)
+                return;
+
+            foreach (var c in enemies.Where(c => !c.Vision.CanSeeTarget))
+                c.Vision.NativeSetTarget(Vision.CurrentTarget, false);
         }
 
         private void LookAtTarget()
@@ -156,6 +180,7 @@ namespace EnemySystem.Enemies
 
         public override void TakeDamage(int damage)
         {
+            Vision.NativeSetTarget(_playerMutation.CurrentPlayer.transform);
             damage = Mathf.Clamp(damage, 0, Health);
             Health -= damage;
             bodyDrawerBase.GlowEffect(hitGlowTime);
@@ -207,7 +232,7 @@ namespace EnemySystem.Enemies
         private IEnumerator ReloadCooldown()
         {
             _isReloading = true;
-            
+
             yield return new WaitForSeconds(reloadTime);
 
             _ammoLeft = ammoInClip;
