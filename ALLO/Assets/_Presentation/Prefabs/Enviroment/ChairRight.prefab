@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 8417269841223650479}
   - component: {fileID: 4895860325101818213}
   - component: {fileID: 2182346586583838548}
-  m_Layer: 8
+  - component: {fileID: 7047369108545894451}
+  m_Layer: 3
   m_Name: ChairRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,6 +168,51 @@ MonoBehaviour:
   maxHealth: 2
   breakParticle: {fileID: 720034009328534335}
   damageParticle: {fileID: 7614605810559093971}
+--- !u!61 &7047369108545894451
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8797081522296555577}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 128
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 895
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.5416667, y: 0.8958333}
+    newSize: {x: 0.74285716, y: 1.2285714}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.5416667, y: 0.8958333}
+  m_EdgeRadius: 0
 --- !u!1001 &5863256036112812685
 PrefabInstance:
   m_ObjectHideFlags: 0
