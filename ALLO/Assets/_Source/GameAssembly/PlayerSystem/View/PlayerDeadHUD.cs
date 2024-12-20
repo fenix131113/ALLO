@@ -58,7 +58,7 @@ namespace PlayerSystem.View
 		private static void RestartGame()
 		{
 			Time.timeScale = 1;
-			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+			SceneManager.LoadScene(4);
 		}
 
 		private void OnDestroy() => Expose();

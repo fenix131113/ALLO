@@ -4425,7 +4425,7 @@ MonoBehaviour:
   startBulletRect: {fileID: 329756433}
   bulletsHUD: {fileID: 1313292748}
   bulletsParent: {fileID: 1760713113}
-  sightPivot: {fileID: 0}
+  sightPivot: {fileID: 936838251}
   ammoLabel: {fileID: 95855959}
   ammoReloadFiller: {fileID: 84530803}
 --- !u!114 &349746077

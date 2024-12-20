@@ -3,7 +3,6 @@ using System.Linq;
 using DamageSystem.Data;
 using EntityDrawers.Humanoid;
 using PlayerSystem;
-using PlayerSystem.Attack.Shooting;
 using PlayerSystem.Attack.Shooting.Data;
 using UnityEngine;
 using Utils;

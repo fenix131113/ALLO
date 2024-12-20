@@ -61,8 +61,8 @@ namespace Company
             LoadWeapons();
 
             //Load players data
-            _playerMutation.DefaultPlayer.LoadData(_companyData.DefaultPlayerHealth);
-            _playerMutation.MutatedPlayer.LoadData(_companyData.MutatedPlayerHealth);
+            //_playerMutation.DefaultPlayer.LoadData(_companyData.DefaultPlayerHealth);
+            //_playerMutation.MutatedPlayer.LoadData(_companyData.MutatedPlayerHealth);
 
             // Load player upgrades (need to be after players data load always)
             _playerUpgrade.LoadUpgrades(_companyData.CurrentUpgradesLevels);
