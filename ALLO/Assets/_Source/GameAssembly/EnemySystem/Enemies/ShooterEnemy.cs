@@ -38,6 +38,7 @@ namespace EnemySystem.Enemies
         private bool _isReloading;
         private Vector3? _walkToPosition;
         private int _ammoLeft;
+        private bool _isNotified;
         private DiContainer _diContainer;
         private PlayerMutation _playerMutation;
 
@@ -83,13 +84,17 @@ namespace EnemySystem.Enemies
 
         protected override void OnTargetSpotted(Transform target)
         {
-            NotifyNeighbours();
+            if (!_isNotified)
+                NotifyNeighbours();
+            
             FollowDistanceTarget(target);
             escapeZoneVision.NativeSetTarget(target, false);
         }
 
         protected override void OnTargetLost(Transform target)
         {
+            _isNotified = false;
+            
             if (_walkToPosition != null)
                 handsDrawerBase.SetLookTarget((Vector3)_walkToPosition);
         }
@@ -155,6 +160,7 @@ namespace EnemySystem.Enemies
 
         private void NotifyNeighbours()
         {
+            _isNotified = true;
             var neighbours = Physics2D.OverlapCircleAll(transform.position, notifyRadius, notifyLayer);
             var enemies = neighbours.Select(n =>
             {
