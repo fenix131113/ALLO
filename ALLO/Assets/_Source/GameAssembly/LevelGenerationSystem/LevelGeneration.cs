@@ -184,7 +184,7 @@ namespace LevelGenerationSystem
             }
 
             var exitSegment = CreateLevelSegment(_generationSettings.EndSegment, exitData.Item1, exitData.Item2)
-                .GetComponent<ExitSegmentActivator>();
+                            .GetComponent<ExitSegmentActivator>();
             switch (exitDoorDirection)
             {
                 case DoorDirection.UP:
