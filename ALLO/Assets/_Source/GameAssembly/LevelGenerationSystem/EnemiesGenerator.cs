@@ -17,7 +17,7 @@ namespace LevelGenerationSystem
 
         public void Generate(int level)
         {
-            var selectedLeveling = enemiesLeveling.FirstOrDefault(leveling => leveling.Level <= level) ?? afterAllLevels;
+            var selectedLeveling = enemiesLeveling.FirstOrDefault(leveling => level <= leveling.Level) ?? afterAllLevels;
             
             if(selectedLeveling.Groups.Length == 0)
                 return;

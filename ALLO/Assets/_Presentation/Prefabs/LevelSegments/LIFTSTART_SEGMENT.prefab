@@ -137,6 +137,7 @@ MonoBehaviour:
   backGround: {fileID: 8468028398305935611}
   <RandomSegment>k__BackingField: {fileID: 1157564002285016702}
   <SegmentColorManager>k__BackingField: {fileID: 5824018661092051015}
+  <EnemiesGenerator>k__BackingField: {fileID: 0}
   upDoor: {fileID: 4283553936644948248}
   rightDoor: {fileID: 4283553936644948248}
   downDoor: {fileID: 4283553936644948248}
@@ -319,7 +320,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6746450232740219288}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -364,7 +365,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6746450232740219288}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -409,7 +410,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6746450232740219288}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -545,7 +546,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2254886667171598910, guid: 999091efd0f63834b9192490c237004d, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2584883274440816899, guid: 999091efd0f63834b9192490c237004d, type: 3}
       propertyPath: m_Size.y
