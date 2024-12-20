@@ -835,6 +835,7 @@ MonoBehaviour:
   <Vision>k__BackingField: {fileID: 3313561525202244186}
   <AiPath>k__BackingField: {fileID: 251132582891915061}
   <Owner>k__BackingField: 1
+  <DropGroups>k__BackingField: []
   weaponData: {fileID: 11400000, guid: 15f2c675f55d8e84da00294993a8a380, type: 2}
   shootPoint: {fileID: 1889452406550039200}
   bodyDrawerBase: {fileID: 9011791199071223377}

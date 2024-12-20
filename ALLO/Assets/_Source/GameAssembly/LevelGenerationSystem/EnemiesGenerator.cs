@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using UnityEngine;
+using Zenject;
 using Random = UnityEngine.Random;
 
 namespace LevelGenerationSystem
@@ -9,6 +10,10 @@ namespace LevelGenerationSystem
     {
         [SerializeField] private EnemiesGeneratorLeveling[] enemiesLeveling;
         [SerializeField] private EnemiesGeneratorLeveling afterAllLevels;
+
+        private DiContainer _diContainer;
+
+        public void Init(DiContainer diContainer) => _diContainer = diContainer;
 
         public void Generate(int level)
         {
@@ -28,7 +33,10 @@ namespace LevelGenerationSystem
                 }
 
                 foreach (var enemy in current.Enemies)
+                {
+                    _diContainer.InjectGameObject(enemy);
                     enemy.SetActive(true);
+                }
 
                 return;
             }

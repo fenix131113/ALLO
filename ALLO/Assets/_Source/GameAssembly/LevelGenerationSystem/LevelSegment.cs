@@ -38,6 +38,8 @@ namespace LevelGenerationSystem
             Coordinates = coordinates;
             _diContainer = diContainer;
             
+            EnemiesGenerator?.Init(_diContainer);
+            
             var enemies = transform.GetComponentsInChildren<AEnemy>();
             foreach (var enemy in enemies)
                 _diContainer.InjectGameObject(enemy.gameObject);

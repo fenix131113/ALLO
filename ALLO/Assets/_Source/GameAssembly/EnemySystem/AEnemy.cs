@@ -1,4 +1,5 @@
-﻿using DamageSystem;
+﻿using System;
+using DamageSystem;
 using DamageSystem.Data;
 using Pathfinding;
 using UnityEngine;
@@ -12,6 +13,7 @@ namespace EnemySystem
 		[field: SerializeField] public EnemyVision Vision { get; protected set; }
 		[field: SerializeField] public AIPath AiPath { get; protected set; }
 		[field: SerializeField] public DamageOwner Owner { get; protected set; }
+		[field: SerializeField] public EnemyDropGroup[] DropGroups { get; protected set; }
 
 		private void Awake()
 		{
@@ -49,5 +51,12 @@ namespace EnemySystem
 
 		private void OnDestroy() => Expose();
 		private void OnApplicationQuit() => Expose();
+	}
+
+	[Serializable]
+	public class EnemyDropGroup
+	{
+		[field: SerializeField] public GameObject DropObject { get; private set; }
+		[field: SerializeField] public int Weight { get; private set; }
 	}
 }

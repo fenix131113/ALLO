@@ -596,6 +596,7 @@ MonoBehaviour:
   <Vision>k__BackingField: {fileID: 158671983655598261}
   <AiPath>k__BackingField: {fileID: 6727745051394565501}
   <Owner>k__BackingField: 1
+  <DropGroups>k__BackingField: []
   ammoBoxPrefab: {fileID: 8414387051592902386, guid: d34dae8ae3747634685b749503dbe971, type: 3}
   firstAidPrefab: {fileID: 8029918169034736024, guid: 620711f68920a0c49bb7c32c41dc4ec5, type: 3}
   bodyDrawerBase: {fileID: 6146786374674693558}
