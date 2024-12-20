@@ -1316,8 +1316,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51bc47c50c614db4dade1a80f3749cca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Health>k__BackingField: 5
-  <MaxHealth>k__BackingField: 5
+  <Health>k__BackingField: 10
+  <MaxHealth>k__BackingField: 10
   <Owner>k__BackingField: 0
   <Rb>k__BackingField: {fileID: 5655168584764114801}
   <LookRotationPivot>k__BackingField: {fileID: 1791065880407555310}

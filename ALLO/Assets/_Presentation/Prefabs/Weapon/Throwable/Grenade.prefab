@@ -103,7 +103,7 @@ MonoBehaviour:
   damageOwner: 0
   rb: {fileID: 6836773006959961948}
   startSpeed: 4
-  explodeRadius: 2
+  explodeRadius: 1.25
   explodeTime: 4
   damage: 2
   explodeParticles: {fileID: 2387009860209062117}

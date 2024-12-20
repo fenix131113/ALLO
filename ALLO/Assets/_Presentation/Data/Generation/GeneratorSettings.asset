@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 936aaf8d06264939b614a49512efb549, type: 3}
   m_Name: GeneratorSettings
   m_EditorClassIdentifier: 
-  <StartSegmentsXCount>k__BackingField: 5
-  <StartSegmentsYCount>k__BackingField: 5
+  <StartSegmentsXCount>k__BackingField: 3
+  <StartSegmentsYCount>k__BackingField: 3
   <CorridorPercent>k__BackingField: 30
   <StartSegment>k__BackingField: {fileID: 11400000, guid: 9cdf72a53dd4e9441978371f78bcf952, type: 2}
   <EndSegment>k__BackingField: {fileID: 11400000, guid: 462c0ae1771307548837928edef11b8f, type: 2}

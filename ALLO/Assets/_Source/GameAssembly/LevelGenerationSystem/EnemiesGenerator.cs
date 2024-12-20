@@ -17,11 +17,12 @@ namespace LevelGenerationSystem
 
         public void Generate(int level)
         {
-            var selectedLeveling = enemiesLeveling.FirstOrDefault(leveling => level <= leveling.Level) ?? afterAllLevels;
-            
-            if(selectedLeveling.Groups.Length == 0)
+            var selectedLeveling =
+                enemiesLeveling.FirstOrDefault(leveling => level <= leveling.Level) ?? afterAllLevels;
+
+            if (selectedLeveling.Groups.Length == 0)
                 return;
-            
+
             var weightSum = selectedLeveling.Groups.Sum(group => group.Weight);
             var sorted = selectedLeveling.Groups.OrderByDescending(group => group.Weight);
             foreach (var current in sorted)
@@ -34,8 +35,11 @@ namespace LevelGenerationSystem
 
                 foreach (var enemy in current.Enemies)
                 {
+                    if (!enemy)
+                        continue;
+
+                    enemy?.SetActive(true);
                     _diContainer.InjectGameObject(enemy);
-                    enemy.SetActive(true);
                 }
 
                 return;
@@ -49,7 +53,7 @@ namespace LevelGenerationSystem
         [field: SerializeField] public int Level { get; set; }
         [field: SerializeField] public EnemiesGeneratorGroup[] Groups { get; set; }
     }
-    
+
     [Serializable]
     public class EnemiesGeneratorGroup
     {

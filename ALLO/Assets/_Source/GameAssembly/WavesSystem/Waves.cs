@@ -47,8 +47,6 @@ namespace WavesSystem
 			}
 			else
 				_enemyWaveCount++;
-			
-			
 
 			SpawnEnemies();
 		}
@@ -59,9 +57,9 @@ namespace WavesSystem
 				Vector3.Distance(point.position, _playerMutation.CurrentPlayer.transform.position) >
 				safeSpawnDistance).ToList();
 				
-			var spawned = Instantiate(ammoBoxPrefab, availableSpawnPoint.ElementAt(Random.Range(0, availableSpawnPoint.Count())).position,
+			var spawned = Instantiate(ammoBoxPrefab, availableSpawnPoint.ElementAt(Random.Range(0, availableSpawnPoint.Count)).position,
 				Quaternion.identity);
-			spawned.Init(_playerAmmoContainer);
+			_diContainer.InjectGameObject(spawned.gameObject);
 		}
 
 		private void SpawnEnemies()

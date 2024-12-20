@@ -146,8 +146,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 2
   maxHealth: 2
-  breakParticle: {fileID: 5434655637565225164, guid: d918fe606e919d441b5f5c7d0ca9c0ad, type: 3}
-  damageParticle: {fileID: 3114615432776808224, guid: d918fe606e919d441b5f5c7d0ca9c0ad, type: 3}
+  breakParticle: {fileID: 5253417990920469862}
+  damageParticle: {fileID: 2933377648154358410}
 --- !u!1001 &1173056333417870548
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -256,5 +256,15 @@ PrefabInstance:
 --- !u!4 &2103338432933550272 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 970252680298146836, guid: 6892ffba59feeb6408f09609372711e4, type: 3}
+  m_PrefabInstance: {fileID: 1173056333417870548}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &2933377648154358410 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 4103619187571377758, guid: 6892ffba59feeb6408f09609372711e4, type: 3}
+  m_PrefabInstance: {fileID: 1173056333417870548}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &5253417990920469862 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6386222267576158642, guid: 6892ffba59feeb6408f09609372711e4, type: 3}
   m_PrefabInstance: {fileID: 1173056333417870548}
   m_PrefabAsset: {fileID: 0}

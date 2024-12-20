@@ -5057,5 +5057,5 @@ MonoBehaviour:
   damageOwner: 0
   speed: 5
   lifetime: 3
-  explodeRadius: 1
+  explodeRadius: 0.75
   explodeParticles: {fileID: 7319840020677529327}

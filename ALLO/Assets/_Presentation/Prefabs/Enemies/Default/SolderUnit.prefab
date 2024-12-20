@@ -5457,7 +5457,19 @@ MonoBehaviour:
   <Vision>k__BackingField: {fileID: 5148999167110974279}
   <AiPath>k__BackingField: {fileID: 2204298329397216088}
   <Owner>k__BackingField: 1
-  <DropGroups>k__BackingField: []
+  <DropGroups>k__BackingField:
+  - <DropObject>k__BackingField: {fileID: 0}
+    <Weight>k__BackingField: 30
+  - <DropObject>k__BackingField: {fileID: 7137486333439121773, guid: 3918e4429f699134d9dfa43bba9dcf91, type: 3}
+    <Weight>k__BackingField: 12
+  - <DropObject>k__BackingField: {fileID: 8314975380819431511, guid: 4d929a66289ecee40b6d3835dd52b519, type: 3}
+    <Weight>k__BackingField: 13
+  - <DropObject>k__BackingField: {fileID: 8833368571338635937, guid: d34dae8ae3747634685b749503dbe971, type: 3}
+    <Weight>k__BackingField: 20
+  - <DropObject>k__BackingField: {fileID: 8795626291062372933, guid: 620711f68920a0c49bb7c32c41dc4ec5, type: 3}
+    <Weight>k__BackingField: 10
+  - <DropObject>k__BackingField: {fileID: 1589784179432351388, guid: d512bb63b7d518741a49bf2ff35603fe, type: 3}
+    <Weight>k__BackingField: 15
   weaponData: {fileID: 11400000, guid: 15f2c675f55d8e84da00294993a8a380, type: 2}
   shootPoint: {fileID: 8436239224835614903}
   bodyDrawerBase: {fileID: 477755875991249443}
