@@ -1,4 +1,6 @@
-﻿using DG.Tweening;
+﻿using System.Collections.Generic;
+using System.Linq;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -50,17 +52,20 @@ namespace Company.View
                 FadeOut().onComplete += MoveUpgradePanelDown;
 
             if (_liftLoading.FirstUpgrade != null)
-                cards[0].Init(_liftLoading.FirstUpgrade);
+                cards[0].Init(_liftLoading.FirstUpgrade,
+                    _companyData.CurrentUpgradesLevels.GetValueOrDefault(_liftLoading.FirstUpgrade.UpgradeType, 1));
             else
                 cards[0].gameObject.SetActive(false);
 
             if (_liftLoading.SecondUpgrade != null)
-                cards[1].Init(_liftLoading.SecondUpgrade);
+                cards[1].Init(_liftLoading.SecondUpgrade,
+                    _companyData.CurrentUpgradesLevels.GetValueOrDefault(_liftLoading.SecondUpgrade.UpgradeType, 1));
             else
                 cards[1].gameObject.SetActive(false);
 
             if (_liftLoading.ThirdUpgrade != null)
-                cards[2].Init(_liftLoading.ThirdUpgrade);
+                cards[2].Init(_liftLoading.ThirdUpgrade,
+                    _companyData.CurrentUpgradesLevels.GetValueOrDefault(_liftLoading.ThirdUpgrade.UpgradeType, 1));
             else
                 cards[2].gameObject.SetActive(false);
         }

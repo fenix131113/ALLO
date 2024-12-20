@@ -16,7 +16,8 @@ namespace LevelGenerationSystem
         private Transform backGround;
 
         [field: SerializeField] public RandomSegment RandomSegment { get; set; } 
-        [field: SerializeField] public SegmentColorManager SegmentColorManager { get; set; } 
+        [field: SerializeField] public SegmentColorManager SegmentColorManager { get; set; }
+        [field: SerializeField] public EnemiesGenerator EnemiesGenerator { get; set; }
         [SerializeField] private GameObject upDoor;
         [SerializeField] private GameObject rightDoor;
         [SerializeField] private GameObject downDoor;
