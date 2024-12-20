@@ -183,20 +183,20 @@ namespace LevelGenerationSystem
                     break;
             }
 
-            if (CreateLevelSegment(_generationSettings.EndSegment, exitData.Item1, exitData.Item2)
-                .TryGetComponent(out ExitSegmentActivator exitSegment))
-                switch (exitDoorDirection)
-                {
-                    case DoorDirection.UP:
-                        exitSegment.ActivateWhenDoorUp();
-                        break;
-                    case DoorDirection.DOWN:
-                        exitSegment.ActivateWhenDoorDown();
-                        break;
-                    case DoorDirection.LEFT:
-                        exitSegment.ActivateWhenDoorLeft();
-                        break;
-                }
+            var exitSegment = CreateLevelSegment(_generationSettings.EndSegment, exitData.Item1, exitData.Item2)
+                            .GetComponent<ExitSegmentActivator>();
+            switch (exitDoorDirection)
+            {
+                case DoorDirection.UP:
+                    exitSegment.ActivateWhenDoorUp();
+                    break;
+                case DoorDirection.DOWN:
+                    exitSegment.ActivateWhenDoorDown();
+                    break;
+                case DoorDirection.LEFT:
+                    exitSegment.ActivateWhenDoorLeft();
+                    break;
+            }
 
             _grid[exitData.Item2].SetDoorState(exitDoorDirection, false);
             _grid[exitData.Item2 + GetGridVectorDirectionByDoorDirection(exitDoorDirection)]
