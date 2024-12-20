@@ -145,6 +145,9 @@ namespace EnemySystem.Enemies
                 return;
             }
 
+            if (sortedGroups.Count <= 0)
+                return;
+            
             if (sortedGroups[^1].DropObject)
                 _diContainer.InjectGameObject(
                     Instantiate(sortedGroups[^1].DropObject, transform.position, Quaternion.identity));

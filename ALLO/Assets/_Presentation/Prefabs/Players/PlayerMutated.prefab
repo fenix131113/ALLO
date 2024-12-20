@@ -128,7 +128,7 @@ MonoBehaviour:
   deactivatingByTime: 1
   deactivationTime: 0.1
   damageOwner: 0
-  damage: 1
+  damage: 3
 --- !u!50 &1018552017586560929
 Rigidbody2D:
   serializedVersion: 4

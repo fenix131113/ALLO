@@ -33,6 +33,9 @@ namespace PlayerSystem.Attack
 
         public void ActivateWeapon()
         {
+            if(!_playerWeaponData.CurrentWeapon)
+                return;
+            
             var weaponGFX = GetWeaponGFX(_playerWeaponData.CurrentWeapon);
 
             if (!weaponGFX.WeaponGFX)

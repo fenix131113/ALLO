@@ -11,6 +11,8 @@ namespace MainMenuSystem
 		[SerializeField] private Button settingsButton;
 		[SerializeField] private Button exitButton;
 		[SerializeField] private GameObject settingsPanel;
+		[SerializeField] private int generationSceneIndex;
+		[SerializeField] private int arenaSceneIndex;
 
 		private void Start()
 		{
@@ -36,13 +38,13 @@ namespace MainMenuSystem
 		private void LoadGameScene()
 		{
 			Expose();
-			SceneManager.LoadScene(1);
+			SceneManager.LoadScene(arenaSceneIndex);
 		}
 		
 		private void LoadGenerationScene()
 		{
 			Expose();
-			SceneManager.LoadScene(2);
+			SceneManager.LoadScene(generationSceneIndex);
 		}
 
 		private void SwitchSettingsPanel()

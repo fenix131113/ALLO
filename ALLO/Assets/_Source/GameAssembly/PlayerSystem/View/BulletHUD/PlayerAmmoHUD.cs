@@ -43,19 +43,22 @@ namespace PlayerSystem.View.BulletHUD
         {
             if (_playerWeaponsData.CurrentWeapon.WeaponType != WeaponType.FIREARMS)
                 return;
-            
+
             ammoLabel.text =
                 $"x{_playerAmmoContainer.GetAmmoFromStorage(_playerShoot.CurrentFirearm.AmmoType)}";
         }
 
         private void OnWeaponChanged()
         {
+            if (!_playerWeaponsData.CurrentWeapon)
+                return;
+            
             if (_playerWeaponsData.CurrentWeapon.WeaponType == WeaponType.FIREARMS)
             {
                 bulletsHUD.SetActive(true);
-                
+
                 FillFullClip();
-                
+
                 DrawAmmoLabel();
             }
             else

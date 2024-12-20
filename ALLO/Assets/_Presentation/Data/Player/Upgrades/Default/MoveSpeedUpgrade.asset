@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MoveSpeedUpgrade
   m_EditorClassIdentifier: 
   <UpgradeName>k__BackingField: Player Move Speed
-  <Description>k__BackingField: Increase movement speed\n+5%
+  <Description>k__BackingField: Increase movement speed +5%
   <Icon>k__BackingField: {fileID: -901183804, guid: ec72b4945e848d344aade7338564f342, type: 3}
   <UpgradeType>k__BackingField: 3
   <Weight>k__BackingField: 3
