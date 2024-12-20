@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Company;
 using LevelGenerationSystem.Data;
 using UnityEngine;
 using Zenject;
@@ -22,6 +23,7 @@ namespace LevelGenerationSystem
         private readonly Dictionary<Vector2, LevelSegment> _grid = new();
         private AstarPath _pathFinder;
         private DiContainer _diContainer;
+        private CompanyInterLevelDataContainer _companyData;
         private LevelSpritesColor _selectedLevelColor;
         private float _nextSpawnXPosition;
         private int _completedLevels;
@@ -29,11 +31,13 @@ namespace LevelGenerationSystem
         private int _finalYSize;
 
         [Inject]
-        private void Construct(GenerationSettingsSO generationSettings, AstarPath pathFinder, DiContainer diContainer)
+        private void Construct(GenerationSettingsSO generationSettings, AstarPath pathFinder, DiContainer diContainer,
+            CompanyInterLevelDataContainer companyLevel)
         {
             _generationSettings = generationSettings;
             _pathFinder = pathFinder;
             _diContainer = diContainer;
+            _companyData = companyLevel;
         }
 
         public void Initialize()
@@ -184,7 +188,7 @@ namespace LevelGenerationSystem
             }
 
             var exitSegment = CreateLevelSegment(_generationSettings.EndSegment, exitData.Item1, exitData.Item2)
-                            .GetComponent<ExitSegmentActivator>();
+                .GetComponent<ExitSegmentActivator>();
             switch (exitDoorDirection)
             {
                 case DoorDirection.UP:
@@ -367,6 +371,7 @@ namespace LevelGenerationSystem
                 .Init(so, gridPosition, _diContainer);
             spawned.SegmentColorManager?.SelectColor(_selectedLevelColor);
             spawned.name = spawned.name.Split(' ')[0].Replace("(Clone)", "") + $" ({gridPosition.x}, {gridPosition.y})";
+            spawned.EnemiesGenerator?.Generate(_companyData.CompleteLevels);
 
             if (!_grid.TryAdd(gridPosition, spawned))
                 throw new ArgumentException(
