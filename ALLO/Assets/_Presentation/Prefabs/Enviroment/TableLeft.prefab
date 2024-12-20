@@ -277,8 +277,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d43c5b7402d4256946a797b889b9dfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 4
-  maxHealth: 4
+  health: 3
+  maxHealth: 3
   breakParticle: {fileID: 4375897828897758483}
   damageParticle: {fileID: 6694846439897486079}
 --- !u!1 &7862228814558120450
