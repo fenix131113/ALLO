@@ -361,6 +361,7 @@ MonoBehaviour:
   backGround: {fileID: 8468028398305935611}
   <RandomSegment>k__BackingField: {fileID: 1157564002285016702}
   <SegmentColorManager>k__BackingField: {fileID: 5824018661092051015}
+  <EnemiesGenerator>k__BackingField: {fileID: 0}
   upDoor: {fileID: 6464933708066596311}
   rightDoor: {fileID: 1230455006463557448}
   downDoor: {fileID: 636539050490626164}
@@ -748,7 +749,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2642973557047653731}
-  - {fileID: 4841228231108455604}
   - {fileID: 4941386602693748762}
   - {fileID: 9171319494770508515}
   - {fileID: 3498347755660822004}
@@ -2396,6 +2396,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ClosetSide (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5104180863456230995, guid: a5d6dbb644ec9644894c75c89a4cf857, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2467,68 +2471,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 3917995123667833149, guid: cdb1bc6951435444390edf6015b879dd, type: 3}
   m_PrefabInstance: {fileID: 2200073434437515813}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &2354362146760949230
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 7683392141602092939}
-    m_Modifications:
-    - target: {fileID: 4063235417135682936, guid: b4c501aa280743340a13aac698a56418, type: 3}
-      propertyPath: m_Name
-      value: SofaBig (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 7170610813504328026, guid: b4c501aa280743340a13aac698a56418, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 2.445
-      objectReference: {fileID: 0}
-    - target: {fileID: 7170610813504328026, guid: b4c501aa280743340a13aac698a56418, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 3.68
-      objectReference: {fileID: 0}
-    - target: {fileID: 7170610813504328026, guid: b4c501aa280743340a13aac698a56418, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7170610813504328026, guid: b4c501aa280743340a13aac698a56418, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7170610813504328026, guid: b4c501aa280743340a13aac698a56418, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7170610813504328026, guid: b4c501aa280743340a13aac698a56418, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7170610813504328026, guid: b4c501aa280743340a13aac698a56418, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7170610813504328026, guid: b4c501aa280743340a13aac698a56418, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7170610813504328026, guid: b4c501aa280743340a13aac698a56418, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7170610813504328026, guid: b4c501aa280743340a13aac698a56418, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: b4c501aa280743340a13aac698a56418, type: 3}
---- !u!4 &4841228231108455604 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7170610813504328026, guid: b4c501aa280743340a13aac698a56418, type: 3}
-  m_PrefabInstance: {fileID: 2354362146760949230}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2368872588476128971
 PrefabInstance:
@@ -4227,6 +4169,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ClosetSide
       objectReference: {fileID: 0}
+    - target: {fileID: 5104180863456230995, guid: a5d6dbb644ec9644894c75c89a4cf857, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5238,6 +5184,10 @@ PrefabInstance:
     - target: {fileID: 4063235417135682936, guid: b4c501aa280743340a13aac698a56418, type: 3}
       propertyPath: m_Name
       value: SofaBig (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4063235417135682936, guid: b4c501aa280743340a13aac698a56418, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7170610813504328026, guid: b4c501aa280743340a13aac698a56418, type: 3}
       propertyPath: m_LocalPosition.x
