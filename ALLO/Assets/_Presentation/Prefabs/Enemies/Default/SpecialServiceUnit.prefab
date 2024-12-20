@@ -830,8 +830,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9761d6fe0e364106b9ea77d2e05bd7a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Health>k__BackingField: 3
-  <MaxHealth>k__BackingField: 3
+  <Health>k__BackingField: 2
+  <MaxHealth>k__BackingField: 2
   <Vision>k__BackingField: {fileID: 3313561525202244186}
   <AiPath>k__BackingField: {fileID: 251132582891915061}
   <Owner>k__BackingField: 1
