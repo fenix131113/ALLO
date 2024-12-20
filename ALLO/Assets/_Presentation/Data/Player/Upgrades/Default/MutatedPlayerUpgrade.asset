@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MutatedPlayerUpgrade
   m_EditorClassIdentifier: 
   <UpgradeName>k__BackingField: Mutant Max Health
-  <Description>k__BackingField: 
+  <Description>k__BackingField: Increase hp for a mutant +3HP
   <Icon>k__BackingField: {fileID: 1964451258, guid: ae72510a426cded478bc515bc3818b19, type: 3}
   <UpgradeType>k__BackingField: 1
   <Weight>k__BackingField: 3

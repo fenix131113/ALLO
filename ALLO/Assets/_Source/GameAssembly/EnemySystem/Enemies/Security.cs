@@ -28,12 +28,15 @@ namespace EnemySystem.Enemies
         [SerializeField] private int hitDamage;
         [SerializeField] private float attackCooldown;
         [SerializeField] private float hitGlowTime;
+        [SerializeField] private LayerMask notifyLayer;
+        [SerializeField] private float notifyRadius;
 
         private PlayerMutation _playerMutation;
         private int _extraLifeUsed;
         private float _attackCooldownTimer;
         private bool _canAttack = true;
         private bool _isAlwaysSeePlayer;
+        private bool _isNotified;
         private DiContainer _diContainer;
         private Vector3? _walkToPosition;
 
@@ -76,6 +79,9 @@ namespace EnemySystem.Enemies
 
         protected override void OnTargetSpotted(Transform target)
         {
+            if (!_isNotified)
+                NotifyNeighbours();
+            
             handsDrawerBase.SetLookTarget(target);
             LookAtTarget();
         }
@@ -85,6 +91,7 @@ namespace EnemySystem.Enemies
             if (_isAlwaysSeePlayer)
                 return;
 
+            _isNotified = false;
             _walkToPosition = target.position;
             SetDestination(target.position);
             handsDrawerBase.SetLookTarget((Vector3)_walkToPosition);
@@ -97,6 +104,23 @@ namespace EnemySystem.Enemies
 
             SetDestination(Vision.CurrentTarget.position);
             LookAtTarget();
+        }
+
+        private void NotifyNeighbours()
+        {
+            _isNotified = true;
+            var neighbours = Physics2D.OverlapCircleAll(transform.position, notifyRadius, notifyLayer);
+            var enemies = neighbours.Select(n =>
+            {
+                n.TryGetComponent(out AEnemy enemy);
+                return enemy;
+            }).ToList();
+
+            if (enemies.Count <= 0)
+                return;
+
+            foreach (var c in enemies)
+                c?.Vision.NativeSetTarget(Vision.CurrentTarget);
         }
 
         protected override void Die()
@@ -114,7 +138,7 @@ namespace EnemySystem.Enemies
         {
             var weightSum = DropGroups.Sum(item => item.Weight);
             var sortedGroups = DropGroups.OrderByDescending(item => item.Weight).ToList();
-            
+
             foreach (var group in sortedGroups)
             {
                 if (Random.Range(0, weightSum + 1) <= group.Weight)
@@ -125,7 +149,7 @@ namespace EnemySystem.Enemies
                         Instantiate(group.DropObject, transform.position, Quaternion.identity));
                 return;
             }
-            
+
             if (sortedGroups.Count > 0 && sortedGroups[^1].DropObject)
                 _diContainer.InjectGameObject(
                     Instantiate(sortedGroups[^1].DropObject, transform.position, Quaternion.identity));
@@ -145,14 +169,15 @@ namespace EnemySystem.Enemies
 
         public override void TakeDamage(int damage)
         {
+            Vision.NativeSetTarget(_playerMutation.CurrentPlayer.transform);
             damage = Mathf.Clamp(damage, 0, Health);
             Health -= damage;
             bodyDrawerBase.GlowEffect(hitGlowTime);
 
             switch (Health)
             {
-                case 0 when (extraLifeModule.ExtraLifeGroups.Count == _extraLifeUsed ||
-                             !extraLifeModule.CanGetExtraLife(_extraLifeUsed)):
+                case 0 when extraLifeModule.ExtraLifeGroups.Count == _extraLifeUsed ||
+                            !extraLifeModule.CanGetExtraLife(_extraLifeUsed):
                     Die();
                     break;
                 case 0:

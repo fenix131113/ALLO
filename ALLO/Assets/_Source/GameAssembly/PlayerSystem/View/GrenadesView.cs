@@ -1,5 +1,4 @@
-﻿using System;
-using PlayerSystem.Attack.Throwable;
+﻿using PlayerSystem.Attack.Throwable;
 using TMPro;
 using UnityEngine;
 using Zenject;

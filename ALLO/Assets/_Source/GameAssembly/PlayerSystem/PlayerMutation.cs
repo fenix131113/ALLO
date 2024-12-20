@@ -51,6 +51,11 @@ namespace PlayerSystem
             if (CurrentPlayer != DefaultPlayer || ScoredKills != KillsToMutation)
                 return;
             
+            SwitchToMutantInstantly();
+        }
+
+        public void SwitchToMutantInstantly()
+        {
             MutatedPlayer.AddHealth(DefaultPlayer.Health + 5);
             SetPlayer(MutatedPlayer);
             _mutantDrawer.SetAttackState(true);

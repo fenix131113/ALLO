@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Presentation/Scenes/LiftLoadingScene.unity
     guid: a9da038953f7ab44cab57920bbd50a6d
+  - enabled: 1
+    path: Assets/_Presentation/Scenes/Tutorial.unity
+    guid: e11f390d981ae384e8751df722444b2c
   m_configObjects: {}

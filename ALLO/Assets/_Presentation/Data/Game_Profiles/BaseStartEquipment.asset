@@ -12,8 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d9e83271e394d80a6b4c9ced0232871, type: 3}
   m_Name: BaseStartEquipment
   m_EditorClassIdentifier: 
-  <StartWeapons>k__BackingField:
-  - {fileID: 11400000, guid: 05f4633b546a1bc458c827c9b23b67bc, type: 2}
-  - {fileID: 11400000, guid: 15f2c675f55d8e84da00294993a8a380, type: 2}
-  - {fileID: 11400000, guid: d750ef8db9d61c5498171a1ce7ada0b3, type: 2}
+  <StartWeapons>k__BackingField: []
   <StartNineMMAmmo>k__BackingField: 40

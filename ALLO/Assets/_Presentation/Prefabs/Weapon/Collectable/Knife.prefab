@@ -220,7 +220,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lightColor: {r: 1, g: 1, b: 1, a: 1}
   coloringTime: 0.5
-  weapon: {fileID: 11400000, guid: 94a59bcebda1f9c43990854c0785cca6, type: 2}
+  weapon: {fileID: 11400000, guid: d750ef8db9d61c5498171a1ce7ada0b3, type: 2}
   flashingRenderer: {fileID: 6592242049239662236}
   interactionLayer:
     serializedVersion: 2

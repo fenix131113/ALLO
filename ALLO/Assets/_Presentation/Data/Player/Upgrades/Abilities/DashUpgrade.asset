@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: DashUpgrade
   m_EditorClassIdentifier: 
   <UpgradeName>k__BackingField: Dash
+  <Description>k__BackingField: Evasion for an agent
+  <Icon>k__BackingField: {fileID: 510340548, guid: cb24dad8cb3ca3b48b33e52c4ec961e0, type: 3}
   <UpgradeType>k__BackingField: 4
   <Weight>k__BackingField: 1
   <UpgradeValue>k__BackingField: 1

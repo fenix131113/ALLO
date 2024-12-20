@@ -5686,6 +5686,10 @@ MonoBehaviour:
   hitGlowTime: 0.1
   ammoInClip: 32
   reloadTime: 3.6
+  notifyLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  notifyRadius: 3
 --- !u!70 &4101170677648884256
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

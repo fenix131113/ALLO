@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SpitUpgrade
   m_EditorClassIdentifier: 
   <UpgradeName>k__BackingField: Spit
-  <Description>k__BackingField: 
+  <Description>k__BackingField: Spitting caustic acid
   <Icon>k__BackingField: {fileID: 21300000, guid: c9e9b5d187562044f9b0118206dc96ae, type: 3}
   <UpgradeType>k__BackingField: 5
   <Weight>k__BackingField: 1
