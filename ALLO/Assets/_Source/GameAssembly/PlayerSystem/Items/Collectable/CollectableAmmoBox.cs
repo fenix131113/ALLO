@@ -2,6 +2,7 @@
 using PlayerSystem.Attack.Shooting.Data;
 using UnityEngine;
 using Utils;
+using Zenject;
 
 namespace PlayerSystem.Items.Collectable
 {
@@ -14,10 +15,8 @@ namespace PlayerSystem.Items.Collectable
         private PlayerAmmoContainer _playerAmmoContainer;
         private bool _isGetAmmo;
 
-        public void Init(PlayerAmmoContainer playerAmmoContainer)
-        {
-            _playerAmmoContainer = playerAmmoContainer;
-        }
+        [Inject]
+        public void Construct(PlayerAmmoContainer playerAmmoContainer) => _playerAmmoContainer = playerAmmoContainer;
 
         private void OnTriggerEnter2D(Collider2D other)
         {

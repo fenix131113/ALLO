@@ -6,6 +6,8 @@ namespace PlayerSystem.Data
     public class UpgradesDataSO : ScriptableObject
     {
         [field: SerializeField] public string UpgradeName { get; private set; }
+        [field: SerializeField] public string Description { get; private set; }
+        [field: SerializeField] public Sprite Icon { get; private set; }
         [field: SerializeField] public UpgradeType UpgradeType { get; private set; }
         [field: SerializeField] public int Weight { get; private set; }
         [field: SerializeField] public int UpgradeValue { get; private set; }

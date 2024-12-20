@@ -15,7 +15,7 @@ MonoBehaviour:
   <StartSegmentsXCount>k__BackingField: 3
   <StartSegmentsYCount>k__BackingField: 3
   <CorridorPercent>k__BackingField: 30
-  <StartSegment>k__BackingField: {fileID: 11400000, guid: 3090b0cc7418e794ca595c84f1db975b, type: 2}
+  <StartSegment>k__BackingField: {fileID: 11400000, guid: 9cdf72a53dd4e9441978371f78bcf952, type: 2}
   <EndSegment>k__BackingField: {fileID: 11400000, guid: 462c0ae1771307548837928edef11b8f, type: 2}
   <XCorridorSegment>k__BackingField: {fileID: 11400000, guid: 8d23c4d9254d29a468c5c8b88cac55df, type: 2}
   <TCorridorSegment>k__BackingField: {fileID: 11400000, guid: cc87289139b1b9d47861361a3515d872, type: 2}

@@ -17,7 +17,7 @@ namespace PlayerSystem.Attack.Throwable
         [SerializeField] private float explodeRadius;
         [SerializeField] private ParticleSystem explodeParticles;
 
-        private void Update() => transform.position += transform.right * (speed * Time.deltaTime);
+        private void FixedUpdate() => transform.position += transform.right * (speed * Time.deltaTime);
 
         private void Start() => Destroy(gameObject, lifetime);
 

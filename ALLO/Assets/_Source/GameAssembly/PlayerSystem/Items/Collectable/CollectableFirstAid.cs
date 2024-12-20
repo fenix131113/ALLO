@@ -11,12 +11,13 @@ namespace PlayerSystem.Items.Collectable
         {
             if (!LayerService.CheckLayersEquality(other.gameObject.layer, playerLayerMask))
                 return;
-            if (other.TryGetComponent<Player>(out var player))
-            {
-                player.AddHealth(10); //TODO: Delete GetComponent
+            
+            if (!other.TryGetComponent<Player>(out var player))
+                return;
+            
+            player.AddHealth(10); //TODO: Delete GetComponent
 
-                Destroy(gameObject);
-            }
+            Destroy(gameObject);
         }
     }
 }

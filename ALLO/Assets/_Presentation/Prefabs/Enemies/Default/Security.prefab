@@ -596,6 +596,13 @@ MonoBehaviour:
   <Vision>k__BackingField: {fileID: 158671983655598261}
   <AiPath>k__BackingField: {fileID: 6727745051394565501}
   <Owner>k__BackingField: 1
+  <DropGroups>k__BackingField:
+  - <DropObject>k__BackingField: {fileID: 0}
+    <Weight>k__BackingField: 85
+  - <DropObject>k__BackingField: {fileID: 1692452986874188825, guid: c281415ce135d534caaed0e2e97dd695, type: 3}
+    <Weight>k__BackingField: 8
+  - <DropObject>k__BackingField: {fileID: 4075701108648695778, guid: 3f5afa5aab8418545ae1f7b0f979b066, type: 3}
+    <Weight>k__BackingField: 9
   ammoBoxPrefab: {fileID: 8414387051592902386, guid: d34dae8ae3747634685b749503dbe971, type: 3}
   firstAidPrefab: {fileID: 8029918169034736024, guid: 620711f68920a0c49bb7c32c41dc4ec5, type: 3}
   bodyDrawerBase: {fileID: 6146786374674693558}

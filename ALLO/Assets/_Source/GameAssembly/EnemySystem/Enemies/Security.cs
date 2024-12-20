@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Linq;
 using DamageSystem;
 using DamageSystem.Data;
 using EntityDrawers.Humanoid;
@@ -28,19 +29,19 @@ namespace EnemySystem.Enemies
         [SerializeField] private float attackCooldown;
         [SerializeField] private float hitGlowTime;
 
-        private PlayerAmmoContainer _playerAmmoContainer;
         private PlayerMutation _playerMutation;
         private int _extraLifeUsed;
         private float _attackCooldownTimer;
         private bool _canAttack = true;
         private bool _isAlwaysSeePlayer;
+        private DiContainer _diContainer;
         private Vector3? _walkToPosition;
 
         [Inject]
-        public void Construct(PlayerAmmoContainer playerAmmoContainer, PlayerMutation playerMutation)
+        public void Construct(PlayerMutation playerMutation, DiContainer diContainer)
         {
-            _playerAmmoContainer = playerAmmoContainer;
             _playerMutation = playerMutation;
+            _diContainer = diContainer;
         }
 
         private void Start()
@@ -100,18 +101,34 @@ namespace EnemySystem.Enemies
 
         protected override void Die()
         {
-            //TODO: Delete hardcode
-            if (Random.Range(0f, 1f) <= 0.07f)
-                Instantiate(firstAidPrefab, transform.position, Quaternion.identity);
-            else if (Random.Range(0f, 1f) <= 0.15f)
-                Instantiate(ammoBoxPrefab, transform.position, Quaternion.identity).Init(_playerAmmoContainer);
-
+            GenerateDropObject();
             _playerMutation.IncreaseKillsCount();
             fleshParticles.DestroyByTime(fleshParticles.main.duration);
             fleshParticles.Play();
             fleshParticles.transform.parent = null;
             fleshParticles.gameObject.transform.localScale = Vector3.one;
             Destroy(gameObject);
+        }
+
+        private void GenerateDropObject()
+        {
+            var weightSum = DropGroups.Sum(item => item.Weight);
+            var sortedGroups = DropGroups.OrderByDescending(item => item.Weight).ToList();
+            
+            foreach (var group in sortedGroups)
+            {
+                if (Random.Range(0, weightSum + 1) <= group.Weight)
+                    continue;
+
+                if (group.DropObject)
+                    _diContainer.InjectGameObject(
+                        Instantiate(group.DropObject, transform.position, Quaternion.identity));
+                return;
+            }
+            
+            if (sortedGroups.Count > 0 && sortedGroups[^1].DropObject)
+                _diContainer.InjectGameObject(
+                    Instantiate(sortedGroups[^1].DropObject, transform.position, Quaternion.identity));
         }
 
         private void LookAtTarget()

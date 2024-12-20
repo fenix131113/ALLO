@@ -81,7 +81,7 @@ SpriteRenderer:
   m_Size: {x: 10, y: 10}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &2318916174844455990
@@ -165,7 +165,7 @@ SpriteRenderer:
   m_Size: {x: 6.308194, y: 2.403927}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &3925256637761456126
@@ -227,8 +227,8 @@ Transform:
   m_GameObject: {fileID: 5182215884037851910}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.0713, y: -0.0084, z: 0}
-  m_LocalScale: {x: 3.981282, y: 2.1842532, z: 1}
+  m_LocalPosition: {x: 3.0713, y: 0.1959, z: 0}
+  m_LocalScale: {x: 3.981282, y: 2.5929446, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3592532621815527950}
@@ -337,6 +337,7 @@ MonoBehaviour:
   backGround: {fileID: 7802636254077038741}
   <RandomSegment>k__BackingField: {fileID: 0}
   <SegmentColorManager>k__BackingField: {fileID: 7388716413551086852}
+  <EnemiesGenerator>k__BackingField: {fileID: 0}
   upDoor: {fileID: 0}
   rightDoor: {fileID: 0}
   downDoor: {fileID: 0}
@@ -386,8 +387,8 @@ Transform:
   m_GameObject: {fileID: 8899538459194221691}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0033, y: -1.9622, z: 0}
-  m_LocalScale: {x: 2.1887288, y: 6.092196, z: 1}
+  m_LocalPosition: {x: 0.0033, y: -1.7579, z: 0}
+  m_LocalScale: {x: 2.1887288, y: 6.500626, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3592532621815527950}
@@ -561,7 +562,7 @@ SpriteRenderer:
   m_Size: {x: 2.748178, y: 3.5473924}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1001 &1882576806281421528
